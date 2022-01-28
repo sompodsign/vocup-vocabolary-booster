@@ -1,0 +1,11 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+        <div id="like_button_container"></div>
+{% endblock %}
+
+{% block inline_javascript %}
+<script src="{% static 'components/words/like_btn.js' %}" type="text/babel"></script>
+{% endblock %}
