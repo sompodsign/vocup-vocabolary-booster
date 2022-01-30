@@ -5,7 +5,7 @@ from .models import Word
 
 
 # Create your views here.
-
+#
 class WordsView(ListView):
     model = Word
-    template_name = 'words/word_list.html'
+    template_name = 'index.html'
