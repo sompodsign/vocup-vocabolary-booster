@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
+import {Link} from 'react-router-dom'
+import { useSelector } from "react-redux";
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const userLogin = useSelector(state => state.userLogin)
+  const { userInfo } = userLogin
+
+
   return (
     <div>
       <nav className="bg-gray-800">
@@ -22,15 +29,17 @@ function Nav() {
                     href="#"
                     className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    Dashboard
+                    Home
                   </a>
 
+                  <Link to="/words">
                   <a
                     href="#"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    Team
+                    Vocabolary
                   </a>
+                  </Link>
 
                   <a
                     href="#"
@@ -52,6 +61,41 @@ function Nav() {
                   >
                     Reports
                   </a>
+
+                  {
+                    userInfo ?
+                        <Link to="/" >
+                          <a
+                              href="#"
+                              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+
+                          >
+                            Logged In
+                          </a>
+                        </Link> :
+                        <Link to="/login" >
+                          <a
+                              href="#"
+                              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+
+                          >
+                            Login
+                          </a>
+                        </Link>
+                  }
+
+                  { !userInfo ?
+                      <Link to="/join" >
+                        <a
+                            href="#"
+                            className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+
+                        >
+                          Join Now
+                        </a>
+                      </Link> : null
+                  }
+
                 </div>
               </div>
             </div>
@@ -147,6 +191,18 @@ function Nav() {
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Reports
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Login
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                >
+                  Join Now
                 </a>
               </div>
             </div>

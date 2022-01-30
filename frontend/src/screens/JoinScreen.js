@@ -1,34 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
-import { LockClosedIcon } from '@heroicons/react/solid';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../redux/actions/userActions';
+
+import {Link} from 'react-router-dom'
+import { LockClosedIcon } from '@heroicons/react/solid'
 
 
-export default function LoginScreen({location, history}) {
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const dispatch = useDispatch()
-
-  // const redirect = location.search ? location.search.split('=')[1] : '/'
-
-  const userLogin = useSelector(state => state.userLogin)
-  const { error, loading, userInfo } = userLogin
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     history.push('/')
-  //   }
-  // }, [history, userInfo])
-
-  const submitHandler = (e) => {
-    e.preventDefault()
-    dispatch(login(email, password))
-  }
-
-
+export default function JoinScreen() {
   return (
     <>
       {/*
@@ -47,9 +22,9 @@ export default function LoginScreen({location, history}) {
               src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
               alt="Workflow"
             />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Get Started Now</h2>
           </div>
-          <form className="mt-8 space-y-6" action="" method="POST" onSubmit={submitHandler}>
+          <form className="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -63,9 +38,19 @@ export default function LoginScreen({location, history}) {
                   autoComplete="email"
                 //   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email Address"
+                />
+                <label htmlFor="username" className="sr-only">
+                  Username
+                </label>
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                    autoComplete="username"
+                //   required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Username"
                 />
               </div>
               <div>
@@ -78,35 +63,26 @@ export default function LoginScreen({location, history}) {
                   type="password"
                   autoComplete="current-password"
                 //   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                 />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
+                <label htmlFor="confirm-password" className="sr-only">
+                  Confirm Password
                 </label>
-              </div>
-
-              <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Forgot your password?
-                </a>
+                <input
+                  id="confirm-password"
+                  name="confirm-password"
+                  type="password"
+                  autoComplete="current-password"
+                //   required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Confirm Password"
+                />
               </div>
             </div>
 
             <div>
+                <Link to='/words'>
               <button
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -114,8 +90,9 @@ export default function LoginScreen({location, history}) {
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
                 </span>
-                Sign in
+                Sign Up
               </button>
+              </Link>
             </div>
           </form>
         </div>
