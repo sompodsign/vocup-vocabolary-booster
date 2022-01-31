@@ -37,23 +37,20 @@ import {
 
 
 export const login = (email, password) => async (dispatch) => {
-    console.log("login executed")
     try {
         dispatch({
             type: USER_LOGIN_REQUEST
         })
 
-
         const { data } = await client.post(
             'login/',
             { 'email': email, 'password': password },
         )
-        console.log('data', data)
+
         dispatch({
             type: USER_LOGIN_SUCCESS,
             payload: data
         })
-        console.log(data)
         localStorage.setItem('userInfo', JSON.stringify(data))
 
     } catch (error) {

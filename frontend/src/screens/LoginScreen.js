@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/actions/userActions';
+
 
 
 export default function LoginScreen({location, history}) {
@@ -10,35 +10,29 @@ export default function LoginScreen({location, history}) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
 
   // const redirect = location.search ? location.search.split('=')[1] : '/'
 
   const userLogin = useSelector(state => state.userLogin)
   const { error, loading, userInfo } = userLogin
 
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     history.push('/')
-  //   }
-  // }, [history, userInfo])
+  useEffect((e) => {
+    if (userInfo) {
+      e.preventDefault();
+      history.push("/vocabulary");
+    }
+  }, [history, userInfo])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(login(email, password))
+    dispatch(login(email, password));
   }
 
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-50">
-        <body class="h-full">
-        ```
-      */}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>

@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import {Link} from 'react-router-dom'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {logout} from "../redux/actions/userActions";
 
-function Nav() {
+function Nav({ history }) {
+
   const [isOpen, setIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
+
+  const handleLogout = () => {
+    dispatch(logout());
+    history.push("/login");
+  }
 
 
   return (
@@ -25,14 +34,16 @@ function Nav() {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
+                  <Link to="/">
                   <a
                     href="#"
                     className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Home
                   </a>
+                  </Link>
 
-                  <Link to="/words">
+                  <Link to="/vocabulary">
                   <a
                     href="#"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -64,15 +75,13 @@ function Nav() {
 
                   {
                     userInfo ?
-                        <Link to="/" >
                           <a
                               href="#"
                               className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-
+                              onClick={handleLogout}
                           >
-                            Logged In
-                          </a>
-                        </Link> :
+                            Logout
+                          </a> :
                         <Link to="/login" >
                           <a
                               href="#"
