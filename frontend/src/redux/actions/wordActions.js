@@ -1,5 +1,4 @@
 import client from "../../config";
-import axios from 'axios';
 import {
     WORD_LIST_REQUEST,
     WORD_LIST_SUCCESS,
