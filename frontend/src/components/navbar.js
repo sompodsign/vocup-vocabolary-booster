@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
-import {Link} from 'react-router-dom'
+import {Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import {logout} from "../redux/actions/userActions";
 
-function Nav({ history }) {
+function Nav() {
 
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin
 
   const handleLogout = () => {
     dispatch(logout());
-    history.push("/login");
+    navigate("/login");
   }
 
 

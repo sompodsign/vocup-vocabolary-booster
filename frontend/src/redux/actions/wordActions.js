@@ -20,7 +20,6 @@ import {
 
 //action to load WORDs from server
 export const listWords = () => async (dispatch) => {
-    console.log('get list executed')
     try {
         dispatch({ type: WORD_LIST_REQUEST });
 

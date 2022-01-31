@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { login } from '../redux/actions/userActions';
 
 
 
-export default function LoginScreen({location, history}) {
+export default function LoginScreen() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
 
   // const redirect = location.search ? location.search.split('=')[1] : '/'
 
@@ -20,10 +20,9 @@ export default function LoginScreen({location, history}) {
 
   useEffect((e) => {
     if (userInfo) {
-      e.preventDefault();
-      history.push("/vocabulary");
+      navigate("/vocabulary");
     }
-  }, [history, userInfo])
+  }, [navigate, userInfo])
 
   const submitHandler = (e) => {
     e.preventDefault()

@@ -15,7 +15,7 @@ import {
     WORD_CREATE_REQUEST,
     WORD_CREATE_SUCCESS,
     WORD_CREATE_FAIL,
-    WORD_CREATE_RESET,
+    WORD_CREATE_RESET, WORD_LIST_RESET,
 
 } from "../constants/wordConstants";
 
@@ -35,6 +35,9 @@ export const wordListReducer = (state = { words: [] }, action) => {
             return {
                 loading: false, error: action.payload
             };
+
+        case WORD_LIST_RESET:
+            return { loading: false, words: [] };
 
         default:
             return state;
