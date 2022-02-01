@@ -3,6 +3,8 @@ import { LockClosedIcon } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { login } from '../redux/actions/userActions';
+import Notify from "../components/toast_notification";
+import Toast from "../components/toast_notification";
 
 
 
@@ -32,6 +34,7 @@ export default function LoginScreen() {
 
   return (
     <>
+      {error === 400 && <Toast message="Email or password is incorrect" variant="error"/>}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -70,7 +73,7 @@ export default function LoginScreen() {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                //   required
+                  required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
                   value={password}
