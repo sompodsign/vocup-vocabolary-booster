@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { login } from '../redux/actions/userActions';
 import Toast from "../components/toast_notification";
-import { USER_LOGOUT} from "../redux/constants/userConstants";
+import { USER_LOGOUT } from "../redux/constants/userConstants";
 import {tabTitle} from "../utils/generalFunctions";
 
 
