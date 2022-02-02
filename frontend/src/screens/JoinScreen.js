@@ -1,9 +1,13 @@
 
 import {Link} from 'react-router-dom'
 import { LockClosedIcon } from '@heroicons/react/solid'
+import {tabTitle} from "../utils/generalFunctions";
 
 
 export default function JoinScreen() {
+
+  tabTitle('Sign Up - VOCUP')
+
   return (
     <>
       {/*

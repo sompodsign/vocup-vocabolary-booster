@@ -1,6 +1,8 @@
+import {tabTitle} from "../utils/generalFunctions";
 
 
 function HomeScreen() {
+    tabTitle("Home - VOCUP");
 
   return (
     <div>

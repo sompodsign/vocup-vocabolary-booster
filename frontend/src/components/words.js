@@ -4,9 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import '../styles/base.css'
 import { listWords } from '../redux/actions/wordActions';
+import {tabTitle} from "../utils/generalFunctions";
 
 
-function Words() {
+function VocabularyScreen() {
+
+  tabTitle('Vocabulary - VOCUP');
+
 
   const dispatch = useDispatch();
   const wordList = useSelector(state => state.wordList);
@@ -33,4 +37,4 @@ function Words() {
     </div>
   );
 }
-export default Words;
+export default VocabularyScreen;

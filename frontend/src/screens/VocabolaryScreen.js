@@ -3,9 +3,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import '../styles/base.css'
 import {listWords} from '../redux/actions/wordActions';
+import {tabTitle} from "../utils/generalFunctions";
 
 
 function VocabularyScreen() {
+
+    tabTitle('Vocabulary - VOCUP');
+
 
     const dispatch = useDispatch();
 
@@ -17,7 +21,6 @@ function VocabularyScreen() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        document.title = "This is a title"
         if (userInfo) {
             dispatch(listWords());
         } else {

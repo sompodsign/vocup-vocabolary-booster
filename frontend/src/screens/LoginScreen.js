@@ -5,9 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { login } from '../redux/actions/userActions';
 import Toast from "../components/toast_notification";
 import { USER_LOGOUT} from "../redux/constants/userConstants";
+import {tabTitle} from "../utils/generalFunctions";
 
 
 export default function LoginScreen() {
+
+  tabTitle("Login - VOCUP");
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -95,14 +98,15 @@ export default function LoginScreen() {
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
+                    hidden
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
                   className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
-                </label>
+                {/*<label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">*/}
+                {/*  Remember me*/}
+                {/*</label>*/}
               </div>
 
               <div className="text-sm">
