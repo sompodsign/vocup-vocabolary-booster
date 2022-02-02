@@ -3,15 +3,15 @@ import { LockClosedIcon } from '@heroicons/react/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { login } from '../redux/actions/userActions';
-import Notify from "../components/toast_notification";
 import Toast from "../components/toast_notification";
-
+import { USER_LOGOUT} from "../redux/constants/userConstants";
 
 
 export default function LoginScreen() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showError, setShowError] = useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,21 +20,25 @@ export default function LoginScreen() {
   const userLogin = useSelector(state => state.userLogin)
   const { error, loading, userInfo } = userLogin
 
-  useEffect((e) => {
+  useEffect(() => {
     if (userInfo) {
       navigate("/vocabulary");
     }
-  }, [navigate, userInfo])
+  }, [error, navigate, userInfo])
 
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(login(email, password));
   }
 
+  const message = () => {
+    return <Toast message="Email or password is incorrect" variant="error" />
+  }
+
 
   return (
     <>
-      {error === 400 && <Toast message="Email or password is incorrect" variant="error"/>}
+      {error && <Toast message="Email or password is incorrect" variant="error" />}
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -61,7 +65,10 @@ export default function LoginScreen() {
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Email address"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    dispatch({type: USER_LOGOUT})
+                    setEmail(e.target.value)}
+                }
                 />
               </div>
               <div className="mb-6">
@@ -77,7 +84,10 @@ export default function LoginScreen() {
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   placeholder="Password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    dispatch({type: USER_LOGOUT})
+                    setPassword(e.target.value)}
+                }
                 />
               </div>
             </div>
@@ -102,7 +112,8 @@ export default function LoginScreen() {
               </div>
             </div>
 
-            <div>
+            <div
+            >
               <button
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
