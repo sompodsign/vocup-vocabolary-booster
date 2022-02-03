@@ -35,7 +35,8 @@ import {
 
 } from '../constants/userConstants'
 
-import { WORD_LIST_RESET } from '../constants/wordConstants';
+import {WORD_LIST_RESET} from '../constants/wordConstants';
+import axios from "axios";
 
 
 export const login = (email, password) => async (dispatch) => {
@@ -44,9 +45,9 @@ export const login = (email, password) => async (dispatch) => {
             type: USER_LOGIN_REQUEST
         })
 
-        const { data } = await client.post(
+        const {data} = await client.post(
             'login/',
-            { 'email': email, 'password': password },
+            {'email': email, 'password': password},
         )
 
         dispatch({
@@ -65,14 +66,15 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
     localStorage.removeItem('userInfo')
-    dispatch({ type: USER_LOGOUT })
-    dispatch({ type: USER_DETAILS_RESET })
-    dispatch({ type: USER_LIST_RESET })
-    dispatch({ type: WORD_LIST_RESET})
+    dispatch({type: USER_LOGOUT})
+    dispatch({type: USER_DETAILS_RESET})
+    dispatch({type: USER_LIST_RESET})
+    dispatch({type: WORD_LIST_RESET})
 }
 
 
-export const register = (name, email, password) => async (dispatch) => {
+export const register = (username, firstName, lastName, email, password, confirmPassword) => async (dispatch) => {
+
     try {
         dispatch({
             type: USER_REGISTER_REQUEST
@@ -84,9 +86,16 @@ export const register = (name, email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await client.post(
-            '/api/users/register/',
-            { 'name': name, 'email': email, 'password': password },
+        const {data} = await client.post(
+            'create-user/',
+            {
+                'username': username,
+                'first_name': firstName,
+                'last_name': lastName,
+                'email': email,
+                'password': password,
+                'password2': confirmPassword
+            },
             config
         )
 

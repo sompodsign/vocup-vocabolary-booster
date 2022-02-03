@@ -7,13 +7,14 @@ import {
 } from './redux/reducers/wordReducers'
 
 import {
-    userLoginReducer,
+    userLoginReducer, userRegisterReducer,
 } from './redux/reducers/userReducers'
 
 const reducer = combineReducers({
     wordList: wordListReducer,
 
     userLogin: userLoginReducer,
+    userRegister: userRegisterReducer,
 
 })
 

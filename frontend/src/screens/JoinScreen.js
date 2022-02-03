@@ -1,7 +1,11 @@
 import {Link} from 'react-router-dom'
 import {LockClosedIcon} from '@heroicons/react/solid'
 import {tabTitle} from "../utils/generalFunctions";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import { useNavigate} from "react-router-dom";
+
+import { register } from "../redux/actions/userActions";
+import {useDispatch, useSelector} from "react-redux";
 
 
 export default function JoinScreen() {
@@ -10,13 +14,27 @@ export default function JoinScreen() {
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
+    const [userName, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+
+    const userRegister = useSelector(state => state.userRegister)
+    const { error, loading, userInfo } = userRegister
+
+    useEffect(() => {
+        if (userInfo) {
+            navigate('/vocabulary')
+        }
+    }, [userInfo])
+
     const submitHandler = (event) => {
         event.preventDefault()
-        console.log(firstName, lastName, email, password, confirmPassword)
+        dispatch(register(userName, firstName, lastName, email, password, confirmPassword));
     }
 
     return (
@@ -43,6 +61,22 @@ export default function JoinScreen() {
                         <input type="hidden" name="remember" defaultValue="true"/>
                         <div className="rounded-md shadow-sm -space-y-px">
                             <div>
+
+
+                                <label htmlFor="username" className="sr-only">
+                                    First Name
+                                </label>
+                                <input
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    autoComplete="username"
+                                      required
+                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    placeholder="Username"
+                                    onChange={event => setUsername(event.target.value)}
+                                />
+
 
                                 <label htmlFor="fname" className="sr-only">
                                     First Name
