@@ -295,9 +295,9 @@ CORS_URLS_REGEX = r"^/api/.*$"
 # See more configuration options at https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
 SPECTACULAR_SETTINGS = {
     "TITLE": "Vocubolary Up API",
-    "DESCRIPTION": "Documentation of API endpoiints of Vocubolary Up",
+    "DESCRIPTION": "Documentation of API endpoints of Vocubolary Up",
     "VERSION": "1.0.0",
-    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAllowAny"],
+    "SERVE_PERMISSIONS": ["rest_framework.permissions.IsAdminUser"],
     "SERVERS": [
         {"url": "https://127.0.0.1:8000", "description": "Local Development server"},
         {"url": "https://example.com", "description": "Production server"},
@@ -305,3 +305,4 @@ SPECTACULAR_SETTINGS = {
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
+

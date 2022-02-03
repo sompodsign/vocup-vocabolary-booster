@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin, CreateModelMixin
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
@@ -11,7 +12,9 @@ from rest_framework.schemas import ManualSchema
 
 from .serializers import MyAuthTokenSerializer
 
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserSignUpSerializer
+
+from ..forms import UserSignupForm
 
 User = get_user_model()
 
@@ -34,6 +37,12 @@ class UserViewSet(RetrieveModelMixin, ListModelMixin, UpdateModelMixin, GenericV
 class UserListViewSet(ListModelMixin, GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+
+
+class CreateUserView(CreateModelMixin, GenericViewSet):
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSignUpSerializer
+    permission_classes = (AllowAny,)
 
 
 # token email password
