@@ -30,8 +30,8 @@ export default function LoginScreen() {
 
     if (userInfo) {
         notify("Login Successful", "success")
-    } else if(error === 400) {
-        notify("Username or password is incorrect", "error")
+    } else if(error) {
+        notify("Email or password is incorrect", "error")
     }
 
     const submitHandler = (e) => {
