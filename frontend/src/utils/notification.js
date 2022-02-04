@@ -1,9 +1,8 @@
-
-import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {toast} from "react-toastify";
 
 
-const Toast = ({message, variant}) => {
+const notify = (message, variant) => {
 
     // eslint-disable-next-line default-case
     switch (variant) {
@@ -20,10 +19,7 @@ const Toast = ({message, variant}) => {
             toast.info(message);
             break;
     }
-    return <div>
-        <ToastContainer/>
-    </div>
 }
 
 
-export default Toast;
+export default notify;
