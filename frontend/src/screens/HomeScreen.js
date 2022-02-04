@@ -46,7 +46,6 @@ function HomeScreen() {
         questionBankGenerator();
     }, [words]);
 
-console.log(questionBank)
 
     return (
         questionBank.map((question) =>
