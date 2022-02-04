@@ -40,17 +40,17 @@ function HomeScreen() {
             }
             questions.push(question);
         }
-        console.log(questions);
         setQuestionBank(questions);
     }
     useEffect(() => {
         questionBankGenerator();
     }, [words]);
 
-
+console.log(questionBank)
 
     return (
-        questionBank.map(question => <QuizCard props={question}/>
+        questionBank.map((question) =>
+            <QuizCard key={question.id} props={question}/>
         )
     )
 }
