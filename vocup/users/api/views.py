@@ -11,10 +11,7 @@ from rest_framework.compat import coreapi, coreschema
 from rest_framework.schemas import ManualSchema
 
 from .serializers import MyAuthTokenSerializer
-
 from .serializers import UserSerializer, UserSignUpSerializer
-
-from ..forms import UserSignupForm
 
 User = get_user_model()
 

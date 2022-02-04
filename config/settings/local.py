@@ -66,7 +66,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
-
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 CORS_ALLOW_ALL_HEADERS = True
 
@@ -75,6 +75,4 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000',
     'http://localhost:8080',
     'http://192.168.31.38:3000',
-    'http://192.168.31.38:8000',
-    'http://127.0.0.1:8000',
-]
+    'http://192.168.31.3
