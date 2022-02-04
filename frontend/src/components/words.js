@@ -1,3 +1,4 @@
+// noinspection ES6CheckImport,JSStringConcatenationToES6Template
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +30,7 @@ function VocabularyScreen() {
 }, [dispatch, navigate, userInfo])
 
   return (
-    <div className="md:container md:mx-auto">
+    <div>
       {words.map(word => (
       <h3 key={word.id}>{word.word} - {word.meaning}</h3>
       ))}
