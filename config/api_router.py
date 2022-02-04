@@ -8,7 +8,7 @@ if settings.DEBUG:
     router = DefaultRouter()
 else:
     router = SimpleRouter()
-
+#
 router.register("create-user", CreateUserView)
 router.register("users", UserViewSet)
 router.register("all-users", UserListViewSet)
