@@ -11,10 +11,7 @@ class User(AbstractUser):
     check forms.SignupForm and forms.SocialSignupForms accordingly.
     """
 
-    #: First and last name do not cover name patterns around the globe
     name = CharField(_("Name of User"), blank=True, max_length=255)
-    # first_name = CharField(_("First name of User"), blank=True, max_length=255)
-    # last_name = CharField(_("Last name of User"), blank=True, max_length=255)
 
     def get_absolute_url(self):
         """Get url for user's detail view.

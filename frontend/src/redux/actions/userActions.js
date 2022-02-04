@@ -73,7 +73,7 @@ export const logout = () => (dispatch) => {
 }
 
 
-export const register = (username, firstName, lastName, email, password, confirmPassword) => async (dispatch) => {
+export const register = (firstName, lastName, email, password, confirmPassword) => async (dispatch) => {
 
     try {
         dispatch({
@@ -89,7 +89,6 @@ export const register = (username, firstName, lastName, email, password, confirm
         const {data} = await client.post(
             'create-user/',
             {
-                'username': username,
                 'first_name': firstName,
                 'last_name': lastName,
                 'email': email,
