@@ -38,6 +38,12 @@ class UserSignUpSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"password": "Password fields didn't match."})
         return attrs
 
+    def validate_email(self, value):
+        lower_email = value.lower()
+        if User.objects.filter(email__iexact=lower_email).exists():
+            raise serializers.ValidationError("Please use a different email address.")
+        return lower_email
+
     def create(self, validated_data):
         user = User.objects.create_user(
             username=validated_data.get('email'),
