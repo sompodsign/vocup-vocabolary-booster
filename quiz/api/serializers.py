@@ -1,9 +1,6 @@
-from random import randint
-
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from words.models import Word
 from ..models import Quiz
 
 user = get_user_model()
