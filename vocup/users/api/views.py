@@ -9,7 +9,7 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework.authtoken import views as auth_views
 from rest_framework.compat import coreapi, coreschema
 from rest_framework.schemas import ManualSchema
-
+from rest_framework.schemas import coreapi as coreapi_schema
 from .serializers import MyAuthTokenSerializer
 from .serializers import UserSerializer, UserSignUpSerializer
 
@@ -43,11 +43,10 @@ class CreateUserView(CreateModelMixin, GenericViewSet):
 
 
 # token email password
-
-
 class MyAuthToken(auth_views.ObtainAuthToken):
     serializer_class = MyAuthTokenSerializer
-    if coreapi is not None and coreschema is not None:
+    # if coreapi is not None and coreschema is not None:
+    if coreapi_schema.is_enabled():
         schema = ManualSchema(
             fields=[
                 coreapi.Field(
