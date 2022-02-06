@@ -6,4 +6,4 @@ from ..models import DictWord
 class DictSerializer(serializers.ModelSerializer):
     class Meta:
         model = DictWord
-        fields = ["en", "bn", "pron", "en_syn", "bn_syn", "sentence"]
+        fields = ["id", "en", "bn", "pron", "en_syn", "bn_syn", "sentence"]
