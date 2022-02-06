@@ -11,9 +11,11 @@ class DictionaryViewSet(ModelViewSet):
     queryset = DictWord.objects.all()
     permission_classes = [AllowAny]
 
+    def list(self, request, *args, **kwargs):
+        return Response("LOL, you can't list me")
+
     def retrieve(self, request, *args, **kwargs):
         word = self.kwargs.get('word', None)
-        print(word)
         if word is None:
             raise ValidationError('Word is required')
         try:
