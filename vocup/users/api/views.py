@@ -45,7 +45,7 @@ class CreateUserView(CreateModelMixin, GenericViewSet):
 # token email password
 class MyAuthToken(auth_views.ObtainAuthToken):
     serializer_class = MyAuthTokenSerializer
-    # if coreapi is not None and coreschema is not None:
+
     if coreapi_schema.is_enabled():
         schema = ManualSchema(
             fields=[

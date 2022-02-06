@@ -10,11 +10,17 @@ import {
     userLoginReducer, userRegisterReducer,
 } from './redux/reducers/userReducers'
 
+import {
+    dictWordReducer,
+} from './redux/reducers/dictionaryReducer';
+
 const reducer = combineReducers({
     wordList: wordListReducer,
 
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
+
+    dictWord: dictWordReducer,
 
 })
 
