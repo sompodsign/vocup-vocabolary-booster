@@ -1,8 +1,9 @@
-import {Button} from "@mui/material";
+
+import {MDBBtn} from "mdb-react-ui-kit";
 
 
 const customBtn = (props) => {
-    return <Button onClick={props.func} variant={props.variant}>{props.title}</Button>
+    return <MDBBtn color={props.variant} onClick={props.func}>Submit</MDBBtn>
 }
 
 export default customBtn;

@@ -11,10 +11,10 @@ import {
 
 
 //WORD list reducer
-export const dictWordReducer = (state = { dictWordMeaning: [] }, action) => {
+export const dictWordReducer = (state = { dictWordMeaning: {} }, action) => {
     switch (action.type) {
         case DICTIONARY_WORD_REQUEST:
-            return { loading: true, dictWordMeaning: [] };
+            return { loading: true, dictWordMeaning: {} };
 
         case DICTIONARY_WORD_SUCCESS:
             return {

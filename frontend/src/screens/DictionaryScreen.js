@@ -5,6 +5,8 @@ import DictInput from "../components/dictInput";
 import CustomBtn from "../components/button"
 import {retrieveDictWord} from "../redux/actions/dictionaryActions";
 import {DICTIONARY_WORD_RESET} from "../redux/constants/dictionaryConstants";
+import Spinner from "../components/spinner";
+import ResultCard from "../components/resultCard";
 
 
 function DictionaryScreen() {
@@ -20,7 +22,7 @@ function DictionaryScreen() {
     const dispatch = useDispatch();
 
     const dictObj = useSelector(state => state.dictWord);
-    const {dictWordMeaning: word, error} = dictObj
+    const {dictWordMeaning: word, error, loading} = dictObj
 
     const handleSearch = () => {
         /* it will dispatch word fetching action */
@@ -29,10 +31,11 @@ function DictionaryScreen() {
 
     return (
         <>
-            <DictInput func={setInputValue} value={inputValue} variant="outline-success"/>
+            <DictInput func={setInputValue} value={inputValue} variant="outline-success" search={handleSearch} />
             <CustomBtn func={handleSearch} title="Search"/>
             <h1>{error && "NOT FOUND"}</h1>
-            <h1>{!error && word.bn}</h1>
+            {loading && <Spinner />}
+            {!error && Object.keys(word).length > 0 && <ResultCard word={word} />}
         </>
     );
 }
