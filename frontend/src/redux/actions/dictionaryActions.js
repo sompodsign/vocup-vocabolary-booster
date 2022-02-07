@@ -25,7 +25,7 @@ export const retrieveDictWord = (word) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: DICTIONARY_WORD_FAIL,
-            payload: {"status": error.response.status, "data": error.response.data}
+            payload: {"status": error.response, "data": error.response}
         });
     }
 };
