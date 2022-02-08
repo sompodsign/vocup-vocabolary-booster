@@ -16,7 +16,7 @@ function VocabularyScreen() {
     const wordList = useSelector(state => state.wordList);
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
-    const {loading, words, error} = wordList
+    const { words } = wordList
 
     let navigate = useNavigate();
 

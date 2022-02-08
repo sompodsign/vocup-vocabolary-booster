@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import {
+    wordCreateReducer,
     wordListReducer,
 } from './redux/reducers/wordReducers'
 
@@ -16,6 +17,7 @@ import {
 
 const reducer = combineReducers({
     wordList: wordListReducer,
+    createdWord: wordCreateReducer,
 
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,

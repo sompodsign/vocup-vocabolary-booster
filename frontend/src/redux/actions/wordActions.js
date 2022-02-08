@@ -18,11 +18,22 @@ import {
 } from "../constants/wordConstants";
 
 //action to load WORDs from server
-export const listWords = () => async (dispatch) => {
+export const listWords = () => async (dispatch, getState) => {
     try {
         dispatch({ type: WORD_LIST_REQUEST });
 
-        const { data } = await client.get('/words');
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Token ${userInfo.token}`
+            },
+        }
+
+        const { data } = await client.get('/words', config);
 
         dispatch({
             type: WORD_LIST_SUCCESS,

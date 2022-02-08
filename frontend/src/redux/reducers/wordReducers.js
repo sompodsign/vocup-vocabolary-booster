@@ -94,29 +94,29 @@ export const wordListReducer = (state = { words: [] }, action) => {
 //     }
 // };
 
-// //WORD create reducer
-// export const WORDCreateReducer = (state = {}, action) => {
-//     switch (action.type) {
-//         case WORD_CREATE_REQUEST:
-//             return { loading: true, }
+//WORD create reducer
+export const wordCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case WORD_CREATE_REQUEST:
+            return { loading: true, }
 
-//         case WORD_CREATE_SUCCESS:
-//             return {
-//                 loading: false,
-//                 success: true,
-//                 WORD: action.payload
-//             };
+        case WORD_CREATE_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                createdWord: action.payload
+            };
 
-//         case WORD_CREATE_FAIL:
-//             return {
-//                 loading: false, error: action.payload
-//             };
+        case WORD_CREATE_FAIL:
+            return {
+                loading: false, error: action.response
+            };
 
-//         case WORD_CREATE_RESET:
-//             return {};
+        case WORD_CREATE_RESET:
+            return {};
 
-//         default:
-//             return state;
+        default:
+            return state;
 
-//     }
-// };
+    }
+};

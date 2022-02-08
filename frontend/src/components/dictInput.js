@@ -3,7 +3,7 @@ import { MDBInput } from 'mdb-react-ui-kit';
 
 export default function DictInput(props) {
     return (
-        <div style={{ width: '30rem' }}>
+        <div class="max-w-full">
             <MDBInput
                 labelRef={props.reference}
                 label='English Word'
