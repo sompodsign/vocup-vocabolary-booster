@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {tabTitle} from "../utils/generalFunctions";
 import DictInput from "../components/dictInput";
@@ -14,12 +14,15 @@ function DictionaryScreen() {
 
     tabTitle('Dictionary - VOCUP');
 
-    useEffect(() => {
-        dispatch({type: DICTIONARY_WORD_RESET})
-    },[])
-
-
     const [inputValue, setInputValue] = useState('')
+    const firstUpdate = useRef(true);
+    const inputRef = useRef(null);
+
+
+    // useEffect(() => {
+    //     inputRef.current.focus();
+    //     dispatch({type: DICTIONARY_WORD_RESET})
+    // },[])
 
     const dispatch = useDispatch();
 
@@ -28,14 +31,25 @@ function DictionaryScreen() {
 
     const handleSearch = () => {
         /* it will dispatch word fetching action */
-        dispatch(retrieveDictWord(inputValue));
+            dispatch(retrieveDictWord(inputValue));
     }
-    console.log(word)
+
+    useLayoutEffect(() => {
+        if (firstUpdate.current) {
+            firstUpdate.current = false;
+        } else {
+            if (error) {
+                notify('Word not found', 'error')
+            }
+        }
+    });
+
+    // console.log(word)
+    // console.log(error)
     return (
         <>
-            <DictInput func={setInputValue} value={inputValue} variant="outline-success" search={handleSearch} />
+            <DictInput reference={inputRef} func={setInputValue} value={inputValue} variant="outline-success" search={handleSearch} />
             <CustomBtn inputData={inputValue} func={handleSearch} title="Search"/>
-            <h1>{error && "NOT FOUND"}</h1>
             {loading && <Spinner />}
             {!error && Object.keys(word).length > 0 && <ResultCard word={word} />}
         </>

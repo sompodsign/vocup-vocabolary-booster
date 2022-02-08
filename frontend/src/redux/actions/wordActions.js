@@ -55,25 +55,39 @@ export const listWords = () => async (dispatch) => {
 //     }
 // };
 
-// //action to create a WORD
-// export const createWORD = (WORD) => async (dispatch) => {
-//     console.log(WORD)
-//     try {
-//         dispatch({ type: WORD_CREATE_REQUEST });
+//action to create a WORD
+export const createWord = (newWord) => async (dispatch, getState) => {
 
-//         const { data } = await axios.WORD('https://jsonplaceholder.typicode.com/WORDs/', WORD);
+    try {
+        dispatch({ type: WORD_CREATE_REQUEST });
 
-//         dispatch({
-//             type: WORD_CREATE_SUCCESS,
-//             payload: data,
-//         });
-//     } catch (error) {
-//         dispatch({
-//             type: WORD_CREATE_FAIL,
-//             payload: error
-//         });
-//     }
-// };
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Token ${userInfo.token}`
+            },
+        }
+        // console.log(word)
+        const { data } = await client.post('/words/', newWord, config);
+        console.log(data)
+        dispatch({
+            type: WORD_CREATE_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: WORD_CREATE_FAIL,
+            payload: error.response
+        });
+        console.log(error.response)
+    }
+
+};
 
 // //action to delete a WORD by id
 // export const deleteWORD = (id) => async (dispatch) => {

@@ -10,12 +10,22 @@ import {
 } from 'mdb-react-ui-kit';
 import parse from "html-react-parser";
 import {useSpeechSynthesis} from "react-speech-kit";
+import {useDispatch, useSelector} from "react-redux";
+import {createWord} from "../redux/actions/wordActions";
 
 
 export default function ResultCard({word}) {
 
     const {speak} = useSpeechSynthesis();
 
+    const dispatch = useDispatch();
+
+    const userLogin = useSelector(state => state.userLogin)
+    const {error, loading, userInfo} = userLogin
+
+    const handleAddWord = () => {
+        dispatch(createWord({word: word.en, meaning: word.bn}));
+    }
 
     return (
 
@@ -51,10 +61,12 @@ export default function ResultCard({word}) {
                     ))}
                 </MDBListGroup>
             }
-
-            <MDBCardBody>
-                <MDBCardLink href='#'>Add to learn list</MDBCardLink>
+            {
+                userInfo &&  <MDBCardBody>
+                <MDBCardLink href='#' onClick={handleAddWord}>Add to learn list</MDBCardLink>
             </MDBCardBody>
+            }
+
         </MDBCard>
 );
 }
