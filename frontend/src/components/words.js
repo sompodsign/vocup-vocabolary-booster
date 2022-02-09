@@ -6,7 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/base.css'
 import { listWords } from '../redux/actions/wordActions';
 import {tabTitle} from "../utils/generalFunctions";
-
+import CustomCard from "./wordCard";
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import Table from "./table";
 
 function VocabularyScreen() {
 
@@ -16,8 +18,9 @@ function VocabularyScreen() {
   const dispatch = useDispatch();
   const wordList = useSelector(state => state.wordList);
   const userLogin = useSelector(state => state.userLogin)
-  const { userInfo } = userLogin
-  const { loading, words, error } = wordList
+  const { userInfo } = userLogin;
+  const { loading, words, error } = wordList;
+
 
   let navigate = useNavigate();
 
@@ -29,13 +32,11 @@ function VocabularyScreen() {
     }
 }, [dispatch, navigate, userInfo])
 
-  return (
-    <div>
-      {words.map(word => (
-      <h3 key={word.id}>{word.word} - {word.meaning}</h3>
-      ))}
 
-    </div>
+  return (
+            <Table words={words}/>
+
+
   );
 }
 export default VocabularyScreen;

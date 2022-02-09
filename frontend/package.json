@@ -17,6 +17,7 @@
     "bootstrap": "^5.1.3",
     "html-react-parser": "^1.4.8",
     "mdb-react-ui-kit": "^2.3.0",
+    "mdbreact": "^5.2.0",
     "query-string": "^7.1.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",

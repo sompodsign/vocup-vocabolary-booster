@@ -35,6 +35,7 @@ function DictionaryScreen() {
     const handleSearch = () => {
         /* it will dispatch word fetching action */
             dispatch(retrieveDictWord(inputValue));
+            setAddWord(false);
     }
 
     useLayoutEffect(() => {
