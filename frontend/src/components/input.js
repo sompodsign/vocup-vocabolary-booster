@@ -1,12 +1,12 @@
 
 import { MDBInput } from 'mdb-react-ui-kit';
 
-export default function DictInput(props) {
+export default function Input(props) {
     return (
         <div class="max-w-full">
             <MDBInput
                 labelRef={props.reference}
-                label='English Word'
+                label={props.label}
                 id='formControlLg'
                 type='text'
                 size='lg'

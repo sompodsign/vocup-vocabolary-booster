@@ -1,7 +1,7 @@
 import {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {tabTitle} from "../utils/generalFunctions";
-import DictInput from "../components/dictInput";
+import Input from "../components/input";
 import CustomBtn from "../components/button"
 import {retrieveDictWord} from "../redux/actions/dictionaryActions";
 import {DICTIONARY_WORD_RESET} from "../redux/constants/dictionaryConstants";
@@ -32,11 +32,6 @@ function DictionaryScreen() {
     const dictObj = useSelector(state => state.dictWord);
     const {dictWordMeaning: word, error, loading} = dictObj
 
-    const handleSearch = () => {
-        /* it will dispatch word fetching action */
-            dispatch(retrieveDictWord(inputValue));
-            setAddWord(false);
-    }
 
     useLayoutEffect(() => {
         if (firstUpdate.current) {
@@ -47,6 +42,12 @@ function DictionaryScreen() {
             }
         }
     });
+
+    const handleSearch = () => {
+        /* it will dispatch word fetching action */
+        dispatch(retrieveDictWord(inputValue));
+        setAddWord(false);
+    }
 
     const handleAddWordState = (addWordState) => {
         setAddWord(addWordState)
@@ -60,7 +61,7 @@ function DictionaryScreen() {
     // console.log(error)
     return (
         <>
-        <DictInput reference={inputRef} func={setInputValue} value={inputValue} variant="outline-success" search={handleSearch} />
+        <Input reference={inputRef} func={setInputValue} value={inputValue} variant="outline-success" search={handleSearch} label="English Word"/>
         <div class="d-flex .justify-content-evenly">
             <div>
             <PrimaryBtn key="dict" inputData={inputValue} onClick={handleSearch} title="Search"/>

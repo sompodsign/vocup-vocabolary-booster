@@ -1,7 +1,7 @@
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 
 const WordTable = ({words}) => {
-    console.log(words);
+
     return (
         <MDBTable striped>
             <MDBTableHead>
