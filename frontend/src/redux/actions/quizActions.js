@@ -1,0 +1,98 @@
+import client from "../../config";
+import {
+    QUIZ_LIST_REQUEST,
+    QUIZ_LIST_SUCCESS,
+    QUIZ_LIST_FAIL,
+
+
+} from "../constants/quizConstants";
+
+// action to fetch a word from server
+export const retrieveQuizList = () => async (dispatch, getState) => {
+
+    try {
+        dispatch({ type: QUIZ_LIST_REQUEST });
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Token ${userInfo.token}`
+            },
+        }
+
+        const { data } = await client.get("/vocabulary-quiz/", config);
+
+        dispatch({
+            type: QUIZ_LIST_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: QUIZ_LIST_FAIL,
+            payload: {"status": error.response, "data": error.response}
+        });
+    }
+};
+
+// //action to pull WORD detail based on WORD id
+// export const WORDDetail = (id) => async (dispatch) => {
+//     try {
+//         dispatch({ type: WORD_DETAIL_REQUEST });
+
+//         const { data } = await axios.get(`https://jsonplaceholder.typicode.com/WORDs/${id}`);
+
+//         dispatch({
+//             type: WORD_DETAIL_SUCCESS,
+//             payload: data,
+//         });
+//     } catch (error) {
+//         dispatch({
+//             type: WORD_DETAIL_FAIL,
+//             payload: error
+//         });
+//     }
+// };
+
+// //action to create a WORD
+// export const createWORD = (WORD) => async (dispatch) => {
+//     console.log(WORD)
+//     try {
+//         dispatch({ type: WORD_CREATE_REQUEST });
+
+//         const { data } = await axios.WORD('https://jsonplaceholder.typicode.com/WORDs/', WORD);
+
+//         dispatch({
+//             type: WORD_CREATE_SUCCESS,
+//             payload: data,
+//         });
+//     } catch (error) {
+//         dispatch({
+//             type: WORD_CREATE_FAIL,
+//             payload: error
+//         });
+//     }
+// };
+
+// //action to delete a WORD by id
+// export const deleteWORD = (id) => async (dispatch) => {
+//     try {
+//         dispatch({ type: WORD_DELETE_REQUEST });
+
+//         const { data } = await axios.delete(`https://jsonplaceholder.typicode.com/WORDs/${id}`);
+
+//         dispatch({
+//             type: WORD_DELETE_SUCCESS,
+//             payload: data,
+//         });
+//     } catch (error) {
+//         dispatch({
+//             type: WORD_DELETE_FAIL,
+//             payload: error
+//         });
+//     }
+// };

@@ -8,7 +8,7 @@ import {DICTIONARY_WORD_RESET} from "../redux/constants/dictionaryConstants";
 import Spinner from "../components/spinner";
 import ResultCard from "../components/resultCard";
 import notify from "../utils/notification";
-import {LightBtn, PrimaryBtn} from "../components/lightBtn";
+import {Buttons, PrimaryBtn} from "../components/buttons";
 import {createWord} from "../redux/actions/wordActions";
 
 
@@ -72,7 +72,7 @@ function DictionaryScreen() {
                 <div class="m-lg-5">
                     <h2>Which meaning is more comprehensive to you?</h2>
                     {!error && Object.keys(word).length > 0 && word.bn_syn.map((item, index) =>
-                        <LightBtn key={index} text={item} func={handleAddWord}/>
+                        <Buttons key={index} text={item} func={handleAddWord}/>
                     )}
                 </div>}
         </div>

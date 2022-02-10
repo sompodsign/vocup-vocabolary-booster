@@ -7,7 +7,7 @@ import { listWords } from '../redux/actions/wordActions';
 import {tabTitle} from "../utils/generalFunctions";
 import Table from "../components/table";
 import Input from "../components/input";
-import {PrimaryResBtn} from "../components/lightBtn";
+import {PrimaryResBtn} from "../components/buttons";
 
 function VocabularyScreen() {
 

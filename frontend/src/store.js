@@ -1,6 +1,6 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 import {
     wordCreateReducer,
@@ -8,12 +8,17 @@ import {
 } from './redux/reducers/wordReducers'
 
 import {
-    userLoginReducer, userRegisterReducer,
+    userLoginReducer,
+    userRegisterReducer,
 } from './redux/reducers/userReducers'
 
 import {
     dictWordReducer,
 } from './redux/reducers/dictionaryReducer';
+
+import {
+    quizListReducer
+} from './redux/reducers/quizListReducer';
 
 const reducer = combineReducers({
     wordList: wordListReducer,
@@ -24,21 +29,23 @@ const reducer = combineReducers({
 
     dictWord: dictWordReducer,
 
+    quizList: quizListReducer,
+
 })
 
 const wordItemsFromStorage = localStorage.getItem("wordItems")
-  ? JSON.parse(localStorage.getItem("wordItems"))
-  : [];
+    ? JSON.parse(localStorage.getItem("wordItems"))
+    : [];
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ?
     JSON.parse(localStorage.getItem('userInfo')) : null
 
 const initialState = {
     word: {
-      wordItems: wordItemsFromStorage,
+        wordItems: wordItemsFromStorage,
     },
-    userLogin: { userInfo: userInfoFromStorage },
-  };
+    userLogin: {userInfo: userInfoFromStorage},
+};
 
 const middleware = [thunk]
 

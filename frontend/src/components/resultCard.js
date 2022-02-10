@@ -15,7 +15,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {createWord} from "../redux/actions/wordActions";
 import notify from "../utils/notification";
 import {useEffect} from "react";
-import {PrimaryResBtn} from "./lightBtn";
+import {PrimaryResBtn} from "./buttons";
 
 
 export default function ResultCard({word, setWordState}) {
