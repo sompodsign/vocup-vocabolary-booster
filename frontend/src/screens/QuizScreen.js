@@ -20,15 +20,16 @@ function QuizScreen() {
 
   tabTitle('QUIZ - VOCUP');
 
-  // const [inputValue, setInputValue] = useState(null);
-
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   const quizzes = useSelector(state => state.quizList);
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin;
   const { quizList } = quizzes;
 
-  let navigate = useNavigate();
+
+  const [quiz, setQuiz] = useState({});
+  const [quizIndex, setQuizIndex] = useState(0);
 
   useEffect(() => {
     if (userInfo) {
@@ -37,47 +38,50 @@ function QuizScreen() {
       navigate('/login')
     }
   }, [dispatch, navigate, userInfo])
-  console.log(quizList);
 
-  const [quiz, setQuiz] = useState({});
-  const [quizIndex, setQuizIndex] = useState(0);
-  const [quizAnswers, setQuizAnswers] = useState([]);
 
-  // const totalQuiz = quizList.length;
+  const handleQuiz = (quiz) => {
+    let question = quiz.question;
+    let answers = [quiz.op1, quiz.op2, quiz.op3, quiz.correct_answer];
+    let correctAnswer = quiz.correct_answer;
+    let randomizeQuizAnswers = answers.sort(() => Math.random() - 0.5);
+    let quizObj = {
+      question: question[0].toUpperCase() + question.slice(1,),
+      answers: randomizeQuizAnswers,
+      correctAnswer: correctAnswer
+    };
+    setQuiz(quizObj);
+  }
 
-  const handleAnswers = () => {
-    let answers = [];
-    quiz.questions.map((question, index) => {
-      answers.push({
-        questionId: question.id,
-        answer: quizAnswers[index]
-      })
-    })
-    return answers;
+  const handleNextQuiz = (correctAnswer) => {
+
+    if (quiz.correctAnswer === correctAnswer && quizIndex < quizList.length - 1) {
+      setQuizIndex(quizIndex + 1);
+    }
   }
 
   useEffect(() => {
-    if (quizList.length > 0) {
-      setQuiz({...quizList[0]});
-
-    }
-
+    quizList && quizList.sort(() => Math.random() - 0.5);
+    quizList && quizList.length > 0 && handleQuiz(quizList[quizIndex]);
   }, [quizIndex, quizList])
 
-  // const handleQuiz = () => {
-  //   setQuizIndex(quizIndex + 1);
-  // }
-  console.log(quiz)
+  let totalQuiz = quizList && quizList.length;
+
+
   return (
     <div className="container">
       <div>
         <h6 className="text-center">{quiz.question}</h6>
-        <p className="text-center">{quizIndex}</p>
+        <p className="text-center">{quizIndex+1 + " / " + totalQuiz}</p>
         <div className="d-flex flex-column mb-3 border p-2 rounded-3">
-          <QuizButton title="Answer 1" />
-          <QuizButton title="Answer 2" />
-          <QuizButton title="Answer 3" />
-          <QuizButton title="Answer 4" />
+          {quiz.answers && quiz.answers.map((answer, index) => (
+            <QuizButton
+              key={index}
+              title={answer}
+              handleNextQuiz={handleNextQuiz}
+              correctAnswer={quiz.correctAnswer}
+            />
+          ))}
         </div>
       </div>
     </div>

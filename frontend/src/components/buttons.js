@@ -28,11 +28,13 @@ export function PrimaryResBtn({title, onClick, parent}) {
     </MDBBtn>
 }
 
-export function QuizButton({title}) {
+export function QuizButton({title, handleNextQuiz}) {
 
     return <MDBBtn
         color="dark"
         className="mb-1"
+        onClick = {() => handleNextQuiz(title)}
+        size={'lg'}
     >
         {title}
     </MDBBtn>
