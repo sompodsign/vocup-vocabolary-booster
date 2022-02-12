@@ -4,12 +4,22 @@ import {
     QUIZ_LIST_FAIL,
     QUIZ_LIST_RESET,
 
+    QUIZ_RANGE_LIST_REQUEST,
+    QUIZ_RANGE_LIST_SUCCESS,
+    QUIZ_RANGE_LIST_FAIL,
+    QUIZ_RANGE_LIST_RESET,
+
+    QUIZ_ANSWER_SUBMIT_REQUEST,
+    QUIZ_ANSWER_SUBMIT_SUCCESS,
+    QUIZ_ANSWER_SUBMIT_FAIL,
+    QUIZ_ANSWER_SUBMIT_RESET,
+
 
 } from "../constants/quizConstants";
 
 
 //QUIZ list reducers
-export const quizListReducer = (state = [], action) => {
+export const quizReducers = (state = [], action) => {
     switch (action.type) {
         case QUIZ_LIST_REQUEST:
             return {loading: true, quizList: []};
@@ -33,6 +43,61 @@ export const quizListReducer = (state = [], action) => {
         default:
             return state;
 
+    }
+};
+
+//QUIZ range list reducers
+export const quizRangeReducer = (state = [], action) => {
+    switch (action.type) {
+        case QUIZ_RANGE_LIST_REQUEST:
+            return {loading: true, quizList: []};
+
+        case QUIZ_RANGE_LIST_SUCCESS:
+            return {
+                loading: false,
+                quizRangeList: action.payload,
+            };
+
+        case QUIZ_RANGE_LIST_FAIL:
+            return {
+                loading: false, error: action.payload
+            };
+
+        case QUIZ_RANGE_LIST_RESET:
+            return {
+                quizRangeList: []
+            };
+
+        default:
+            return state;
+
+    }
+};
+
+//QUIZ range list reducers
+export const quizAnswerSubmitReducer = (state = {}, action) => {
+    switch (action.type) {
+        case QUIZ_ANSWER_SUBMIT_REQUEST:
+            return {loading: true, answerResponse: {}};
+
+        case QUIZ_ANSWER_SUBMIT_SUCCESS:
+            return {
+                loading: false,
+                answerResponse: action.payload,
+            };
+
+        case QUIZ_ANSWER_SUBMIT_FAIL:
+            return {
+                loading: false, error: action.payload.response
+            };
+
+        case QUIZ_ANSWER_SUBMIT_RESET:
+            return {
+                answerResponse: {}
+            };
+
+        default:
+            return state;
     }
 };
 

@@ -4,6 +4,16 @@ import {
     QUIZ_LIST_SUCCESS,
     QUIZ_LIST_FAIL,
 
+    QUIZ_RANGE_LIST_REQUEST,
+    QUIZ_RANGE_LIST_SUCCESS,
+    QUIZ_RANGE_LIST_FAIL,
+    QUIZ_RANGE_LIST_RESET,
+
+    QUIZ_ANSWER_SUBMIT_REQUEST,
+    QUIZ_ANSWER_SUBMIT_SUCCESS,
+    QUIZ_ANSWER_SUBMIT_FAIL,
+    QUIZ_ANSWER_SUBMIT_RESET,
+
 
 } from "../constants/quizConstants";
 
@@ -34,6 +44,71 @@ export const retrieveQuizList = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: QUIZ_LIST_FAIL,
+            payload: {"status": error.response, "data": error.response}
+        });
+    }
+};
+
+export const retrieveQuizRangeList = (amountOfQuiz) => async (dispatch, getState) => {
+
+    try {
+        dispatch({ type: QUIZ_RANGE_LIST_REQUEST });
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Token ${userInfo.token}`
+            },
+        }
+
+        const { data } = await client.get(`/vocabulary-quiz/quiz-amount/${amountOfQuiz}`, config);
+
+
+
+        dispatch({
+            type: QUIZ_RANGE_LIST_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: QUIZ_RANGE_LIST_FAIL,
+            payload: {"status": error.response, "data": error.response}
+        });
+    }
+};
+
+export const submitQuizAnswer = (quizId, quizAnswer) => async (dispatch, getState) => {
+
+    try {
+        dispatch({ type: QUIZ_ANSWER_SUBMIT_REQUEST });
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Token ${userInfo.token}`
+            },
+            data: quizAnswer,
+        }
+
+        const { data } = await client.get(`/vocabulary-quiz/${quizId}/}`, config);
+
+        dispatch({
+            type: QUIZ_ANSWER_SUBMIT_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: QUIZ_ANSWER_SUBMIT_FAIL,
             payload: {"status": error.response, "data": error.response}
         });
     }

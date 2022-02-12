@@ -17,8 +17,10 @@ import {
 } from './redux/reducers/dictionaryReducer';
 
 import {
-    quizListReducer
-} from './redux/reducers/quizListReducer';
+    quizAnswerSubmitReducer,
+    quizRangeReducer,
+    quizReducers
+} from './redux/reducers/quizReducers';
 
 const reducer = combineReducers({
     wordList: wordListReducer,
@@ -29,7 +31,9 @@ const reducer = combineReducers({
 
     dictWord: dictWordReducer,
 
-    quizList: quizListReducer,
+    quizList: quizReducers,
+    quizRange: quizRangeReducer,
+    quizSubmit: quizAnswerSubmitReducer,
 
 })
 
