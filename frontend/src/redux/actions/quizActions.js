@@ -21,10 +21,10 @@ import {
 export const retrieveQuizList = () => async (dispatch, getState) => {
 
     try {
-        dispatch({ type: QUIZ_LIST_REQUEST });
+        dispatch({type: QUIZ_LIST_REQUEST});
 
         const {
-            userLogin: { userInfo },
+            userLogin: {userInfo},
         } = getState()
 
         const config = {
@@ -34,7 +34,7 @@ export const retrieveQuizList = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await client.get("/vocabulary-quiz/", config);
+        const {data} = await client.get("/vocabulary-quiz/", config);
 
         dispatch({
             type: QUIZ_LIST_SUCCESS,
@@ -52,10 +52,10 @@ export const retrieveQuizList = () => async (dispatch, getState) => {
 export const retrieveQuizRangeList = (amountOfQuiz) => async (dispatch, getState) => {
 
     try {
-        dispatch({ type: QUIZ_RANGE_LIST_REQUEST });
+        dispatch({type: QUIZ_RANGE_LIST_REQUEST});
 
         const {
-            userLogin: { userInfo },
+            userLogin: {userInfo},
         } = getState()
 
         const config = {
@@ -65,9 +65,7 @@ export const retrieveQuizRangeList = (amountOfQuiz) => async (dispatch, getState
             },
         }
 
-        const { data } = await client.get(`/vocabulary-quiz/quiz-amount/${amountOfQuiz}`, config);
-
-
+        const {data} = await client.get(`/vocabulary-quiz/quiz-amount/${amountOfQuiz}`, config);
 
         dispatch({
             type: QUIZ_RANGE_LIST_SUCCESS,
@@ -82,13 +80,13 @@ export const retrieveQuizRangeList = (amountOfQuiz) => async (dispatch, getState
     }
 };
 
-export const submitQuizAnswer = (quizId, quizAnswer) => async (dispatch, getState) => {
+export const submitQuizAnswer = (answer) => async (dispatch, getState) => {
 
     try {
-        dispatch({ type: QUIZ_ANSWER_SUBMIT_REQUEST });
+        dispatch({type: QUIZ_ANSWER_SUBMIT_REQUEST});
 
         const {
-            userLogin: { userInfo },
+            userLogin: {userInfo},
         } = getState()
 
         const config = {
@@ -96,10 +94,9 @@ export const submitQuizAnswer = (quizId, quizAnswer) => async (dispatch, getStat
                 'Content-type': 'application/json',
                 Authorization: `Token ${userInfo.token}`
             },
-            data: quizAnswer,
         }
 
-        const { data } = await client.get(`/vocabulary-quiz/${quizId}/}`, config);
+        const {data} = await client.get("/vocabulary-quiz/answer/", {headers: config.headers, params: {answer}});
 
         dispatch({
             type: QUIZ_ANSWER_SUBMIT_SUCCESS,

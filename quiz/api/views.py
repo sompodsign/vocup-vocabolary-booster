@@ -1,3 +1,4 @@
+import json
 import random
 
 from django.contrib.auth import get_user_model
@@ -8,6 +9,8 @@ from rest_framework.viewsets import ModelViewSet
 from words.models import Word
 from .serializers import QuizSerializer
 from ..models import Quiz
+
+from ..utils.custom_suffle import custom_shuffle
 
 user = get_user_model()
 
@@ -42,8 +45,16 @@ class QuizViewSet(ModelViewSet):
             if quiz_amount is not None and quiz_amount < len(user_quiz_set):
                 # returns randomized queryset of quiz objects
                 new_set = user_quiz_set.order_by('?')[:quiz_amount]
-                serializer = QuizSerializer(new_set, many=True)
-                return Response(serializer.data)
+
+                output = [
+                    {"id": quiz.id, "question": quiz.question,
+                     "answers": custom_shuffle([quiz.op1, quiz.op2, quiz.op3, quiz.correct_answer]),
+                     "correctAnswer": quiz.correct_answer} for quiz in
+                    new_set]
+
+                # serializer = QuizSerializer(output, many=True)
+                return Response(output)
+
             elif quiz_amount is not None and quiz_amount >= len(user_quiz_set):
                 raise ValidationError('Please enter less than or equal to the amount of quiz objects.')
             return Quiz.objects.filter(user=self.request.user)
@@ -57,14 +68,15 @@ class QuizViewSet(ModelViewSet):
         :param kwargs:
         :return: return True or False according to the answer of the quiz
         """
-        quiz_id = kwargs.get('pk')
-        quiz_answer = request.data.get('answer')
+        query_parameter = json.loads(request.query_params.get('answer')) if request.query_params.get('answer') else None
+        quiz_id = query_parameter.get('id')
+        quiz_answer = query_parameter.get('answer')
         if self.request.user.is_authenticated:
             quiz = Quiz.objects.get(id=quiz_id)
             if quiz.user == self.request.user:
                 if quiz.correct_answer == quiz_answer:
-                    return Response(True)
+                    return Response({'correct': True})
                 else:
-                    return Response(False)
+                    return Response({'correct': False})
             else:
                 raise ValidationError("You are not allowed to view this quiz", code="401")

@@ -24,6 +24,6 @@ app_name = "api"
 urlpatterns = (
     path("dictionary/<str:word>/", DictionaryViewSet.as_view({"get": "retrieve"}), name="dictionary-word"),
     path("vocabulary-quiz/quiz-amount/<int:quiz_amount>/", QuizViewSet.as_view({"get": "get_queryset"}), name="quiz-list"),
-    path("vocabulary-quiz/<int:quiz_id>/<str:quiz_answer>/", QuizViewSet.as_view({"get": "retrieve"}), name="quiz-answer"),
+    path("vocabulary-quiz/answer", QuizViewSet.as_view({"get": "retrieve"}), name="quiz-answer"),
     path('', include(router.urls)),
 )
