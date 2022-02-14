@@ -19,7 +19,7 @@ export function PrimaryBtn({title, onClick, inputData}) {
 export function PrimaryResBtn({title, onClick, parent}) {
 
     return <MDBBtn
-        className={parent === "quiz" && "mb-1"}
+        className={parent === "quiz" && "mb-2"}
         outline
         rounded
         onClick={onClick}
@@ -27,6 +27,20 @@ export function PrimaryResBtn({title, onClick, parent}) {
         {title}
     </MDBBtn>
 }
+
+
+export function TakeAQuizBtn({title, onClick}) {
+
+    return <MDBBtn
+        className="mb-2"
+        outline
+        rounded
+        onClick={onClick}
+    >
+        {title}
+    </MDBBtn>
+}
+
 
 export function QuizButton({id, title, handleQuizIndex}) {
 

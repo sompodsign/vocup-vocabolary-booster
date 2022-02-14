@@ -7,7 +7,7 @@ import { listWords } from '../redux/actions/wordActions';
 import {tabTitle} from "../utils/generalFunctions";
 import Table from "../components/table";
 import Input from "../components/input";
-import {PrimaryResBtn} from "../components/buttons";
+import {PrimaryResBtn, TakeAQuizBtn} from "../components/buttons";
 
 function VocabularyScreen() {
 
@@ -20,6 +20,7 @@ function VocabularyScreen() {
   const userLogin = useSelector(state => state.userLogin)
   const { userInfo } = userLogin;
   let { words } = wordList;
+
 
   let navigate = useNavigate();
 
@@ -35,7 +36,9 @@ function VocabularyScreen() {
 
   return (
       <div>
-        <PrimaryResBtn onClick={() => navigate('/vocabulary/quiz')} title="Take a quiz?"/>
+        <div>
+        <TakeAQuizBtn onClick={() => navigate('/vocabulary/quiz')} title="Take a quiz?"/>
+        </div>
         <Input  func={setInputValue} variant="outline-success" label="English Word"/>
             <Table words={words}/>
       </div>

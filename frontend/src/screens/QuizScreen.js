@@ -7,6 +7,8 @@ import {QuizButton} from "../components/buttons";
 import {submitQuizAnswer} from "../redux/actions/quizActions";
 import {MDBInput} from "mdbreact";
 import {retrieveQuizRangeList} from "../redux/actions/quizActions";
+import Modal from "../components/modal";
+
 import {QUIZ_ANSWER_SUBMIT_RESET} from "../redux/constants/quizConstants";
 
 
@@ -48,51 +50,77 @@ function QuizScreen() {
             setIsAmount(false);
         }
     }
+    console.log(quizIndex)
 
     const handleQuizIndex = (id, answer) => {
-
-        if (quizIndex < total_quiz - 1) {
-            if (answer === quizList[quizIndex].correctAnswer) {
-                setQuizIndex(
-                    quizIndex + 1
-                )
+        let answeredAnswer = {}
+        if (answer === quizList[quizIndex].correctAnswer) {
+            answeredAnswer = {
+                id: id,
+                question: quizList[quizIndex].question,
+                answer: answer,
+                isCorrect: true,
+                correctAnswer: quizList[quizIndex].correctAnswer
             }
+            setAnswers([...answers, answeredAnswer])
         } else {
-            setIsScore(true)
-
-        }
-    }
-
-    return (
-        <div className="container">
-
-            {isAmount ?
-                    <MDBInput onKeyDown={event => handleSetAmount(event)} label='Example label' id='form1' type='text'/>
-                    :
-                    !isScore ?
-                <div>
-                        {quizList && <h1>{quizList[quizIndex].question}</h1>}
-                        {quizList && quizList[quizIndex].answers.map((answer, index) => {
-                            return (
-                                <div key={index}>
-                                    <QuizButton
-                                        question={quizList[quizIndex].question}
-                                        index={index}
-                                        handleQuizIndex={handleQuizIndex}
-                                        title={answer}
-                                        id={quizList[quizIndex].id}
-                                    />
-                                </div>
-                            )
-                        })
-                        }
-                    </div>
-                :
-                <h1>Score true</h1>
+            answeredAnswer = {
+                id: id,
+                question: quizList[quizIndex].question,
+                answer: answer,
+                isCorrect: false,
+                correctAnswer: quizList[quizIndex].correctAnswer
             }
+            setAnswers([...answers, answeredAnswer])
+        }
+        if (quizIndex < total_quiz - 1) {
+            setQuizIndex(quizIndex + 1)
+        } else {
+            setIsScore(true);
+        }
 
-        </div>
-    );
+
+}
+
+
+console.log(answers)
+let toggleModal = () => {
+    setIsScore(!isScore)
+    setAnswers([]);
+    setQuizIndex(0);
+    dispatch({type: QUIZ_ANSWER_SUBMIT_RESET})
+
+}
+return (
+    <div className="container">
+
+        {isAmount ?
+            <MDBInput onKeyDown={event => handleSetAmount(event)} label='Example label' id='form1' type='text'/>
+            :
+            !isScore ?
+                <div>
+                    {quizList && <h1>{quizList[quizIndex].question}</h1>}
+                    {quizList && quizList[quizIndex].answers.map((answer, index) => {
+                        return (
+                            <div key={index}>
+                                <QuizButton
+                                    question={quizList[quizIndex].question}
+                                    index={index}
+                                    handleQuizIndex={handleQuizIndex}
+                                    title={answer}
+                                    id={quizList[quizIndex].id}
+                                />
+                            </div>
+                        )
+                    })
+                    }
+                </div>
+                :
+                <Modal isScore={isScore} answeredAnswers={answers} toggleIsScore={toggleModal}/>
+        }
+
+    </div>
+);
 }
 
 export default QuizScreen;

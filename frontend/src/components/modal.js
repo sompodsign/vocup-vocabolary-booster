@@ -8,34 +8,63 @@ import { MDBBtn,
     MDBModalBody,
     MDBModalFooter,
 } from 'mdb-react-ui-kit';
+import {MDBTable, MDBTableBody, MDBTableHead} from "mdbreact";
 
-export default function Modal() {
-    const [centredModal, setCentredModal] = useState(false);
+export default function Modal({isScore, toggleIsScore, answeredAnswers}) {
+    const [centredModal, setCentredModal] = useState(isScore);
 
-    const toggleShow = () => setCentredModal(!centredModal);
+    const toggleShow = () => toggleIsScore();
+
+    const totalAnswered = answeredAnswers.length;
+    const totalCorrect = answeredAnswers.filter(answer => answer.isCorrect).length;
+    const total_incorrect = answeredAnswers.filter(answer => !answer.isCorrect).length;
+    const incorrectAnswers = answeredAnswers.filter(answer => !answer.isCorrect);
 
     return (
         <>
-            <MDBBtn onClick={toggleShow}>Vertically centered modal</MDBBtn>
+            {/*<MDBBtn onClick={toggleShow}>Vertically centered modal</MDBBtn>*/}
 
             <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
                 <MDBModalDialog centered>
                     <MDBModalContent>
                         <MDBModalHeader>
-                            <MDBModalTitle>Modal title</MDBModalTitle>
-                            <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+                            <MDBModalTitle>Score ({totalCorrect}/{totalAnswered})</MDBModalTitle>
                         </MDBModalHeader>
                         <MDBModalBody>
-                            <p>
-                                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-                                egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                            </p>
+                            {totalCorrect === totalAnswered ?
+                                <>
+                                    <p>You got all the questions correct!</p>
+                                </>
+                                :
+                                <>
+                                    <p>You got {totalCorrect} out of {totalAnswered} questions correct!</p>
+                                    <MDBTable striped>
+                                        <MDBTableHead>
+                                            <tr>
+                                                <th>Word</th>
+                                                <th>You Answered</th>
+                                                <th>Correct Answer</th>
+                                            </tr>
+                                        </MDBTableHead>
+                                        <MDBTableBody>
+                                            {incorrectAnswers.map((word) => {
+                                                return (
+                                                    <tr key={word.id}>
+                                                        <td>{word.question}</td>
+                                                        <td>{word.answer}</td>
+                                                        <td>{word.correctAnswer}</td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </MDBTableBody>
+                                    </MDBTable>
+                                </>
+                            }
                         </MDBModalBody>
                         <MDBModalFooter>
-                            <MDBBtn color='secondary' onClick={toggleShow}>
-                                Close
+                            <MDBBtn onClick={toggleShow}>
+                                {total_incorrect > 0 ? "Try Again" : "Close"}
                             </MDBBtn>
-                            <MDBBtn>Save changes</MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>
