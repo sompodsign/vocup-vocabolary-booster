@@ -1,15 +1,15 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import '../styles/base.css'
 import {tabTitle} from "../utils/generalFunctions";
 import {QuizButton} from "../components/buttons";
-import {submitQuizAnswer} from "../redux/actions/quizActions";
-import {MDBInput} from "mdbreact";
+import {MDBInput} from 'mdb-react-ui-kit';
 import {retrieveQuizRangeList} from "../redux/actions/quizActions";
 import Modal from "../components/modal";
 
+import '../styles/base.css'
 import {QUIZ_ANSWER_SUBMIT_RESET} from "../redux/constants/quizConstants";
+import {MDBIcon} from "mdbreact";
 
 
 function QuizScreen() {
@@ -20,10 +20,8 @@ function QuizScreen() {
     const dispatch = useDispatch();
     const quizzes = useSelector(state => state.quizRange);
     const userLogin = useSelector(state => state.userLogin)
-    const quizAnswerResponse = useSelector(state => state.quizSubmit)
     const {userInfo} = userLogin;
     const {quizRangeList: quizList} = quizzes;
-    const {answerResponse: response, loading: answerLoading} = quizAnswerResponse
 
     const [isAmount, setIsAmount] = useState(true);
     const [quizAmount, setQuizAmount] = useState(0);
@@ -50,7 +48,7 @@ function QuizScreen() {
             setIsAmount(false);
         }
     }
-    console.log(quizIndex)
+
 
     const handleQuizIndex = (id, answer) => {
         let answeredAnswer = {}
@@ -80,47 +78,76 @@ function QuizScreen() {
         }
 
 
-}
+    }
 
+    let toggleModal = () => {
+        setIsScore(!isScore)
+        setAnswers([]);
+        setQuizIndex(0);
+        dispatch({type: QUIZ_ANSWER_SUBMIT_RESET})
 
-console.log(answers)
-let toggleModal = () => {
-    setIsScore(!isScore)
-    setAnswers([]);
-    setQuizIndex(0);
-    dispatch({type: QUIZ_ANSWER_SUBMIT_RESET})
+    }
 
-}
-return (
-    <div className="container">
+    return (
+        <div className="container">
 
-        {isAmount ?
-            <MDBInput onKeyDown={event => handleSetAmount(event)} label='Example label' id='form1' type='text'/>
-            :
-            !isScore ?
+            {isAmount ?
                 <div>
-                    {quizList && <h1>{quizList[quizIndex].question}</h1>}
-                    {quizList && quizList[quizIndex].answers.map((answer, index) => {
-                        return (
-                            <div key={index}>
-                                <QuizButton
-                                    question={quizList[quizIndex].question}
-                                    index={index}
-                                    handleQuizIndex={handleQuizIndex}
-                                    title={answer}
-                                    id={quizList[quizIndex].id}
-                                />
-                            </div>
-                        )
-                    })
-                    }
-                </div>
+                    <div className="w-50 m-auto">
+                        <MDBInput
+                            className="mt-32"
+                            label='How many quizzes do you want to take?'
+                            id='formControlLg'
+                            type='text'
+                            size='lg'
+                            onChange = {e => setQuizAmount(e.target.value)}
+                            onKeyDown={event => handleSetAmount(event)}
+                        />
+                    </div>
+                        <div className="d-flex mt-2" style={{color: "purple"}}>
+                        <button
+                            className="m-auto"
+                            onClick={() => quizAmount > 0 && setIsAmount(false)}
+                        >
+                        <MDBIcon
+                            className="fa-3x"
+                            fas
+                            icon="chevron-circle-right"/>
+                        </button>
+                        </div>
+                    </div>
                 :
-                <Modal isScore={isScore} answeredAnswers={answers} toggleIsScore={toggleModal}/>
-        }
+                !isScore ?
+                    <div className="d-flex justify-content-center">
+                    <div className="p-10 w-full">
+                        <div className="d-flex justify-content-center mb-3">
+                        {quizList && <h1>{quizList[quizIndex].question}</h1>}
+                            <div className="d-flex">
+                        {quizList && <h6 style={{color: "purple"}}>{quizIndex + 1}/{quizList.length}</h6>}
+                            </div>
+                        </div>
+                        {quizList && quizList[quizIndex].answers.map((answer, index) => {
+                            return (
+                                <div key={index} className="d-flex justify-content-center">
+                                    <QuizButton
+                                        question={quizList[quizIndex].question}
+                                        index={index}
+                                        handleQuizIndex={handleQuizIndex}
+                                        title={answer}
+                                        id={quizList[quizIndex].id}
+                                    />
+                                </div>
+                            )
+                        })
+                        }
+                    </div>
+                    </div>
+                    :
+                    <Modal isScore={isScore} answeredAnswers={answers} toggleIsScore={toggleModal}/>
+            }
 
-    </div>
-);
+        </div>
+    );
 }
 
 export default QuizScreen;

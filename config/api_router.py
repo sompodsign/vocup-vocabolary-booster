@@ -27,3 +27,4 @@ urlpatterns = (
     path("vocabulary-quiz/answer", QuizViewSet.as_view({"get": "retrieve"}), name="quiz-answer"),
     path('', include(router.urls)),
 )
+

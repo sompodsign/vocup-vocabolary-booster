@@ -29,3 +29,6 @@ class Word(TimeStampedModel):
 
     def __str__(self):
         return self.word
+
+    class Meta:
+        ordering = ['-created_at']

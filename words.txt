@@ -45,7 +45,7 @@ weep - কান্না
 gadding - দৌড়াদৌড়ি
 draperi - পর্দা
 chateau - অট্টালিকা
-Generosity - উদারতা
+GenerositY - উদারতা
 Paisley - উজ্জ্বেল রঙে আঁকাবাঁকা নকশা-কাটা এমন
 Sought - অন্বেষিত
 Cherish - লালন
@@ -104,7 +104,7 @@ indulge - লাই দেওয়া
 intonation - স্বর
 eloquent - বাকপটু
 hurl - নিক্ষেপ
-struck - প্রহত
+struck - প্রহত / তাড়িত
 tantamount - সমতুল্য
 Benign - ক্ষমাপরায়ণ
 handicap - প্রতিবন্ধী
@@ -153,3 +153,112 @@ cite - উদাহরণ দেত্তয়া
 lumber - ভার,  কাঠ
 wicked - দুর্নীতিপরায়ণ, খারাপ
 insinuate - নির্দেশ করা
+caveat - সতর্কতা
+Abstract - সারসংক্ষেপ
+ambiguous - অনিশ্চিত
+thaw - গলান
+malign - নিন্দা করা
+thine - তোমার
+adversary - প্রতিপক্ষ
+shrewd - চতুর
+stir - আলোড়ন
+timber - কাঠ
+hound - শিকারী কুকুর
+leash - দড়ি
+muzzle - মুখবন্ধ
+astride - চড়ে
+alibis - অজুহাত
+temptation - প্রলোভন
+remonstrate - তীব্র আপত্তি করা
+magnanimous - মহৎ
+rebuke - গালি
+condemnation - দণ্ডাদেশ
+petulant - বিরক্ত
+delight - খুশি
+dread - ভয়
+hostile - বিরোধী
+gloat - উল্লাস দৃষ্টিতে তাকান
+confine - আবদ্ধ করা
+reign - রাজত্ব
+herd - পশুপালক
+coal - কয়লা
+resent - ক্ষুব্ধ করা
+tack - কর্মপ্রণালী
+revolt - বিদ্রোহ
+rankle - মনে পীডা দেত্তয়া
+discord - মতভেদ/ হৈচৈ/ কলহ করা
+nagging - খুঁতখুঁত
+Gall - তিক্ততা
+tyranny - অত্যাচার
+communist - সাম্যবাদী
+picket - ফাঁড়ি স্থাপন করা
+alley - গলি
+stub - অসম্পূর্ণ
+tidying - পরিপাটি
+tempestuous - তুমুল
+rancor - বিদ্বেষ
+tenant - ভাড়াটিয়া
+lone - একাকী
+fable - গল্প
+tarnish - কলঙ্কিত
+bluster - ভীষণ ক্রোধ
+fickle - পরিবর্তনশীল
+eerie - ভয়ঙ্কর
+resilient - প্রাণবন্ত
+induce - প্ররোচিত করা
+Patronage - পৃষ্ঠপোষকতা
+spigot - ছিপিবিশেষ
+ensuing - পরবর্তী
+wrangle - ঝগড়া
+garner - সংগ্রহ
+perspicacity - স্বচ্ছদৃষ্টি
+Boar - বন্য শূকর
+Deity - দেবতা
+Obstule - নির্বোধ
+juggle - ভেলকি
+repel - তাড়াইয়া দেত্তয়া
+plea - আবেদন
+laryngitis - কণ্ঠনালীপ্রদাহ
+valiant - সাহসী
+squeak - চেঁচামেচি
+nod - মাথা নাড়ান
+aggregate - মোট
+deteriorate - অবনতি
+complacent - আত্মতুষ্টি
+belligerent - যুদ্ধভাবাপন্ন
+reminisce - স্মৃতিচারণ
+splendid - জাঁকজমকপূর্ণ
+fringe - পাড়
+envision - কল্পনা করা
+eunuch - হিজড়া
+pessimistic - হতাশাবাদী
+taint - কলঙ্ক
+Affinity - আকর্ষণ
+boast - অহংকার করা
+excel - শ্রেষ্ঠতর হত্তয়া
+gruff - আপত্তি
+startle - চমকে দেওয়া
+colonial - ঔপনিবেশিক
+considerate - বিবেচক
+meddling - হস্তক্ষেপ
+pathetic - করুণাময়
+blunt - অল্পবুদ্ধি
+petal - পাপড়ি
+Concur - একমত হত্তয়া
+Carol - আনন্দে গান করা
+Reliance - নির্ভরতা
+Wield - পরিচালনা করা
+trot - আস্তে আস্তে দৌড়ানো
+canoe - ডিঙি নৌকো
+bewild - বিভ্রান্ত
+extinction - বিলুপ্তি
+ferret - সুতী ফিতা
+lawn - একধরনের মিহি কাপড়
+dilligence - পরিশ্রম
+rage - রাগ
+fierce - উগ্র
+conflagration - অগ্নিকাণ্ড
+precinct - পুলিসথানার এলাকা
+sullenly - বিষণ্ণভাবে
+Extradition - বহি:সমর্পন
+connoisseur - রসপণ্ডিত

@@ -45,10 +45,11 @@ export function TakeAQuizBtn({title, onClick}) {
 export function QuizButton({id, title, handleQuizIndex}) {
 
     return <MDBBtn
+        outline
         color="dark"
-        className="mb-1"
+        className="mb-1 lg:w-96 md:w-full w-full mx-2"
         onClick = {() => handleQuizIndex(id, title)}
-        size={'lg'}
+        size='lg'
     >
         {title}
     </MDBBtn>
