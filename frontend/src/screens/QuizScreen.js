@@ -104,7 +104,7 @@ function QuizScreen() {
                             onKeyDown={event => handleSetAmount(event)}
                         />
                     </div>
-                        <div className="d-flex mt-2" style={{color: "purple"}}>
+                        <div className="d-flex mt-2" style={{color: ""}}>
                         <button
                             className="m-auto"
                             onClick={() => quizAmount > 0 && setIsAmount(false)}

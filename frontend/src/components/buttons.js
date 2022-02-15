@@ -32,7 +32,7 @@ export function PrimaryResBtn({title, onClick, parent}) {
 export function TakeAQuizBtn({title, onClick}) {
 
     return <MDBBtn
-        className="mb-2"
+        className="mb-lg-0 mb-sm-3 mb-md-0"
         outline
         rounded
         onClick={onClick}

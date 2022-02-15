@@ -82,9 +82,9 @@ export const createWord = (newWord) => async (dispatch, getState) => {
                 Authorization: `Token ${userInfo.token}`
             },
         }
-        // console.log(word)
+
         const { data } = await client.post('/words/', newWord, config);
-        console.log(data)
+
         dispatch({
             type: WORD_CREATE_SUCCESS,
             payload: data,
@@ -95,7 +95,7 @@ export const createWord = (newWord) => async (dispatch, getState) => {
             type: WORD_CREATE_FAIL,
             payload: error.response
         });
-        console.log(error.response)
+
     }
 
 };
