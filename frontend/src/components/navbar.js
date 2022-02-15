@@ -184,25 +184,40 @@ function Nav() {
                         <div className="md:hidden" id="mobile-menu">
                             <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                                 <a
-                                    href="#"
+                                    href="/"
                                     className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
                                 >
-                                    Dashboard
+                                    Home
                                 </a>
 
+                                <Link to="/vocabulary">
                                 <a
-                                    href="#"
+                                    href=""
                                     className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                                 >
-                                    Team
+                                    Vocabulary
                                 </a>
+                                </Link>
 
-                                {/*<a*/}
-                                {/*  href="#"*/}
-                                {/*  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"*/}
-                                {/*>*/}
-                                {/*  Projects*/}
-                                {/*</a>*/}
+                                { userInfo &&
+                                    <Link to="/vocabulary/quiz">
+                                        <a
+                                            href="#"
+                                            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                                        >
+                                            Vocabulary Quiz
+                                        </a>
+                                    </Link>
+                                }
+
+                                <Link to="/dictionary">
+                                <a
+                                  href="/dictionary"
+                                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                                >
+                                  Dictionary
+                                </a>
+                            </Link>
 
                                 {/*<a*/}
                                 {/*  href="#"*/}
@@ -217,20 +232,47 @@ function Nav() {
                                 {/*>*/}
                                 {/*  Reports*/}
                                 {/*</a>*/}
-                                <Link to="/login">
+
+                                {!userInfo &&
+                                    <Link to="/login">
                                     <a
-                                        href="#"
-                                        className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                                    >
-                                        Login
-                                    </a>
-                                </Link>
-                                <a
                                     href="#"
                                     className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                                >
+                                    >
+                                    Login
+                                    </a>
+                                    </Link>
+                                }
+
+
+                                {userInfo &&
+                                    // <Link to="/logout">
+                                        <a
+                                            onClick={handleLogout}
+                                            href="#"
+                                            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                                        >
+                                            Logout
+                                        </a>
+                                    // </Link>
+                                }
+
+
+
+
+
+                                {!userInfo &&
+
+                                    <Link to="/join">
+                                    <a
+                                    href="#"
+                                    className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                                    >
                                     Join Now
-                                </a>
+                                    </a>
+                                    </Link>
+                                }
+
                             </div>
                         </div>
                     )}

@@ -6,7 +6,7 @@ import {createWord, listWords} from '../redux/actions/wordActions';
 import {tabTitle} from "../utils/generalFunctions";
 import Table from "../components/table";
 import Input from "../components/input";
-import {TakeAQuizBtn} from "../components/buttons";
+import {SaveButton, TakeAQuizBtn} from "../components/buttons";
 
 import {MDBInput} from "mdb-react-ui-kit";
 
@@ -54,13 +54,17 @@ function VocabularyScreen() {
                 </div>
                 <div className="d-lg-flex justify-content-lg-end">
 
+                    <div className="me-lg-2">
                     <MDBInput
                         onChange={e => setNewWord(e.target.value)}
                         value={newWord}
                         id="form1"
                         label="Enter Word"
                         type='text'/>
+                    </div>
 
+
+                    <div className="">
                     <MDBInput
                         onChange={e => setNewMeaning(e.target.value)}
                         value={newMeaning}
@@ -68,15 +72,14 @@ function VocabularyScreen() {
                         label="Enter Meaning"
                         className="mb-lg-0 mb-sm-3 mb-md-0 mt-sm-2 mt-lg-0"
                         type='text'/>
-
-
-                    <div className="ml-3 d-sm-flex justify-content-sm-end">
-                        <TakeAQuizBtn title="Save" onClick={handleSave}/>
                     </div>
 
+                    <div className="ml-3">
+                        <SaveButton title="Save" onClick={handleSave}/>
+                    </div>
                 </div>
             </div>
-            <Input func={setInputValue} variant="outline-success" label="English Word"/>
+            <Input func={setInputValue} variant="outline-success" label="Search"/>
             <Table words={words}/>
         </div>
     );

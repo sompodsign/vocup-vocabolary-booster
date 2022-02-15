@@ -5,7 +5,7 @@ export default function Input(props) {
     return (
         <div class="max-w-full">
             <MDBInput
-                className="mt-2"
+                className="mt-lg-2"
                 labelRef={props.reference}
                 label={props.label}
                 id='formControlLg'

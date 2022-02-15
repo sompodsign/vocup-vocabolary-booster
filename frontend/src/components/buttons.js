@@ -42,6 +42,19 @@ export function TakeAQuizBtn({title, onClick}) {
 }
 
 
+
+export function SaveButton({title, onClick}) {
+
+    return <MDBBtn
+        className="mb-lg-0 mb-sm-3 mb-md-0 w-full"
+        outline
+        rounded
+        onClick={onClick}
+    >
+        {title}
+    </MDBBtn>
+}
+
 export function QuizButton({id, title, handleQuizIndex}) {
 
     return <MDBBtn
