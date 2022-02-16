@@ -8,12 +8,16 @@
     <option name="openedFilesInfos">
       <list>
         <OpenedFileInfo>
-          <option name="caretOffset" value="3012" />
+          <option name="caretOffset" value="772" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/config/settings/local.py" />
         </OpenedFileInfo>
         <OpenedFileInfo>
-          <option name="caretOffset" value="0" />
+          <option name="caretOffset" value="239" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/frontend/src/config.js" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="0" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/config/settings/base.py" />
         </OpenedFileInfo>
       </list>
     </option>
