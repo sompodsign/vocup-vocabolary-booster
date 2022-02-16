@@ -3,5 +3,19 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Remote Python 3.9.10 Docker Compose (django at [C:\Users\Shampad\Desktop\vocup\production.yml])" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Remote Python 3.9.10 Docker Compose (django at [/home/shampad/vocup-vocabolary-booster/local.yml])" project-jdk-type="Python SDK" />
+  <component name="UnattendedHostPersistenceState">
+    <option name="openedFilesInfos">
+      <list>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="3012" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/config/settings/local.py" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="0" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/frontend/src/config.js" />
+        </OpenedFileInfo>
+      </list>
+    </option>
+  </component>
 </project>
