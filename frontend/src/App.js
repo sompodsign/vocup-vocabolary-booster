@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import Nav from "./components/navbar";
 import HomeScreen from "./screens/HomeScreen";
 import JoinScreen from "./screens/JoinScreen";
