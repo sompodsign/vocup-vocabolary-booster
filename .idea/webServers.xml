@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="bcc650ee-a2a3-4350-aa09-dd503e20ecd9" name="vocupdev" url="http://ftps://waws-prod-sg1-063.ftp.azurewebsites.windows.net/site/wwwroot">
+        <fileTransfer accessType="FTPS" host="ftps://waws-prod-sg1-063.ftp.azurewebsites.windows.net/site/wwwroot" port="2222" />
+      </webServer>
+    </option>
+  </component>
+</project>
