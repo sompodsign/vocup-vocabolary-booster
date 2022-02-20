@@ -9,12 +9,12 @@ if os.getenv("READTHEDOCS", default=False) == "True":
 else:
     sys.path.insert(0, os.path.abspath("/app"))
 os.environ["DATABASE_URL"] = "sqlite:///readthedocs.db"
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 django.setup()
 
 # -- Project information -----------------------------------------------------
 
-project = "Vocubolary Up"
+project = "Voccbolary Up"
 copyright = """2022, Shampad Sharkar"""
 author = "Shampad Sharkar"
 
