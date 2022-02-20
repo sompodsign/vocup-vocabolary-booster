@@ -54,7 +54,7 @@ function VocabularyScreen() {
                 </div>
                 <div className="d-lg-flex justify-content-lg-end">
 
-                    <div className="me-lg-2">
+                    <div className="me-lg-2 mt-2 mt-lg-0">
                     <MDBInput
                         onChange={e => setNewWord(e.target.value)}
                         value={newWord}
@@ -64,7 +64,7 @@ function VocabularyScreen() {
                     </div>
 
 
-                    <div className="">
+                    <div className="mt-2 mt-lg-0 mx-lg-2">
                     <MDBInput
                         onChange={e => setNewMeaning(e.target.value)}
                         value={newMeaning}
@@ -74,7 +74,7 @@ function VocabularyScreen() {
                         type='text'/>
                     </div>
 
-                    <div className="ml-3">
+                    <div className=" mt-2 mb-2 mb-lg-0 mt-lg-0">
                         <SaveButton title="Save" onClick={handleSave}/>
                     </div>
                 </div>

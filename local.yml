@@ -27,13 +27,6 @@ services:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: sompodbd/vocupdev:vocup_production_postgres
-    environment:
-      POSTGRE_USER: debug
-      POSTGRE_PASSWORD: debug
-      POSTGRE_DB: vocup
-      POSTGRE_HOST: postgres
-      POSTGRE_PORT: 5432
-
     container_name: vocup_local_postgres
     volumes:
       - vocup_local_postgres_data:/var/lib/postgresql/data:Z
