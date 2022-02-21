@@ -1,4 +1,5 @@
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
+import {capitalize} from "../helpers/capitalize";
 
 const WordTable = ({words}) => {
 
@@ -16,7 +17,7 @@ const WordTable = ({words}) => {
                     return (
                         <tr key={word.id}>
                             <td>{index + 1}</td>
-                            <td>{word.word}</td>
+                            <td>{capitalize(word.word)}</td>
                             <td>{word.meaning}</td>
                         </tr>
                     );

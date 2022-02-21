@@ -68,7 +68,7 @@ export const listWords = () => async (dispatch, getState) => {
 
 //action to create a WORD
 export const createWord = (newWord) => async (dispatch, getState) => {
-
+    console.log(newWord)
     try {
         dispatch({ type: WORD_CREATE_REQUEST });
 
@@ -95,6 +95,7 @@ export const createWord = (newWord) => async (dispatch, getState) => {
             type: WORD_CREATE_FAIL,
             payload: error.response
         });
+        console.log(error.response)
 
     }
 

@@ -10,6 +10,7 @@ import ResultCard from "../components/resultCard";
 import notify from "../utils/notification";
 import {Buttons, PrimaryBtn} from "../components/buttons";
 import {createWord} from "../redux/actions/wordActions";
+import {capitalize} from "../helpers/capitalize";
 
 
 function DictionaryScreen() {
@@ -21,11 +22,6 @@ function DictionaryScreen() {
     const firstUpdate = useRef(true);
     const inputRef = useRef(null);
 
-
-    // useEffect(() => {
-    //     inputRef.current.focus();
-    //     dispatch({type: DICTIONARY_WORD_RESET})
-    // },[])
 
     const dispatch = useDispatch();
 
@@ -54,11 +50,9 @@ function DictionaryScreen() {
     }
 
     const handleAddWord = (meaning) => {
-        dispatch(createWord({word: word.en, meaning: meaning}));
+        dispatch(createWord({word: capitalize(word.en), meaning: meaning}));
     }
 
-    // console.log(word)
-    // console.log(error)
     return (
         <>
         <Input reference={inputRef} func={setInputValue} value={inputValue} variant="outline-success" search={handleSearch} label="English Word"/>
