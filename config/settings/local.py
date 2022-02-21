@@ -77,5 +77,6 @@ CORS_ORIGIN_WHITELIST = [
     'http://20.212.104.33:8000',
     'http://shampad.live',
     'https://shampad.live',
+    'http://192.168.31.18:3000',
 ]
 
