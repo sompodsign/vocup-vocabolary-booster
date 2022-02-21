@@ -62,8 +62,8 @@ function DictionaryScreen() {
             {loading && <Spinner />}
             {!error && Object.keys(word).length > 0 && <ResultCard word={word} setWordState={handleAddWordState}/>}
             </div>
-            {addWord &&
-                <div class="m-lg-5">
+            {addWord && Object.keys(word).length > 0 && word.bn_syn.length > 0 &&
+                <div class="m-lg-5 ml-3">
                     <h2>Which meaning is more comprehensive to you?</h2>
                     {!error && Object.keys(word).length > 0 && word.bn_syn.map((item, index) =>
                         <Buttons key={index} text={item} func={handleAddWord}/>
