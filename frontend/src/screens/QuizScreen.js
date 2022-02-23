@@ -3,12 +3,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {tabTitle} from "../utils/generalFunctions";
 import {QuizButton} from "../components/buttons";
-import {MDBInput} from 'mdb-react-ui-kit';
-import {retrieveQuizRangeList} from "../redux/actions/quizActions";
+import {MDBBtn, MDBInput} from 'mdb-react-ui-kit';
+import {removeAllQuizzes, retrieveQuizRangeList} from "../redux/actions/quizActions";
 import Modal from "../components/modal";
 
 import '../styles/base.css'
-import {QUIZ_ANSWER_SUBMIT_RESET} from "../redux/constants/quizConstants";
+import {QUIZ_ANSWER_SUBMIT_RESET, QUIZ_LIST_UPDATE_RESET} from "../redux/constants/quizConstants";
 import {MDBIcon} from "mdbreact";
 
 
@@ -20,13 +20,16 @@ function QuizScreen() {
     const dispatch = useDispatch();
     const quizzes = useSelector(state => state.quizRange);
     const userLogin = useSelector(state => state.userLogin)
+    const quizzesRemove = useSelector(state => state.removeQuiz)
     const {userInfo} = userLogin;
     const {quizRangeList: quizList} = quizzes;
+    const {loading: removeLoading, status, error: removeError, success:removeSuccess} = quizzesRemove
 
     const [isAmount, setIsAmount] = useState(true);
     const [quizAmount, setQuizAmount] = useState(0);
     const [isScore, setIsScore] = useState(false);
     const [answers, setAnswers] = useState([]);
+
 
     const [quizIndex, setQuizIndex] = useState(0);
 
@@ -77,7 +80,6 @@ function QuizScreen() {
             setIsScore(true);
         }
 
-
     }
 
     let toggleModal = () => {
@@ -88,65 +90,104 @@ function QuizScreen() {
 
     }
 
+    const updateQuiz = () => {
+        dispatch(removeAllQuizzes()).then(() => {
+            if (removeSuccess === true) {
+                setTimeout(() => {
+                    dispatch({type: QUIZ_LIST_UPDATE_RESET})
+                }, 1000)
+            }
+        })
+    }
+    console.log("suc: ", removeSuccess)
+
     return (
         <div className="container">
 
             {isAmount ?
                 <div>
-                    <div className="w-50 m-auto">
+                    <div className="w-100 m-auto">
                         <MDBInput
                             className="mt-32"
-                            label='How many quizzes do you want to take?'
+                            label='How many quizzes do you want to answer?'
                             id='formControlLg'
                             type='text'
                             size='lg'
-                            onChange = {e => setQuizAmount(e.target.value)}
+                            onChange={e => setQuizAmount(e.target.value)}
                             onKeyDown={event => handleSetAmount(event)}
                         />
                     </div>
-                        <div className="d-flex mt-2" style={{color: ""}}>
+                    <div className="d-flex mt-2" style={{color: ""}}>
                         <button
                             className="m-auto"
                             onClick={() => quizAmount > 0 && setIsAmount(false)}
                         >
-                        <MDBIcon
-                            className="fa-3x"
-                            fas
-                            icon="chevron-circle-right"/>
+                            <MDBIcon
+                                className="fa-3x"
+                                fas
+                                icon="chevron-circle-right"/>
                         </button>
-                        </div>
                     </div>
+                </div>
                 :
                 !isScore ?
                     <div className="d-flex justify-content-center">
-                    <div className="p-10 w-full">
-                        <div className="d-flex justify-content-center mb-3">
-                        {quizList && <h1>{quizList[quizIndex].question}</h1>}
-                            <div className="d-flex">
-                        {quizList && <h6 style={{color: "purple"}}>{quizIndex + 1}/{quizList.length}</h6>}
-                            </div>
-                        </div>
-                        {quizList && quizList[quizIndex].answers.map((answer, index) => {
-                            return (
-                                <div key={index} className="d-flex justify-content-center">
-                                    <QuizButton
-                                        question={quizList[quizIndex].question}
-                                        index={index}
-                                        handleQuizIndex={handleQuizIndex}
-                                        title={answer}
-                                        id={quizList[quizIndex].id}
-                                    />
+                        <div className="p-10 w-full">
+                            <div className="d-flex justify-content-center mb-3">
+                                {quizList && <h1>{quizList[quizIndex].question}</h1>}
+                                <div className="d-flex">
+                                    {quizList && <h6 style={{color: "purple"}}>{quizIndex + 1}/{quizList.length}</h6>}
                                 </div>
-                            )
-                        })
-                        }
-                    </div>
+                            </div>
+                            {quizList && quizList[quizIndex].answers.map((answer, index) => {
+                                return (
+                                    <div key={index} className="d-flex justify-content-center">
+                                        <QuizButton
+                                            question={quizList[quizIndex].question}
+                                            index={index}
+                                            handleQuizIndex={handleQuizIndex}
+                                            title={answer}
+                                            id={quizList[quizIndex].id}
+                                        />
+                                    </div>
+                                )
+                            })
+                            }
+                        </div>
                     </div>
                     :
                     <Modal isScore={isScore} answeredAnswers={answers} toggleIsScore={toggleModal}/>
             }
+            {
+                !removeLoading && !removeError?
+
+                    <MDBIcon
+                        className="position-absolute bottom-10 right-10"
+                        size="3x"
+                        icon="sync-alt"
+                        onClick={updateQuiz}
+                    />
+
+                    : !removeError ?
+                    <>
+                        <p className="position-absolute bottom-10 right-36">Generating new quizzes.....</p>
+
+                        <MDBIcon
+                            className="position-absolute bottom-10 right-10"
+                            icon="sync"
+                            spin size="3x"
+                        />
+                    </>
+
+                        : null
+            }
+            {
+                removeSuccess &&
+                    <p className="position-absolute bottom-10 right-36">Done. Go ahead.</p>
+            }
 
         </div>
+
     );
 }
 

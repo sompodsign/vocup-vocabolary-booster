@@ -10,3 +10,11 @@ export default function Spinner() {
         </div>
     );
 }
+
+export function fillSpinner() {
+    return (
+        <div className="spinner-grow text-primary" role="status">
+            <span className="sr-only">Loading...</span>
+        </div>
+    )
+}

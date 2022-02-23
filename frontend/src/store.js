@@ -19,7 +19,7 @@ import {
 import {
     quizAnswerSubmitReducer,
     quizRangeReducer,
-    quizReducers
+    quizReducers, quizRemoveReducer
 } from './redux/reducers/quizReducers';
 
 const reducer = combineReducers({
@@ -34,6 +34,7 @@ const reducer = combineReducers({
     quizList: quizReducers,
     quizRange: quizRangeReducer,
     quizSubmit: quizAnswerSubmitReducer,
+    removeQuiz: quizRemoveReducer,
 
 })
 

@@ -12,7 +12,7 @@ import {
     QUIZ_ANSWER_SUBMIT_REQUEST,
     QUIZ_ANSWER_SUBMIT_SUCCESS,
     QUIZ_ANSWER_SUBMIT_FAIL,
-    QUIZ_ANSWER_SUBMIT_RESET,
+    QUIZ_ANSWER_SUBMIT_RESET, QUIZ_LIST_UPDATE_REQUEST, QUIZ_LIST_UPDATE_SUCCESS, QUIZ_LIST_UPDATE_FAIL,
 
 
 } from "../constants/quizConstants";
@@ -110,6 +110,39 @@ export const submitQuizAnswer = (answer) => async (dispatch, getState) => {
         });
     }
 };
+
+export const removeAllQuizzes = () => async (dispatch, getState) => {
+
+    try {
+        dispatch({type: QUIZ_LIST_UPDATE_REQUEST});
+
+        const {
+            userLogin: {userInfo},
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Token ${userInfo.token}`
+            },
+        }
+
+        const {data} = await client.delete("/vocabulary-quiz/remove-all", {headers: config.headers});
+
+        dispatch({
+            type: QUIZ_LIST_UPDATE_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: QUIZ_LIST_UPDATE_FAIL,
+            payload: {"status": error.response, "data": error.response}
+        });
+
+    }
+};
+
 
 // //action to pull WORD detail based on WORD id
 // export const WORDDetail = (id) => async (dispatch) => {
