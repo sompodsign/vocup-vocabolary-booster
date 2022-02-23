@@ -69,7 +69,7 @@ export default function Nav() {
 
                                     <div className="flex space-x-4">
 
-                                        <Link to="/home">
+                                        <Link to="/">
                                             <a
                                                 href="#"
                                                 className={classNames(

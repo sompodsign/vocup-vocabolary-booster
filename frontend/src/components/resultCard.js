@@ -39,16 +39,16 @@ export default function ResultCard({word, setWordState}) {
 
 
     const handleSetWordState = () => {
-        setWordState(true);
+        setWordState(true, word.bn_syn.length > 0);
     }
-
+    console.log(word.bn_syn.length > 0)
     return (
 
         <MDBCard className='mt-4 border'>
             <MDBCardBody>
                 <MDBCardTitle> <MDBIcon icon="volume-down" onClick={() => speak({text: word.en})} /> {word.en[0].toUpperCase() + word.en.slice(1,)}
                 </MDBCardTitle>
-                {word.pron &&
+                {word.pron.length > 0 &&
                     <MDBCardText>
                         <strong>Pronunciation:</strong> {word.pron.length > 1 ? word.pron.join(', ') :
                         word.pron}

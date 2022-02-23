@@ -1,5 +1,6 @@
 import json
 import random
+import time
 
 from django.contrib.auth import get_user_model
 from rest_framework.exceptions import ValidationError
@@ -80,3 +81,13 @@ class QuizViewSet(ModelViewSet):
                     return Response({'correct': False})
             else:
                 raise ValidationError("You are not allowed to view this quiz", code="401")
+
+    def destroy(self, request, *args, **kwargs):
+
+        if self.request.user.is_authenticated:
+            Quiz.objects.all().delete()
+            time.sleep(3)
+            return Response({'deleted': True})
+        else:
+            time.sleep(3)
+            raise ValidationError("You must be logged in to delete quiz objects", code="401")

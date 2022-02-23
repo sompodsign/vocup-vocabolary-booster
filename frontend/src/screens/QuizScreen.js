@@ -8,7 +8,7 @@ import {removeAllQuizzes, retrieveQuizRangeList} from "../redux/actions/quizActi
 import Modal from "../components/modal";
 
 import '../styles/base.css'
-import {QUIZ_ANSWER_SUBMIT_RESET, QUIZ_LIST_UPDATE_RESET} from "../redux/constants/quizConstants";
+import {QUIZ_ANSWER_SUBMIT_RESET, QUIZ_LIST_REMOVE_RESET} from "../redux/constants/quizConstants";
 import {MDBIcon} from "mdbreact";
 
 
@@ -31,9 +31,11 @@ function QuizScreen() {
     const [answers, setAnswers] = useState([]);
 
 
+
     const [quizIndex, setQuizIndex] = useState(0);
 
     useEffect(() => {
+        dispatch({type: QUIZ_LIST_REMOVE_RESET})
 
         if (userInfo) {
             !isAmount && dispatch(retrieveQuizRangeList(quizAmount));
@@ -91,15 +93,15 @@ function QuizScreen() {
     }
 
     const updateQuiz = () => {
-        dispatch(removeAllQuizzes()).then(() => {
-            if (removeSuccess === true) {
-                setTimeout(() => {
-                    dispatch({type: QUIZ_LIST_UPDATE_RESET})
-                }, 1000)
-            }
-        })
+        dispatch(removeAllQuizzes())
     }
-    console.log("suc: ", removeSuccess)
+
+    if (removeSuccess) {
+        setTimeout(() => {
+            dispatch({type: QUIZ_LIST_REMOVE_RESET})
+        }, 2000)
+    }
+    console.log(quizAmount)
 
     return (
         <div className="container">
@@ -158,32 +160,33 @@ function QuizScreen() {
                     :
                     <Modal isScore={isScore} answeredAnswers={answers} toggleIsScore={toggleModal}/>
             }
-            {
-                !removeLoading && !removeError?
 
-                    <MDBIcon
-                        className="position-absolute bottom-10 right-10"
-                        size="3x"
-                        icon="sync-alt"
-                        onClick={updateQuiz}
-                    />
+                {
+                !removeLoading && !removeError && quizAmount < 1 ?
 
-                    : !removeError ?
-                    <>
-                        <p className="position-absolute bottom-10 right-36">Generating new quizzes.....</p>
+                <MDBIcon
+                className="position-absolute bottom-10 right-10"
+                size="3x"
+                icon="sync-alt"
+                onClick={updateQuiz}
+                />
 
-                        <MDBIcon
-                            className="position-absolute bottom-10 right-10"
-                            icon="sync"
-                            spin size="3x"
-                        />
-                    </>
+                : !removeError && quizAmount < 1 ?
+                <>
+                <p className="position-absolute bottom-10 right-36">Generating new quizzes.....</p>
 
-                        : null
+                <MDBIcon
+                className="position-absolute bottom-10 right-10"
+                icon="sync"
+                spin size="3x"
+                />
+                </>
+
+                : null
             }
             {
                 removeSuccess &&
-                    <p className="position-absolute bottom-10 right-36">Done. Go ahead.</p>
+                <p className="position-absolute bottom-10 right-36">Done. Go ahead.</p>
             }
 
         </div>

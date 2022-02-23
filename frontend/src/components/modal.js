@@ -9,6 +9,7 @@ import { MDBBtn,
     MDBModalFooter,
 } from 'mdb-react-ui-kit';
 import {MDBTable, MDBTableBody, MDBTableHead} from "mdbreact";
+import {Link} from "react-router-dom";
 
 export default function Modal({isScore, toggleIsScore, answeredAnswers}) {
     const [centredModal, setCentredModal] = useState(isScore);
@@ -62,8 +63,13 @@ export default function Modal({isScore, toggleIsScore, answeredAnswers}) {
                             }
                         </MDBModalBody>
                         <MDBModalFooter>
+                            <Link to="/vocabulary">
+                            <MDBBtn color="warning">
+                                Close
+                            </MDBBtn>
+                            </Link>
                             <MDBBtn onClick={toggleShow}>
-                                {total_incorrect > 0 ? "Try Again" : "Close"}
+                                Try Again
                             </MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>

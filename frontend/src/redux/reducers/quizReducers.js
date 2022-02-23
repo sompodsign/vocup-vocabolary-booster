@@ -11,12 +11,12 @@ import {
 
     QUIZ_ANSWER_SUBMIT_REQUEST,
     QUIZ_ANSWER_SUBMIT_SUCCESS,
-    QUIZ_ANSWER_SUBMIT_FAIL,
+    QUIZ_LIST_REMOVE_FAIL,
     QUIZ_ANSWER_SUBMIT_RESET,
 
-    QUIZ_LIST_UPDATE_REQUEST,
-    QUIZ_LIST_UPDATE_SUCCESS,
-    QUIZ_LIST_UPDATE_FAIL, QUIZ_LIST_UPDATE_RESET,
+    QUIZ_LIST_REMOVE_REQUEST,
+    QUIZ_LIST_REMOVE_SUCCESS,
+    QUIZ_LIST_UPDATE_FAIL, QUIZ_LIST_REMOVE_RESET,
 
 
 } from "../constants/quizConstants";
@@ -90,7 +90,7 @@ export const quizAnswerSubmitReducer = (state = {}, action) => {
                 answerResponse: action.payload,
             };
 
-        case QUIZ_ANSWER_SUBMIT_FAIL:
+        case QUIZ_LIST_REMOVE_FAIL:
             return {
                 loading: false, error: action.payload.response
             };
@@ -108,25 +108,23 @@ export const quizAnswerSubmitReducer = (state = {}, action) => {
 //QUIZ update reducer
 export const quizRemoveReducer = (state = {}, action) => {
     switch (action.type) {
-        case QUIZ_LIST_UPDATE_REQUEST:
+        case QUIZ_LIST_REMOVE_REQUEST:
             return {loading: true, status: {}};
 
-        case QUIZ_LIST_UPDATE_SUCCESS:
+        case QUIZ_LIST_REMOVE_SUCCESS:
             return {
                 loading: false,
                 status: action.payload,
                 success: true
             };
 
-        case QUIZ_ANSWER_SUBMIT_FAIL:
+        case QUIZ_LIST_REMOVE_FAIL:
             return {
                 loading: false, error: action.payload.response
             };
 
-        case QUIZ_LIST_UPDATE_RESET:
-            return {
-                status: {}
-            };
+        case QUIZ_LIST_REMOVE_RESET:
+            return {};
 
         default:
             return state;

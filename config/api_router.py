@@ -25,6 +25,7 @@ urlpatterns = (
     path("dictionary/<str:word>/", DictionaryViewSet.as_view({"get": "retrieve"}), name="dictionary-word"),
     path("vocabulary-quiz/quiz-amount/<int:quiz_amount>/", QuizViewSet.as_view({"get": "get_queryset"}), name="quiz-list"),
     path("vocabulary-quiz/answer", QuizViewSet.as_view({"get": "retrieve"}), name="quiz-answer"),
+    path("vocabulary-quiz/remove-all", QuizViewSet.as_view({"delete": "destroy"}), name="quiz-remove-all"),
     path('', include(router.urls)),
 )
 

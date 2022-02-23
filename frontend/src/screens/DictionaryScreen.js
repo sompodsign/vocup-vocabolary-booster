@@ -29,24 +29,15 @@ function DictionaryScreen() {
     const {dictWordMeaning: word, error, loading} = dictObj
 
 
-    useLayoutEffect(() => {
-        if (firstUpdate.current) {
-            firstUpdate.current = false;
-        } else {
-            if (error) {
-                notify('Word not found', 'error')
-            }
-        }
-    });
-
     const handleSearch = () => {
         /* it will dispatch word fetching action */
         dispatch(retrieveDictWord(inputValue));
         setAddWord(false);
     }
 
-    const handleAddWordState = (addWordState) => {
-        setAddWord(addWordState)
+    const handleAddWordState = (addWordState, isBnSyn=null) => {
+        isBnSyn != null && isBnSyn === false ? dispatch(createWord({word: capitalize(word.en), meaning: word.bn}))
+            : setAddWord(addWordState)
     }
 
     const handleAddWord = (meaning) => {
