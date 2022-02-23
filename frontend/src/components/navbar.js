@@ -4,6 +4,7 @@ import {Fragment} from 'react'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {BellIcon, MenuIcon, XIcon} from '@heroicons/react/outline'
 import {Link, useNavigate} from "react-router-dom";
+import { useLocation } from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux";
 import {USER_LOGOUT} from "../redux/constants/userConstants";
 import {logout} from "../redux/actions/userActions";
@@ -23,6 +24,7 @@ function classNames(...classes) {
 
 export default function Nav() {
 
+    const locationPathName = useLocation().pathname;
 
     const dispatch = useDispatch();
 
@@ -36,9 +38,6 @@ export default function Nav() {
         navigate("/login");
     }
 
-    const loginClickHandler = () => {
-        dispatch({type: USER_LOGOUT});
-    }
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({open}) => (
@@ -78,10 +77,10 @@ export default function Nav() {
                                             <a
                                                 href="#"
                                                 className={classNames(
-                                                    true ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    locationPathName === '/home' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                     'px-3 py-2 rounded-md text-sm font-medium'
                                                 )}
-                                                aria-current={true ? 'page' : undefined}
+                                                aria-current={locationPathName === '/home' ? 'page' : undefined}
                                             >
                                                 Home
                                             </a>
@@ -92,10 +91,10 @@ export default function Nav() {
                                             <a
                                                 href="#"
                                                 className={classNames(
-                                                    true ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    locationPathName === '/vocabulary' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                     'px-3 py-2 rounded-md text-sm font-medium'
                                                 )}
-                                                aria-current={true ? 'page' : undefined}
+                                                aria-current={locationPathName === '/vocabulary' ? 'page' : undefined}
                                             >
                                                 Vocabulary
                                             </a>
@@ -106,10 +105,10 @@ export default function Nav() {
                                             <a
                                                 href="#"
                                                 className={classNames(
-                                                    true ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    locationPathName === '/dictionary' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                     'px-3 py-2 rounded-md text-sm font-medium'
                                                 )}
-                                                aria-current={true ? 'page' : undefined}
+                                                aria-current={locationPathName === '/dictionary' ? 'page' : undefined}
                                             >
                                                 Dictionary
                                             </a>
@@ -120,7 +119,7 @@ export default function Nav() {
                                                 <a
                                                     href="#"
                                                     className={classNames(
-                                                        true ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                        false ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                         'px-3 py-2 rounded-md text-sm font-medium'
                                                     )}
                                                     aria-current={true ? 'page' : undefined}
@@ -134,6 +133,7 @@ export default function Nav() {
                                     </div>
                                 </div>
                             </div>
+                            { userInfo &&
                             <div
                                 className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <button
@@ -167,52 +167,55 @@ export default function Nav() {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
 
-                                        <Menu.Items
-                                            className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-1">
-                                            {userInfo &&
+                                            <Menu.Items
+                                                className="z-10 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                {userInfo &&
 
-                                                <Menu.Item>
-                                                    {({active}) => (
-                                                        <a
-                                                            href="#"
-                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                        >
-                                                            Your Profile
-                                                        </a>
-                                                    )}
-                                                </Menu.Item>}
-                                            {userInfo &&
-                                                <Menu.Item>
-                                                    {({active}) => (
-                                                        <a
-                                                            href="#"
-                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                        >
-                                                            Settings
-                                                        </a>
-                                                    )}
+                                                    <Menu.Item>
+                                                        {({active}) => (
+                                                            <a
+                                                                href="#"
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                Your Profile
+                                                            </a>
+                                                        )}
+                                                    </Menu.Item>}
+                                                {userInfo &&
+                                                    <Menu.Item>
+                                                        {({active}) => (
+                                                            <a
+                                                                href="#"
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                Settings
+                                                            </a>
+                                                        )}
 
-                                                </Menu.Item>}
+                                                    </Menu.Item>}
 
-                                            {userInfo &&
-                                                <Menu.Item>
-                                                    {({active}) => (
-                                                        <a
-                                                            href="#"
-                                                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                            onClick={handleLogout}
-                                                        >
-                                                            Logout
-                                                        </a>
-                                                    )}
+                                                {userInfo &&
+                                                    <Menu.Item>
+                                                        {({active}) => (
+                                                            <a
+                                                                href="#"
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                onClick={handleLogout}
+                                                            >
+                                                                Logout
+                                                            </a>
+                                                        )}
 
-                                                </Menu.Item>}
+                                                    </Menu.Item>}
 
 
-                                        </Menu.Items>
+                                            </Menu.Items>
+
+
                                     </Transition>
                                 </Menu>
                             </div>
+                            }
                         </div>
                     </div>
 

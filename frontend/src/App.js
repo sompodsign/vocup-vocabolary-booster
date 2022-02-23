@@ -17,7 +17,7 @@ function App() {
     <Router>
     <Nav />
         <ToastContainer />
-        <Container>
+        <div class="container mt-8">
     <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/vocabulary" element={<Words />} />
@@ -26,7 +26,8 @@ function App() {
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/join" element={<JoinScreen />} />
       </Routes>
-        </Container>
+        </div>
+
     </Router>
   );
 }
