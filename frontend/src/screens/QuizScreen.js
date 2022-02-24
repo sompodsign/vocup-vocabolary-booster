@@ -11,6 +11,7 @@ import '../styles/base.css'
 import {QUIZ_ANSWER_SUBMIT_RESET, QUIZ_LIST_REMOVE_RESET} from "../redux/constants/quizConstants";
 import {MDBIcon} from "mdbreact";
 import {FillSpinner} from "../components/spinner";
+import {capitalize} from "../helpers/capitalize";
 
 
 function QuizScreen() {
@@ -148,7 +149,7 @@ function QuizScreen() {
                                 return (
                                     <div key={index} className="d-flex justify-content-center">
                                         <QuizButton
-                                            question={quizList[quizIndex].question}
+                                            question={capitalize(quizList[quizIndex].question)}
                                             index={index}
                                             handleQuizIndex={handleQuizIndex}
                                             title={answer}
