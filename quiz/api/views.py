@@ -53,12 +53,11 @@ class QuizViewSet(ModelViewSet):
                      "correctAnswer": quiz.correct_answer} for quiz in
                     new_set]
 
-                # serializer = QuizSerializer(output, many=True)
+                time.sleep(0.5) # Sleep for 3 seconds to prevent spamming the server
                 return Response(output)
 
             elif quiz_amount is not None and quiz_amount >= len(user_quiz_set):
                 raise ValidationError('Please enter less than or equal to the amount of quiz objects.')
-            time.sleep(3)
             return Quiz.objects.filter(user=self.request.user)
         else:
             raise ValidationError("You must be logged in to get results", code="401")

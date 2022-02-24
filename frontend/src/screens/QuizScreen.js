@@ -10,6 +10,7 @@ import Modal from "../components/modal";
 import '../styles/base.css'
 import {QUIZ_ANSWER_SUBMIT_RESET, QUIZ_LIST_REMOVE_RESET} from "../redux/constants/quizConstants";
 import {MDBIcon} from "mdbreact";
+import {FillSpinner} from "../components/spinner";
 
 
 function QuizScreen() {
@@ -22,7 +23,7 @@ function QuizScreen() {
     const userLogin = useSelector(state => state.userLogin)
     const quizzesRemove = useSelector(state => state.removeQuiz)
     const {userInfo} = userLogin;
-    const {quizRangeList: quizList} = quizzes;
+    const {loading:quizRangeLoading, quizRangeList: quizList} = quizzes;
     const {loading: removeLoading, status, error: removeError, success:removeSuccess} = quizzesRemove
 
     const [isAmount, setIsAmount] = useState(true);
@@ -106,6 +107,7 @@ function QuizScreen() {
     return (
         <div className="container">
 
+
             {isAmount ?
                 <div>
                     <div className="w-100 m-auto">
@@ -136,6 +138,7 @@ function QuizScreen() {
                     <div className="d-flex justify-content-center">
                         <div className="p-10 w-full">
                             <div className="d-flex justify-content-center mb-3">
+                                { quizRangeLoading && <div className="mt-20"><FillSpinner /></div>}
                                 {quizList && <h1>{quizList[quizIndex].question}</h1>}
                                 <div className="d-flex">
                                     {quizList && <h6 style={{color: "purple"}}>{quizIndex + 1}/{quizList.length}</h6>}
