@@ -9,6 +9,7 @@ import Input from "../components/input";
 import {SaveButton, TakeAQuizBtn} from "../components/buttons";
 
 import {MDBInput} from "mdb-react-ui-kit";
+import {FillSpinner} from "../components/spinner";
 
 function VocabularyScreen() {
 
@@ -24,7 +25,7 @@ function VocabularyScreen() {
     const userLogin = useSelector(state => state.userLogin)
     const newSavedWord = useSelector(state => state.createdWord)
     const {userInfo} = userLogin;
-    let {words} = wordList;
+    let {loading:wordListLoading, words} = wordList;
     let {createdWord} = newSavedWord
 
     let navigate = useNavigate();
@@ -80,7 +81,10 @@ function VocabularyScreen() {
                 </div>
             </div>
             <Input func={setInputValue} variant="outline-success" label="Search"/>
-            <Table words={words}/>
+            {wordListLoading ?
+                <FillSpinner /> :
+                <Table words={words}/>
+            }
         </div>
     );
 }

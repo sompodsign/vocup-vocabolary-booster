@@ -11,7 +11,7 @@ export default function Spinner() {
     );
 }
 
-export function fillSpinner() {
+export function FillSpinner() {
     return (
         <div className="spinner-grow text-primary" role="status">
             <span className="sr-only">Loading...</span>
