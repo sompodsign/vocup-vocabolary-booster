@@ -11,6 +11,7 @@ import notify from "../utils/notification";
 import {Buttons, PrimaryBtn} from "../components/buttons";
 import {createWord} from "../redux/actions/wordActions";
 import {capitalize} from "../helpers/capitalize";
+import ContentLoader, {BulletList, Facebook, List} from "react-content-loader";
 
 
 function DictionaryScreen() {
@@ -27,6 +28,17 @@ function DictionaryScreen() {
 
     const dictObj = useSelector(state => state.dictWord);
     const {dictWordMeaning: word, error, loading} = dictObj
+
+    const MyLoader = () => (
+        <ContentLoader viewBox="0 0 380 120">
+            {/* Only SVG shapes */}
+            <rect x="0" y="15" rx="5" ry="5" width="130" height="200" />
+        </ContentLoader>
+    )
+
+    const MyFacebookLoader = () => <Facebook />
+    const MyListLoader = () => <List />
+    const MyBulletListLoader = () => <BulletList />
 
 
     const handleSearch = () => {
@@ -50,17 +62,19 @@ function DictionaryScreen() {
         <div class="d-flex .justify-content-evenly">
             <div>
             <PrimaryBtn key="dict" inputData={inputValue} onClick={handleSearch} title="Search"/>
-            {loading && <Spinner />}
             {!error && Object.keys(word).length > 0 && <ResultCard word={word} setWordState={handleAddWordState}/>}
             </div>
             {addWord && Object.keys(word).length > 0 && word.bn_syn.length > 0 &&
                 <div class="m-lg-5 ml-3">
+
                     <h2>Which meaning is more comprehensive to you?</h2>
                     {!error && Object.keys(word).length > 0 && word.bn_syn.map((item, index) =>
                         <Buttons key={index} text={item} func={handleAddWord}/>
                     )}
                 </div>}
         </div>
+            <div className="hidden lg:block">{loading && <MyLoader />}</div>
+            <div className="lg:hidden mt-8">{loading && <MyListLoader />}</div>
         </>
     );
 }

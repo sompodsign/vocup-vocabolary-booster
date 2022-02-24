@@ -39,7 +39,7 @@ services:
   pgbackups:
     image: prodrigestivill/postgres-backup-local
     restart: always
-    user: postgres:postgres # Optional: see below
+    user: root # Optional: see below
     volumes:
       - /var/opt/pgbackups:/backups
     links:

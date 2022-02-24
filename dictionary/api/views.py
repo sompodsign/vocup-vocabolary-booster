@@ -1,3 +1,5 @@
+import time
+
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -21,6 +23,7 @@ class DictionaryViewSet(ModelViewSet):
         try:
             obj = self.queryset.get(en__iexact=word)
             serializer = self.get_serializer(obj, many=False)
+            time.sleep(3)
             return Response(serializer.data)
         except DictWord.DoesNotExist:
             raise ValidationError('Word does not exist', code="404")

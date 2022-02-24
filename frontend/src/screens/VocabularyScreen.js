@@ -10,6 +10,7 @@ import {SaveButton, TakeAQuizBtn} from "../components/buttons";
 
 import {MDBInput} from "mdb-react-ui-kit";
 import {FillSpinner} from "../components/spinner";
+import ContentLoader, {BulletList, Facebook, List} from "react-content-loader";
 
 function VocabularyScreen() {
 
@@ -29,6 +30,21 @@ function VocabularyScreen() {
     let {createdWord} = newSavedWord
 
     let navigate = useNavigate();
+
+    const MyLoader = () => (
+        <ContentLoader viewBox="0 0 380 70">
+            {/* Only SVG shapes */}
+            {/*<rect x="0" y="0" rx="5" ry="5" width="70" height="70" />*/}
+            {/*<rect x="80" y="17" rx="4" ry="4" width="300" height="13" />*/}
+            <rect x="0" y="20" rx="3" ry="3" width="450" height="10" />
+            <rect x="0" y="40" rx="3" ry="3" width="450" height="10" />
+            <rect x="0" y="60" rx="3" ry="3" width="450" height="10" />
+            <rect x="0" y="80" rx="3" ry="3" width="450" height="10" />
+        </ContentLoader>
+    )
+    const MyFacebookLoader = () => <Facebook />
+    const MyListLoader = () => <List />
+    const MyBulletListLoader = () => <BulletList />
 
 
     const handleSave = () => {
@@ -82,7 +98,10 @@ function VocabularyScreen() {
             </div>
             <Input func={setInputValue} variant="outline-success" label="Search"/>
             {wordListLoading ?
-                <FillSpinner /> :
+                <><div className="lg:hidden"><MyBulletListLoader /></div>
+                    <div className="lg:block hidden"><MyLoader /></div>
+                </>
+                :
                 <Table words={words}/>
             }
         </div>
