@@ -103,7 +103,6 @@ function QuizScreen() {
             dispatch({type: QUIZ_LIST_REMOVE_RESET})
         }, 2000)
     }
-    console.log(quizAmount)
 
     return (
         <div className="container">
