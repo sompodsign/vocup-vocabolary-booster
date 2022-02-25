@@ -18,6 +18,7 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+      - ./.envs/.local/.react
     ports:
       - "80:8000"
     command: /start
@@ -35,25 +36,3 @@ services:
       - vocup_local_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
-
-  pgbackups:
-    image: prodrigestivill/postgres-backup-local
-    restart: always
-    user: root # Optional: see below
-    volumes:
-      - /var/opt/pgbackups:/backups
-    links:
-      - postgres
-    depends_on:
-      - postgres
-    environment:
-      - POSTGRES_HOST=postgres
-      - POSTGRES_DB=vocup
-      - POSTGRES_USER=debug
-      - POSTGRES_PASSWORD=debug
-      - POSTGRES_EXTRA_OPTS=-Z6 --schema=public --blobs
-      - SCHEDULE=@daily
-      - BACKUP_KEEP_DAYS=7
-      - BACKUP_KEEP_WEEKS=4
-      - BACKUP_KEEP_MONTHS=6
-      - HEALTHCHECK_PORT=8080
