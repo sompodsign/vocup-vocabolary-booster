@@ -8,6 +8,7 @@
             <option value="django" />
             <option value="pgbackups" />
             <option value="postgres" />
+            <option value="pgbackups" />
           </list>
         </option>
         <option name="sourceFilePath" value="local.yml" />
