@@ -126,6 +126,22 @@ export default function Nav() {
                                         }
 
 
+                                        {!userInfo &&
+                                            <Link to="/join">
+                                                <a
+                                                    href="#"
+                                                    className={classNames(
+                                                        locationPathName === '/join' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                        'px-3 py-2 rounded-md text-sm font-medium'
+                                                    )}
+                                                    aria-current={locationPathName === '/join' ? 'page' : undefined}
+                                                >
+                                                    Join
+                                                </a>
+                                            </Link>
+                                        }
+
+
                                     </div>
                                 </div>
                             </div>
@@ -276,6 +292,24 @@ export default function Nav() {
                                         area-current={locationPathName === '/login' ? 'page' : undefined}
                                     >
                                         Login
+                                    </Disclosure.Button>
+                                </Link>
+                            }
+
+
+                            {
+                                !userInfo &&
+                                <Link to="/join">
+                                    <Disclosure.Button
+                                        as="a"
+                                        href="#"
+                                        className={classNames(
+                                            locationPathName === '/join' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                            'block px-3 py-2 rounded-md text-base font-medium'
+                                        )}
+                                        area-current={locationPathName === '/join' ? 'page' : undefined}
+                                    >
+                                        Join
                                     </Disclosure.Button>
                                 </Link>
                             }
