@@ -6,16 +6,7 @@ import {BellIcon, MenuIcon, XIcon} from '@heroicons/react/outline'
 import {Link, useNavigate} from "react-router-dom";
 import {useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux";
-import {USER_LOGOUT} from "../redux/constants/userConstants";
 import {logout} from "../redux/actions/userActions";
-
-const navigation = [
-    {name: 'Home', href: '#', current: true},
-    {name: 'Vocabulary', href: '/vocabulary', current: false},
-    {name: 'Dictionary', href: '/dictionary', current: false},
-    {name: 'Login', href: '/login', current: false},
-    {name: 'Join', href: '/join', current: false},
-]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -260,15 +251,15 @@ export default function Nav() {
                     <Disclosure.Panel className="sm:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1">
 
-                            <Link to="/home">
+                            <Link to="/">
                                 <Disclosure.Button
                                     as="a"
                                     href="#"
                                     className={classNames(
-                                        locationPathName === '/home' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                        locationPathName === '/' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                         'block px-3 py-2 rounded-md text-base font-medium'
                                     )}
-                                    area-current={locationPathName === '/home' ? 'page' : undefined}
+                                    area-current={locationPathName === '/' ? 'page' : undefined}
                                 >
                                     Home
                                 </Disclosure.Button>
@@ -296,10 +287,10 @@ export default function Nav() {
                                     as="a"
                                     href="#"
                                     className={classNames(
-                                        locationPathName === '/Dictionary' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                        locationPathName === '/dictionary' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                         'block px-3 py-2 rounded-md text-base font-medium'
                                     )}
-                                    area-current={locationPathName === '/Dictionary' ? 'page' : undefined}
+                                    area-current={locationPathName === '/dictionary' ? 'page' : undefined}
                                 >
                                     Dictionary
                                 </Disclosure.Button>

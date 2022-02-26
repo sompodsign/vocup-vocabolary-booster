@@ -41,7 +41,7 @@ export default function ResultCard({word, setWordState}) {
     const handleSetWordState = () => {
         setWordState(true, word.bn_syn.length > 0);
     }
-    console.log(word.bn_syn.length > 0)
+
     return (
 
         <MDBCard className='mt-4 border'>
