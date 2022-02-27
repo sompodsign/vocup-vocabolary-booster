@@ -4,7 +4,7 @@ import "../styles/tutorialsStyle.css"
 
 export default function TutorialScreen() {
 
-    return <div className="position-fixed end-0 w-full p-10" style={{background: "#14C07B", height: "288px"}}>
+    return <div className="position-fixed top-16 end-0 w-full p-10 -z-10" style={{background: "#14C07B", height: "288px"}}>
         <MDBContainer>
             <div className="d-flex flex-column align-items-center">
                 <h1 className="pb-4" style={{color: "white", fontSize:"50px"}}><b>Tutorials</b></h1>
