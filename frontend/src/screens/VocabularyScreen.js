@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import '../styles/base.css'
 import {createWord, listWords} from '../redux/actions/wordActions';
 import {tabTitle} from "../utils/generalFunctions";
@@ -8,9 +8,10 @@ import Table from "../components/table";
 import Input from "../components/input";
 import {SaveButton, TakeAQuizBtn} from "../components/buttons";
 
-import {MDBInput} from "mdb-react-ui-kit";
+import {MDBBtn, MDBInput} from "mdb-react-ui-kit";
 import {FillSpinner} from "../components/spinner";
 import ContentLoader, {BulletList, Facebook, List} from "react-content-loader";
+import {MDBIcon} from "mdbreact";
 
 function VocabularyScreen() {
 
@@ -66,9 +67,20 @@ function VocabularyScreen() {
     return (
         <div>
             <div className="d-lg-flex justify-content-lg-between">
-                <div className="justify-content-lg-start">
+                <div className="justify-content-lg-space-between">
                     <TakeAQuizBtn onClick={() => navigate('/vocabulary/quiz')} title="Take a quiz?"/>
+                    <div className="lg:hidden position-absolute right-5 top-24">
+                        <Link to="/dictionary">
+                    <MDBBtn
+                        className="mb-lg-0 mb-sm-3 mb-md-0"
+                        outline
+                        rounded>
+                        Dictionary
+                    </MDBBtn>
+                        </Link>
+                    </div>
                 </div>
+
                 <div className="d-lg-flex justify-content-lg-end">
 
                     <div className="me-lg-2 mt-2 mt-lg-0">

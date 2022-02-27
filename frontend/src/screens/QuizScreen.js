@@ -8,10 +8,15 @@ import {removeAllQuizzes, retrieveQuizRangeList} from "../redux/actions/quizActi
 import Modal from "../components/modal";
 
 import '../styles/base.css'
-import {QUIZ_ANSWER_SUBMIT_RESET, QUIZ_LIST_REMOVE_RESET} from "../redux/constants/quizConstants";
+import {
+    QUIZ_ANSWER_SUBMIT_RESET,
+    QUIZ_LIST_REMOVE_RESET,
+    QUIZ_RANGE_LIST_RESET
+} from "../redux/constants/quizConstants";
 import {MDBIcon} from "mdbreact";
 import {FillSpinner} from "../components/spinner";
 import {capitalize} from "../helpers/capitalize";
+import notify from "../utils/notification";
 
 
 function QuizScreen() {
@@ -24,7 +29,7 @@ function QuizScreen() {
     const userLogin = useSelector(state => state.userLogin)
     const quizzesRemove = useSelector(state => state.removeQuiz)
     const {userInfo} = userLogin;
-    const {loading:quizRangeLoading, quizRangeList: quizList} = quizzes;
+    const {loading:quizRangeLoading, quizRangeList: quizList, error: quizRangeError} = quizzes;
     const {loading: removeLoading, status, error: removeError, success:removeSuccess} = quizzesRemove
 
     const [isAmount, setIsAmount] = useState(true);
@@ -107,6 +112,7 @@ function QuizScreen() {
     return (
         <div className="container">
 
+            {quizRangeError && <h1>Please enter less than or equal to the amount of vocabulary objects.</h1>}
 
             {isAmount ?
                 <div>
@@ -167,12 +173,6 @@ function QuizScreen() {
                 {
                 !removeLoading && !removeError && quizAmount < 1 ?
 
-                // <MDBIcon
-                // className="position-absolute bottom-10 right-10"
-                // size="3x"
-                // icon="sync-alt"
-                // onClick={updateQuiz}
-                // />
 
                     <MDBBtn size="lg" className="position-absolute lg:bottom-10 lg:right-10 right-10 bottom-10" onClick={updateQuiz} rounded>Randomize Quiz</MDBBtn>
 

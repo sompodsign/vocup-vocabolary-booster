@@ -12,6 +12,8 @@ import {Buttons, PrimaryBtn} from "../components/buttons";
 import {createWord} from "../redux/actions/wordActions";
 import {capitalize} from "../helpers/capitalize";
 import ContentLoader, {BulletList, Facebook, List} from "react-content-loader";
+import {Link} from "react-router-dom";
+import {MDBBtn} from "mdb-react-ui-kit";
 
 
 function DictionaryScreen() {
@@ -58,6 +60,18 @@ function DictionaryScreen() {
 
     return (
         <>
+
+                <Link to="/vocabulary">
+                    <div className="lg:hidden flex justify-content-end">
+                    <MDBBtn
+                        className="mb-lg-0 mb-sm-3 mb-2"
+                        outline
+                        rounded>
+                        Vocabulary
+                    </MDBBtn>
+                    </div>
+                </Link>
+
         <Input reference={inputRef} func={setInputValue} value={inputValue} variant="outline-success" search={handleSearch} label="English Word"/>
         <div class="d-flex .justify-content-evenly">
             <div>
