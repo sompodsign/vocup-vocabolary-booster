@@ -132,7 +132,7 @@ export default function Nav() {
                                             </Link>
                                         }
 
-                                        <Link to="/blog">
+                                        <Link to="/tutorials">
                                             <a
                                                 href=""
                                                 className={classNames(
@@ -141,7 +141,7 @@ export default function Nav() {
                                                 )}
                                                 aria-current={locationPathName === '/blog' ? 'page' : undefined}
                                             >
-                                                Blog
+                                                Tutorials
                                             </a>
                                         </Link>
 
@@ -348,7 +348,7 @@ export default function Nav() {
                                     </Disclosure.Button>
                                 </Link>
                             }
-                            <Link to="/blog">
+                            <Link to="/tutorials">
                                 <Disclosure.Button
                                     as="a"
                                     href="#"
@@ -358,7 +358,7 @@ export default function Nav() {
                                     )}
                                     area-current={locationPathName === '/blog' ? 'page' : undefined}
                                 >
-                                    Blog
+                                    Docs
                                 </Disclosure.Button>
                             </Link>
 

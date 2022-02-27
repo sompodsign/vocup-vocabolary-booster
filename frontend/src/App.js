@@ -7,9 +7,9 @@ import LoginScreen from "./screens/LoginScreen";
 import './styles/base.css'
 import Words from "./screens/VocabularyScreen";
 import {ToastContainer} from "react-toastify";
-import {Container} from "react-bootstrap";
 import DictionaryScreen from "./screens/DictionaryScreen";
 import QuizScreen from "./screens/QuizScreen";
+import TutorialScreen from "./screens/TutorialsScreen";
 
 function App() {
 
@@ -25,7 +25,8 @@ function App() {
         <Route path="/dictionary" element={<DictionaryScreen />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/join" element={<JoinScreen />} />
-      </Routes>
+        <Route path="/tutorials" element={<TutorialScreen />} />
+    </Routes>
         </div>
 
     </Router>
