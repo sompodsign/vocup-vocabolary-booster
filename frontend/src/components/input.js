@@ -5,6 +5,7 @@ export default function Input(props) {
     return (
         <div class="max-w-full">
             <MDBInput
+                autoComplete="off"
                 className="mt-lg-2"
                 labelRef={props.reference}
                 label={props.label}

@@ -73,6 +73,7 @@ function VocabularyScreen() {
 
                     <div className="me-lg-2 mt-2 mt-lg-0">
                     <MDBInput
+                        autoComplete="off"
                         onChange={e => setNewWord(e.target.value)}
                         value={newWord}
                         id="form1"

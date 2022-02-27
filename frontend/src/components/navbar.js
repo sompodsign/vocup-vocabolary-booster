@@ -51,10 +51,10 @@ export default function Nav() {
                                 className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex-shrink-0 flex items-center">
 
-                                    <h4
+                                    <h3 style={{color:"white"}}
                                         className="hidden lg:block h-8 w-auto p-0 m-0"
-                                    >VOCUP</h4>
-                                    <h2 className="block lg:hidden h-8 w-auto"><b>VOCUP</b></h2>
+                                    >VOCUP</h3>
+                                    <h3 style={{color:"white"}} className="block lg:hidden"><b>VOCUP</b></h3>
                                 </div>
                                 <div className="hidden sm:block sm:ml-6">
 

@@ -139,7 +139,7 @@ function QuizScreen() {
                         <div className="p-10 w-full">
                             <div className="d-flex justify-content-center mb-3">
                                 { quizRangeLoading && <div className="mt-20"><FillSpinner /></div>}
-                                {quizList && <h1>{quizList[quizIndex].question}</h1>}
+                                {quizList && <h1>{capitalize(quizList[quizIndex].question)}</h1>}
                                 <div className="d-flex">
                                     {quizList && <h6 style={{color: "purple"}}>{quizIndex + 1}/{quizList.length}</h6>}
                                 </div>
@@ -148,7 +148,7 @@ function QuizScreen() {
                                 return (
                                     <div key={index} className="d-flex justify-content-center">
                                         <QuizButton
-                                            question={capitalize(quizList[quizIndex].question)}
+                                            question={quizList[quizIndex].question}
                                             index={index}
                                             handleQuizIndex={handleQuizIndex}
                                             title={answer}
@@ -167,12 +167,14 @@ function QuizScreen() {
                 {
                 !removeLoading && !removeError && quizAmount < 1 ?
 
-                <MDBIcon
-                className="position-absolute bottom-10 right-10"
-                size="3x"
-                icon="sync-alt"
-                onClick={updateQuiz}
-                />
+                // <MDBIcon
+                // className="position-absolute bottom-10 right-10"
+                // size="3x"
+                // icon="sync-alt"
+                // onClick={updateQuiz}
+                // />
+
+                    <MDBBtn size="lg" className="position-absolute lg:bottom-10 lg:right-10 right-10 bottom-10" onClick={updateQuiz} rounded>Randomize Quiz</MDBBtn>
 
                 : !removeError && quizAmount < 1 ?
                 <>
@@ -189,7 +191,7 @@ function QuizScreen() {
             }
             {
                 removeSuccess &&
-                <p className="position-absolute bottom-10 right-36">Done. Go ahead.</p>
+                <p className="position-absolute bottom-8 lg:right-56">Done. Go ahead.</p>
             }
 
         </div>
