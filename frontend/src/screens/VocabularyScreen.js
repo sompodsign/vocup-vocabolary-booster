@@ -64,6 +64,8 @@ function VocabularyScreen() {
 
     words = inputValue !== null ? words.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
 
+
+
     return (
         <div>
             <div className="d-lg-flex justify-content-lg-between">
@@ -96,6 +98,7 @@ function VocabularyScreen() {
 
                     <div className="mt-2 mt-lg-0 mx-lg-2">
                     <MDBInput
+                        autocomplete="off"
                         onChange={e => setNewMeaning(e.target.value)}
                         value={newMeaning}
                         id="form1"

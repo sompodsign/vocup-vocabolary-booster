@@ -132,32 +132,6 @@ export default function Nav() {
                                             </Link>
                                         }
 
-                                        <Link to="/blog">
-                                            <a
-                                                href="#"
-                                                className={classNames(
-                                                    locationPathName === '/blog' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'px-3 py-2 rounded-md text-sm font-medium'
-                                                )}
-                                                aria-current={locationPathName === '/blog' ? 'page' : undefined}
-                                            >
-                                                Blog
-                                            </a>
-                                        </Link>
-
-                                        <Link to="/portfolio">
-                                            <a
-                                                href="#"
-                                                className={classNames(
-                                                    locationPathName === '/portfolio' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'px-3 py-2 rounded-md text-sm font-medium'
-                                                )}
-                                                aria-current={locationPathName === '/portfolio' ? 'page' : undefined}
-                                            >
-                                                Portfolio
-                                            </a>
-                                        </Link>
-
 
                                     </div>
                                 </div>
@@ -296,33 +270,6 @@ export default function Nav() {
                                 </Disclosure.Button>
                             </Link>
 
-                            <Link to="/blog">
-                                <Disclosure.Button
-                                    as="a"
-                                    href="#"
-                                    className={classNames(
-                                        locationPathName === '/blog' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'block px-3 py-2 rounded-md text-base font-medium'
-                                    )}
-                                    area-current={locationPathName === '/blog' ? 'page' : undefined}
-                                >
-                                    Blog
-                                </Disclosure.Button>
-                            </Link>
-
-                            <Link to="/portfolio">
-                                <Disclosure.Button
-                                    as="a"
-                                    href="#"
-                                    className={classNames(
-                                        locationPathName === '/portfolio' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'block px-3 py-2 rounded-md text-base font-medium'
-                                    )}
-                                    area-current={locationPathName === '/portfolio' ? 'page' : undefined}
-                                >
-                                    Portfolio
-                                </Disclosure.Button>
-                            </Link>
 
                             {
                                 !userInfo &&
