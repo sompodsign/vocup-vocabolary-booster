@@ -10,6 +10,8 @@ import {ToastContainer} from "react-toastify";
 import DictionaryScreen from "./screens/DictionaryScreen";
 import QuizScreen from "./screens/QuizScreen";
 import TutorialScreen from "./screens/TutorialsScreen";
+import CreateTutorial from "./screens/CreateTutorialScreen";
+import {PostDetail} from "./screens/PostDetailScreen";
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/join" element={<JoinScreen />} />
         <Route path="/tutorials" element={<TutorialScreen />} />
+        <Route path="/create-tutorial" element={<CreateTutorial />} />
+        <Route path="/post-detail" element={<PostDetail />} />
     </Routes>
         </div>
 

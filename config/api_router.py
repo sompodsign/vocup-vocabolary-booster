@@ -6,6 +6,7 @@ from vocup.users.api.views import UserViewSet, UserListViewSet, CreateUserView
 from words.api.views import WordViewSet
 from quiz.api.views import QuizViewSet
 from dictionary.api.views import DictionaryViewSet
+from tutorial.api.views import TutorialViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -18,6 +19,7 @@ router.register(r"all-users", UserListViewSet)
 router.register(r"words", WordViewSet)
 router.register(r"vocabulary-quiz", QuizViewSet)
 router.register(r"dictionary", DictionaryViewSet)
+router.register(r"tutorials", TutorialViewSet)
 
 app_name = "api"
 

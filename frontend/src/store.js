@@ -21,6 +21,7 @@ import {
     quizRangeReducer,
     quizReducers, quizRemoveReducer
 } from './redux/reducers/quizReducers';
+import {tutorialListReducer} from "./redux/reducers/tutorialReducer";
 
 const reducer = combineReducers({
     wordList: wordListReducer,
@@ -35,6 +36,8 @@ const reducer = combineReducers({
     quizRange: quizRangeReducer,
     quizSubmit: quizAnswerSubmitReducer,
     removeQuiz: quizRemoveReducer,
+
+    tutorialList: tutorialListReducer,
 
 })
 
