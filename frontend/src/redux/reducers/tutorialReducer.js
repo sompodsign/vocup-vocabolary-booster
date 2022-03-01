@@ -4,6 +4,17 @@ import {
     TUTORIAL_LIST_FAIL,
     TUTORIAL_LIST_RESET,
 
+
+    TUTORIAL_CREATE_REQUEST,
+    TUTORIAL_CREATE_SUCCESS,
+    TUTORIAL_CREATE_FAIL,
+    TUTORIAL_CREATE_RESET,
+
+    TUTORIAL_RETRIEVE_REQUEST,
+    TUTORIAL_RETRIEVE_SUCCESS,
+    TUTORIAL_RETRIEVE_FAIL,
+    TUTORIAL_RETRIEVE_RESET
+
 } from "../constants/tutorialConstants";
 
 
@@ -26,6 +37,56 @@ export const tutorialListReducer = (state = {tutorials: []}, action) => {
 
         case TUTORIAL_LIST_RESET:
             return {loading: false, tutorials: []};
+
+        default:
+            return state;
+
+    }
+};
+
+export const tutorialCreateReducer = (state = {tutorial: []}, action) => {
+    switch (action.type) {
+        case TUTORIAL_CREATE_REQUEST:
+            return {loading: true, tutorial: []};
+
+        case TUTORIAL_CREATE_SUCCESS:
+            return {
+                loading: false,
+                tutorials: action.payload,
+            };
+
+        case TUTORIAL_CREATE_FAIL:
+            return {
+                loading: false, error: action.payload.response
+            };
+
+        case TUTORIAL_CREATE_RESET:
+            return {loading: false, tutorial: []};
+
+        default:
+            return state;
+
+    }
+};
+
+export const tutorialRetrieveReducer = (state = {post: []}, action) => {
+    switch (action.type) {
+        case TUTORIAL_RETRIEVE_REQUEST:
+            return {loading: true, post: []};
+
+        case TUTORIAL_RETRIEVE_SUCCESS:
+            return {
+                loading: false,
+                post: action.payload,
+            };
+
+        case TUTORIAL_RETRIEVE_FAIL:
+            return {
+                loading: false, error: action.payload.response
+            };
+
+        case TUTORIAL_RETRIEVE_RESET:
+            return {loading: false, post: []};
 
         default:
             return state;

@@ -29,7 +29,7 @@ function App() {
         <Route path="/join" element={<JoinScreen />} />
         <Route path="/tutorials" element={<TutorialScreen />} />
         <Route path="/create-tutorial" element={<CreateTutorial />} />
-        <Route path="/post-detail" element={<PostDetail />} />
+        <Route path="/tutorials/:slug" element={<PostDetail />} />
     </Routes>
         </div>
 

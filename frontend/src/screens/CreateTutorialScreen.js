@@ -1,9 +1,10 @@
 import {useRef, useState} from "react";
 import JoditEditor from "jodit-react";
 import {MDBContainer} from "mdb-react-ui-kit";
-
+import {useDispatch} from "react-redux";
 import "../styles/markdownSnippetStyle.css";
 import {Button, Spinner} from "react-bootstrap";
+import {tutorialCreate} from "../redux/actions/tutorialActions";
 
 export default function CreateTutorial() {
     const editor = useRef(null)
@@ -11,10 +12,31 @@ export default function CreateTutorial() {
 
     const [isRawMd, setIsRawMd] = useState(true)
 
+    const dispatch = useDispatch();
+
+    const [title, setTitle] = useState('')
+    const [tags, setTags] = useState(null)
+
     const config = {
         readonly: false // all options from https://xdsoft.net/jodit/doc/
     }
-    console.log(content)
+
+
+    const handleTags = (value) => {
+        //separate string by comma
+        const tags = value.split(/\s*,\s*/);
+        setTags(tags)
+    }
+
+    const handleSave = () => {
+        let newTutorial = {
+            title: title,
+            body: content,
+            tags: tags,
+        }
+        dispatch(tutorialCreate(newTutorial));
+    }
+
     return (
 
         <div>
@@ -34,9 +56,16 @@ export default function CreateTutorial() {
 
                 <div class="writing-snippet">
 
+                    <div className="flex justify-content-end">
+                            <Button
+                                variant={isRawMd ? "outline-success" : "outline-primary"}
+                                onClick={()=> setIsRawMd(!isRawMd)}
+                            >{isRawMd ? "Ready HTML" : "Raw Text"}</Button>{' '}
+                    </div>
+
                     <div className="mt-3 mb-3">
                         <label>Title</label>
-                        <input className="w-full border-1 rounded-1 flex flex-column" type="text" placeholder="Title"/>
+                        <input onBlur={(e) => setTitle(e.target.value)} className="w-full border-1 rounded-1 flex flex-column" type="text" placeholder="Title"/>
                     </div>
 
                     {
@@ -56,7 +85,11 @@ export default function CreateTutorial() {
                         :
                         <div>
                         <label>Body - HTML input</label>
-                        <textarea rows="5" className="w-full h-1/2 rounded-1"/>
+                        <textarea
+                            placeholder="Start Writing or just paste your stolen code"
+                            onChange={(e) => setContent(e.target.value)}
+                            rows="5"
+                            className="w-full h-1/2 rounded-1"/>
                         </div>
 
                     }
@@ -64,14 +97,22 @@ export default function CreateTutorial() {
 
                     <div className="mt-3 mb-3">
                         <label>Tags</label>
-                        <input className="w-full border-1 rounded-1 flex flex-column" type="text"
-                               placeholder="Tags (comma seperated)"/>
+                        <input
+                            className="w-full border-1 rounded-1 flex flex-column"
+                            type="text"
+                            placeholder="Tags (comma seperated)"
+                            onBlur={(e) => handleTags(e.target.value)}
+                        />
                     </div>
 
                 </div>
 
                 <div>
-                    <Button size="lg" variant={true ? "success" : "primary"} onClick={() => setIsRawMd(!isRawMd)}>
+                    <Button
+                        size="lg"
+                        variant={true ? "success" : "primary"}
+                        onClick={handleSave}
+                    >
                         {false && <Spinner
                             as="span"
                             animation="grow"
