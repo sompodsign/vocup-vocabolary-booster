@@ -44,11 +44,10 @@ td > code {
 /*}*/
 
 pre {
-  background-color: #e7e3e3;
-  border: 1px solid #999;
+  background-color: #F6F6F6;
   display: block;
   padding: 10px;
-  border-radius: 3px;
+  border-radius: 5px;
   font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
 
 }
