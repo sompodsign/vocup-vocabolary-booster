@@ -1,10 +1,11 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import JoditEditor from "jodit-react";
-import {MDBContainer} from "mdb-react-ui-kit";
-import {useDispatch} from "react-redux";
+import {MDBContainer, MDBIcon} from "mdb-react-ui-kit";
+import {useDispatch, useSelector} from "react-redux";
 import "../styles/markdownSnippetStyle.css";
 import {Button, Spinner} from "react-bootstrap";
 import {tutorialCreate} from "../redux/actions/tutorialActions";
+import {TUTORIAL_CREATE_RESET} from "../redux/constants/tutorialConstants";
 
 export default function CreateTutorial() {
     const editor = useRef(null)
@@ -17,9 +18,16 @@ export default function CreateTutorial() {
     const [title, setTitle] = useState('')
     const [tags, setTags] = useState(null)
 
+    const createPost = useSelector(state => state.tutorialCreate);
+    const {loading, tutorial, error, success } = createPost;
+
     const config = {
         readonly: false // all options from https://xdsoft.net/jodit/doc/
     }
+
+    useEffect(() => {
+        dispatch({type: TUTORIAL_CREATE_RESET})
+    }, [dispatch])
 
 
     const handleTags = (value) => {
@@ -37,6 +45,13 @@ export default function CreateTutorial() {
         dispatch(tutorialCreate(newTutorial));
     }
 
+    setTimeout(() => {
+        if (success) {
+            dispatch({type: TUTORIAL_CREATE_RESET});
+        }
+    }, 300000)
+
+    console.log(error && error)
     return (
 
         <div>
@@ -110,17 +125,20 @@ export default function CreateTutorial() {
                 <div>
                     <Button
                         size="lg"
-                        variant={true ? "success" : "primary"}
+                        variant={success ? "success" : error ? "danger" : "primary"}
                         onClick={handleSave}
                     >
-                        {false && <Spinner
+                        {loading ? <Spinner
+                            className="mr-2"
+                            size="sm"
                             as="span"
                             animation="grow"
-                            size="lg"
                             role="status"
                             aria-hidden="true"
-                        />}
-                        Save
+                        /> : success ? <MDBIcon className="mr-2" icon="check" />: null}
+                        {
+                            loading ? "Saving" : error ? "Error" : success ? "Success" : "Save"
+                        }
                     </Button>
                 </div>
 

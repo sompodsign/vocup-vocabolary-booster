@@ -32,3 +32,24 @@ td > code {
   padding: .1rem .3rem .2rem;
   border-radius: .2rem;
 }
+
+/*pre code {*/
+/*  background-color: #e7e3e3;*/
+/*  border: 1px solid #999;*/
+/*  display: block;*/
+/*  padding: 5px;*/
+/*  border-radius: 3px;*/
+/*  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;*/
+
+/*}*/
+
+pre {
+  background-color: #e7e3e3;
+  border: 1px solid #999;
+  display: block;
+  padding: 10px;
+  border-radius: 3px;
+  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+
+}
+

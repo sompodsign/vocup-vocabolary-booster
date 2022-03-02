@@ -23,7 +23,7 @@ export function PostDetail({match}) {
 
 
     return (
-        <>
+        <div>
         <div className="position-absolute top-16 end-0 w-full p-10 -z-10"
              style={{background: "#14C07B"}}>
             <MDBContainer>
@@ -35,13 +35,13 @@ export function PostDetail({match}) {
 
 
                         {/**/}
+<div className="mt-52 lg:mt-44">
+            {parse(String(post.body))}
 
-
-
-
+</div>
             {/*  */}
 
             {/*</MDBContainer>*/}
-        </>
+        </div>
     )
 }

@@ -31,8 +31,8 @@ class TutorialViewSet(ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer):
-        strtime = "".join(str(time.time()).split("."))
-        string = "%s-%s" % (self.request.data['title'], strtime[7:])
+        str_time = "".join(str(time.time()).split("."))
+        string = "%s-%s" % (self.request.data['title'], str_time[7:])
         serializer.save(author=self.request.user, slug=slugify(string))
 
     def get_permissions(self):

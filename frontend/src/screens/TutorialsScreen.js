@@ -31,7 +31,7 @@ export default function TutorialScreen() {
             <div className="d-flex flex-column align-items-center">
                 <h1 className="pb-4" style={{color: "white", fontSize: "50px"}}><b>Tutorials</b></h1>
                 <p className="pb-1" style={{color: "white", fontSize: "18px", fontWeight: "400"}}>Follow along with one
-                    of my 4,323 development and sysadmin tutorials.</p>
+                    of my {tutorials.length} development and sysadmin tutorials.</p>
                 <div className="w-full position-relative">
                     {/*<i className="fas fa-search position-absolute left-3 top-6"/>*/}
                     <input className="w-full h-16 p-2 border-1 rounded-2" placeholder="Search Tutorials"/>
@@ -52,7 +52,7 @@ export default function TutorialScreen() {
                         return <div className="m-3" key={tutorial.id}>
                             <Link to={tutorial.slug}>
                                 <a href="#">
-                                    <h1 class="post-header">{tutorial.title}</h1>
+                                    <h1 class="post-header" style={{color:"black"}}>{tutorial.title}</h1>
                                 </a>
                             </Link>
                             <p class="short-desc">{tutorial.body.replace(/<[^>]*>?/gm, '').slice(0, 150) + "..."}</p>

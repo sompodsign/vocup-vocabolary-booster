@@ -70,7 +70,6 @@ export const tutorialCreate = (tutorialData) => async (dispatch, getState) => {
             type: TUTORIAL_CREATE_FAIL,
             payload: error
         });
-        console.log(error.response)
     }
 };
 

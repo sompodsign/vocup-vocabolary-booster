@@ -52,12 +52,13 @@ export const tutorialCreateReducer = (state = {tutorial: []}, action) => {
         case TUTORIAL_CREATE_SUCCESS:
             return {
                 loading: false,
-                tutorials: action.payload,
+                tutorial: action.payload,
+                success: true
             };
 
         case TUTORIAL_CREATE_FAIL:
             return {
-                loading: false, error: action.payload.response
+                loading: false, error: action.payload
             };
 
         case TUTORIAL_CREATE_RESET:
