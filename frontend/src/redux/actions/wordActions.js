@@ -16,6 +16,7 @@ import {
     WORD_CREATE_SUCCESS,
     WORD_CREATE_FAIL,
 } from "../constants/wordConstants";
+import {QUIZ_LIST_FAIL} from "../constants/quizConstants";
 
 //action to load WORDs from server
 export const listWords = () => async (dispatch, getState) => {
@@ -93,10 +94,8 @@ export const createWord = (newWord) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: WORD_CREATE_FAIL,
-            payload: error.response
+            payload: {"status": error.response, "data": error.response}
         });
-        console.log(error.response)
-
     }
 
 };

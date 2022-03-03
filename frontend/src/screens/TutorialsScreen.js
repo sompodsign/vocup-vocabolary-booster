@@ -61,8 +61,7 @@ export default function TutorialScreen() {
                                     fontSize: "13px",
                                     fontWeight: "500",
                                     lineHeight: "1.6"
-                                }}>{getDaysAgo(tutorial.created)} {pluralize(getDaysAgo(tutorial.created)) &&
-                                getDaysAgo(tutorial.created) === 0 ? "days" : "day"} ago</p>
+                                }}>{pluralize(getDaysAgo(tutorial.created), "day")} ago</p>
                                 <p style={{
                                     fontSize: "13px",
                                     fontWeight: "500",
@@ -70,7 +69,7 @@ export default function TutorialScreen() {
                                 }}>{Object.keys(tutorial.tags).length > 1 ?
                                     tutorial.tags.map((tag) => {
                                         return <span className="badge badge-pill badge-success ml-2">{tag}</span>
-                                    }) : <span className="badge badge-pill badge-success ml-2">tutorial.tags</span>
+                                    }) : <span className="badge badge-pill badge-success ml-2">{tutorial.tags}</span>
                                 }</p>
                             </div>
                         </div>

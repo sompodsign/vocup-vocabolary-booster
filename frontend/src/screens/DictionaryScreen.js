@@ -14,6 +14,7 @@ import {capitalize} from "../helpers/capitalize";
 import ContentLoader, {BulletList, Facebook, List} from "react-content-loader";
 import {Link} from "react-router-dom";
 import {MDBBtn} from "mdb-react-ui-kit";
+import {WORD_CREATE_RESET} from "../redux/constants/wordConstants";
 
 
 function DictionaryScreen() {
@@ -25,11 +26,19 @@ function DictionaryScreen() {
     const firstUpdate = useRef(true);
     const inputRef = useRef(null);
 
+    const newSavedWord = useSelector(state => state.createdWord)
+    let {createdWord, loading:wordCreateLoading, error:wordCreateError, success:wordCreateSuccess} = newSavedWord
+
 
     const dispatch = useDispatch();
 
     const dictObj = useSelector(state => state.dictWord);
     const {dictWordMeaning: word, error, loading} = dictObj
+
+    useEffect(() => {
+        dispatch({type: WORD_CREATE_RESET})
+    }, [])
+
 
     const MyLoader = () => (
         <ContentLoader viewBox="0 0 380 120">
@@ -38,26 +47,31 @@ function DictionaryScreen() {
         </ContentLoader>
     )
 
-    const MyFacebookLoader = () => <Facebook />
     const MyListLoader = () => <List />
-    const MyBulletListLoader = () => <BulletList />
 
 
     const handleSearch = () => {
         /* it will dispatch word fetching action */
-        dispatch(retrieveDictWord(inputValue));
-        setAddWord(false);
+        dispatch(retrieveDictWord(inputValue)).then(() => {
+            setInputValue('');
+        });
     }
 
     const handleAddWordState = (addWordState, isBnSyn=null) => {
         isBnSyn != null && isBnSyn === false ? dispatch(createWord({word: capitalize(word.en), meaning: word.bn}))
             : setAddWord(addWordState)
     }
-
+    console.log(wordCreateSuccess, wordCreateError)
     const handleAddWord = (meaning) => {
-        dispatch(createWord({word: capitalize(word.en), meaning: meaning}));
-    }
+        dispatch(createWord({word: capitalize(word.en), meaning: meaning})).then(() => {
+            if (wordCreateSuccess) {
+                notify("Word added to your vocabulary", "success")
+            }
 
+        });
+
+    }
+    console.log(wordCreateError && wordCreateError.status)
     return (
         <>
 

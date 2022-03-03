@@ -1,7 +1,6 @@
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
 import Nav from "./components/navbar";
-import HomeScreen from "./screens/HomeScreen";
 import JoinScreen from "./screens/JoinScreen";
 import LoginScreen from "./screens/LoginScreen";
 import './styles/base.css'
@@ -15,13 +14,14 @@ import {PostDetail} from "./screens/PostDetailScreen";
 
 function App() {
 
-  return (
+
+    return (
     <Router>
     <Nav />
         <ToastContainer />
         <div class="container mt-8">
     <Routes>
-        <Route path="/" element={<HomeScreen />} />
+        <Route path="/" element={<Words />} />
         <Route path="/vocabulary" element={<Words />} />
         <Route path="/vocabulary/quiz" element={<QuizScreen />} />
         <Route path="/dictionary" element={<DictionaryScreen />} />
