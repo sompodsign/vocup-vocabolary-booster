@@ -24,7 +24,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: sompodbd/vocupprod:vocup_production_postgres
+    image: sompodbd/vocupdev:vocup_production_postgres
     restart: always
     volumes:
       - production_postgres_data:/var/lib/postgresql/data:Z

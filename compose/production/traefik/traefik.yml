@@ -11,6 +11,10 @@ entryPoints:
         entryPoint:
           to: web-secure
 
+#api:
+#  dashboard: true
+#  insecure: true
+
   web-secure:
     # https
     address: ":443"
@@ -28,7 +32,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`shampad.live`) || Host(`shampad.live`)"
+      rule: "Host(`https://shampad.live`) || Host(`shampad.live`)"
       entryPoints:
         - web-secure
       middlewares:
