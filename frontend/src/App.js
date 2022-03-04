@@ -19,7 +19,7 @@ function App() {
     <Router>
     <Nav />
         <ToastContainer />
-        <div class="container mt-8">
+        {/*<div class="container mt-8">*/}
     <Routes>
         <Route path="/" element={<Words />} />
         <Route path="/vocabulary" element={<Words />} />
@@ -31,7 +31,7 @@ function App() {
         <Route path="/create-tutorial" element={<CreateTutorial />} />
         <Route path="/tutorials/:slug" element={<PostDetail />} />
     </Routes>
-        </div>
+        {/*</div>*/}
 
     </Router>
   );

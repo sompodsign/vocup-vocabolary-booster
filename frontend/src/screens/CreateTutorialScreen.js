@@ -51,7 +51,6 @@ export default function CreateTutorial() {
         }
     }, 300000)
 
-    console.log(error && error)
     return (
 
         <div>

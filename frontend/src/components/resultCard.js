@@ -31,12 +31,6 @@ export default function ResultCard({word, setWordState}) {
     const { error: wordCreateError, word: newWord } = createdWord
 
 
-    useEffect(() => {
-        if (wordCreateError) {
-            notify("wordCreateError", "error");
-        }
-    },[dispatch, newWord, wordCreateError]);
-
 
     const handleSetWordState = () => {
         setWordState(true, word.bn_syn.length > 0);

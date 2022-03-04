@@ -7,10 +7,12 @@ import Table from "../components/table";
 import Input from "../components/input";
 import {SaveButton, TakeAQuizBtn} from "../components/buttons";
 
-import {MDBBtn, MDBInput} from "mdb-react-ui-kit";
+import {MDBBtn, MDBIcon, MDBInput} from "mdb-react-ui-kit";
 import ContentLoader, {BulletList, Facebook, List} from "react-content-loader";
 
 import '../styles/base.css'
+import {Button, Spinner} from "react-bootstrap";
+import {WORD_CREATE_RESET} from "../redux/constants/wordConstants";
 
 function VocabularyScreen() {
 
@@ -63,9 +65,15 @@ function VocabularyScreen() {
 
     words = inputValue !== null ? words.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
 
+    setTimeout(() => {
+        if (wordCreateSuccess) {
+            dispatch({type: WORD_CREATE_RESET})
+        }
+    }, 2000)
+
 
     return (
-        <div>
+        <div className="container">
             <div className="d-lg-flex justify-content-lg-between">
 
                 <div className="flex justify-between">
@@ -109,7 +117,25 @@ function VocabularyScreen() {
                     </div>
 
                     <div className=" mt-2 mb-2 mb-lg-0 mt-lg-0">
-                        <SaveButton title="Save" onClick={handleSave}/>
+                        {/*<SaveButton title="Save" onClick={handleSave}/>*/}
+                        <div>
+                            <Button
+                                variant={wordCreateSuccess ? "success" : wordCreateError ? "danger" : "primary"}
+                                onClick={handleSave}
+                            >
+                                {wordCreateLoading ? <Spinner
+                                    className="mr-2"
+                                    size="sm"
+                                    as="span"
+                                    animation="grow"
+                                    role="status"
+                                    aria-hidden="true"
+                                /> : wordCreateSuccess ? <MDBIcon className="mr-2" icon="check" />: null}
+                                {
+                                    wordCreateLoading ? "Saving" : wordCreateError ? "Error" : wordCreateSuccess ? "Success" : "Save"
+                                }
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

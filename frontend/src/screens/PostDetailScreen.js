@@ -19,26 +19,25 @@ export function PostDetail({match}) {
 
     const retrievePost = useSelector(state => state.retrieveTutorial)
     const {loading, post, error} = retrievePost;
-    console.log(post)
 
 
     return (
-        <div>
-        <div className="position-absolute top-16 end-0 w-full p-10 -z-10"
-             style={{background: "#14C07B"}}>
-            <MDBContainer>
-                <div className="d-flex flex-column align-items-center">
+        <div className="">
+            <div class="" className=""
+                 style={{background: "#14C07B"}}>
+
+                <div className="-mt-4 p-10 container text-center">
                     <h1 style={{color: "white", fontSize: "40px"}}><b>{post.title}</b></h1>
                 </div>
-            </MDBContainer>
-        </div>
+
+            </div>
 
 
-                        {/**/}
-<div className="mt-52 lg:mt-44">
-            {parse(String(post.body))}
+            {/**/}
+            <div className="container mt-16">
+                {parse(String(post.body))}
 
-</div>
+            </div>
             {/*  */}
 
             {/*</MDBContainer>*/}

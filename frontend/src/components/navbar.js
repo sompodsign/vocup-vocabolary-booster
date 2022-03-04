@@ -30,7 +30,7 @@ export default function Nav() {
     }
 
     return (
-        <Disclosure as="nav" className="bg-gray-800">
+        <Disclosure as="nav" className="bg-gray-800 mb-3">
             {({open}) => (
                 <>
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -358,7 +358,7 @@ export default function Nav() {
                                     )}
                                     area-current={locationPathName === '/blog' ? 'page' : undefined}
                                 >
-                                    Docs
+                                    Tutorials
                                 </Disclosure.Button>
                             </Link>
 
