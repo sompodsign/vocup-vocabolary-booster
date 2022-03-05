@@ -1,7 +1,6 @@
-import time
 
 from rest_framework import serializers
-from rest_framework.validators import UniqueValidator
+
 
 from ..models import Word
 
@@ -10,13 +9,19 @@ class WordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Word
         fields = ["id", "word", "meaning"]
-        extra_kwargs = {
-            'word': {
-                'validators': [
-                    UniqueValidator(
-                        queryset=Word.objects.all(),
-                        message="Word already exists"
-                    )
-                ]
-            }
-        }
+
+    def create(self, validated_data):
+        request = self.context.get("request")
+        words = (instance.word.lower() for instance in Word.objects.filter(user=request.user))
+        word = validated_data["word"]
+        if word.lower() in words:
+            raise serializers.ValidationError(
+                {"error": "Word already exists"}
+            )
+        else:
+            return Word.objects.create(
+                user=request.user,
+                word=word,
+                meaning=validated_data["meaning"]
+            )
+
