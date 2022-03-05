@@ -34,7 +34,8 @@ export const listWords = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await client.get('/words', config);
+        const { data } = await client.get('/words/?offset=&limit=', config);
+
 
         dispatch({
             type: WORD_LIST_SUCCESS,
@@ -45,6 +46,7 @@ export const listWords = () => async (dispatch, getState) => {
             type: WORD_LIST_FAIL,
             payload: error
         });
+
     }
 };
 

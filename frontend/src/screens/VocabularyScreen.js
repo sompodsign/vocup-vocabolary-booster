@@ -71,7 +71,7 @@ function VocabularyScreen() {
         }
     }, 2000)
 
-    console.log(wordCreateError && wordCreateError.payload.data.data.word[0])
+
     return (
         <div className="container">
             <div className="d-lg-flex justify-content-lg-between">
