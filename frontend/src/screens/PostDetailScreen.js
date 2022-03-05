@@ -6,6 +6,7 @@ import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {retrieveTutorialAction} from "../redux/actions/tutorialActions";
+import {FillSpinner} from "../components/spinner";
 
 export function PostDetail({match}) {
 
@@ -22,25 +23,26 @@ export function PostDetail({match}) {
 
 
     return (
-        <div className="">
-            <div class="" className=""
-                 style={{background: "#14C07B"}}>
 
-                <div className="-mt-4 p-10 container text-center">
-                    <h1 style={{color: "white", fontSize: "40px"}}><b>{post.title}</b></h1>
+        <div className="">
+
+                <div>
+                    <div className="" className=""
+                         style={{background: "#14C07B"}}>
+
+                        <div className="-mt-4 p-10 container text-center">
+                            <h1 style={{color: "white", fontSize: "40px"}}><b>{loading ? "loading..." : post.title}</b></h1>
+                        </div>
+
+                    </div>
+
+                    <div className="container mt-16">
+                        {loading && <div className="mx-auto text-center"><FillSpinner /></div>}
+                        {!loading && parse(String(post.body))}
+
+                    </div>
                 </div>
 
-            </div>
-
-
-            {/**/}
-            <div className="container mt-16">
-                {parse(String(post.body))}
-
-            </div>
-            {/*  */}
-
-            {/*</MDBContainer>*/}
         </div>
     )
 }

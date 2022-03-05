@@ -66,7 +66,7 @@ function DictionaryScreen() {
     }
 
     const handleAddWord = (meaning) => {
-        dispatch(createWord({word: capitalize(word.en), meaning: meaning}))
+        dispatch(createWord({word: capitalize(word.en), meaning: meaning}));
 
     }
 
