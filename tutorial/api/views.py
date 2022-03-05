@@ -39,3 +39,5 @@ class TutorialViewSet(ModelViewSet):
         if self.action == 'list' or self.action == 'retrieve':
             return [AllowAny()]
         return super(TutorialViewSet, self).get_permissions()
+
+
