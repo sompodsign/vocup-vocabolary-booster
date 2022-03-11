@@ -1,7 +1,7 @@
 import {MDBTable, MDBTableBody, MDBTableHead} from 'mdbreact';
 import {capitalize} from "../helpers/capitalize";
 
-const WordTable = ({words}) => {
+const WordTable = ({words=[]}) => {
 
     return (
         <div>

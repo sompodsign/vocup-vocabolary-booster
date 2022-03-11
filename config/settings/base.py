@@ -307,8 +307,8 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     "SERVE_PERMISSIONS": ["rest_framework.permissions.AllowAny"],
     "SERVERS": [
-        {"url": "https://127.0.0.1:8000", "description": "Local Development server"},
-        {"url": "https://example.com", "description": "Production server"},
+        {"url": "https://127.0.0.1", "description": "Local Development server"},
+        {"url": "https://shampad.live", "description": "Production server"},
     ],
 }
 # Your stuff...

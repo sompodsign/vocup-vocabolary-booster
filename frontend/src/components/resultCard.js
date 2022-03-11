@@ -10,25 +10,19 @@ import {
 
 import parse from "html-react-parser";
 import {useSpeechSynthesis} from "react-speech-kit";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
-import notify from "../utils/notification";
-import {useEffect} from "react";
 import {PrimaryResBtn} from "./buttons";
 
 
-export default function ResultCard({word, setWordState}) {
+export default function ResultCard({word={}, setWordState}) {
 
 
     const {speak} = useSpeechSynthesis();
 
-    const dispatch = useDispatch();
-
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    const createdWord = useSelector(state => state.createdWord);
-    const { error: wordCreateError, word: newWord } = createdWord
 
 
 

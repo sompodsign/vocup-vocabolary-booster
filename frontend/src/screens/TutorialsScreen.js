@@ -15,7 +15,7 @@ export default function TutorialScreen() {
 
 
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
+
 
     const tutorialsList = useSelector(state => state.tutorialList);
     const {loading, tutorials, error} = tutorialsList;
@@ -41,6 +41,7 @@ export default function TutorialScreen() {
 
         <div className="mt-16 container">
             {loading && <div>Loading...</div>}
+
 
             <div className="flex justify-content-end lg:mb-0 mb-4">
                 <Link to="/create-tutorial">

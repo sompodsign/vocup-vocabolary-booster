@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom';
 import {createWord, listWords} from '../redux/actions/wordActions';
@@ -61,7 +61,7 @@ function VocabularyScreen() {
         } else {
             navigate('/login')
         }
-    }, [dispatch, navigate, userInfo, createdWord])
+    }, [navigate, userInfo, createdWord, dispatch])
 
     words = inputValue !== null ? words.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
 
@@ -117,7 +117,6 @@ function VocabularyScreen() {
                     </div>
 
                     <div className=" mt-2 mb-2 mb-lg-0 mt-lg-0">
-                        {/*<SaveButton title="Save" onClick={handleSave}/>*/}
                         <div>
                             <Button
                                 variant={wordCreateSuccess ? "success" : wordCreateError ? "danger" : "primary"}
