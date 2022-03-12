@@ -160,16 +160,16 @@ export default function Nav() {
 
 
 
-                                        <Link to="/todo">
+                                        <Link to="/tasks">
                                             <a
                                                 href="#"
                                                 className={classNames(
-                                                    locationPathName === '/todo' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'px-3 py-2 rounded-md text-sm font-medium hidden'
+                                                    locationPathName === '/tasks' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    'px-3 py-2 rounded-md text-sm font-medium'
                                                 )}
-                                                aria-current={locationPathName === '/todo' ? 'page' : undefined}
+                                                aria-current={locationPathName === '/tasks' ? 'page' : undefined}
                                             >
-                                                ToDo
+                                                Tasks
                                             </a>
                                         </Link>
 
@@ -376,19 +376,19 @@ export default function Nav() {
                                 </Disclosure.Button>
                             </Link>
 
-                            {/*<Link to="/todo">*/}
+                            <Link to="/tasks">
                             <Disclosure.Button
                                 as="a"
-                                href="/todo"
+                                href="/tasks"
                                 className={classNames(
                                     locationPathName === '/todo' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                    'block px-3 py-2 rounded-md text-base font-medium hidden'
+                                    'block px-3 py-2 rounded-md text-base font-medium'
                                 )}
-                                area-current={locationPathName === '/portfolio' ? 'page' : undefined}
+                                area-current={locationPathName === '/tasks' ? 'page' : undefined}
                             >
-                                ToDo
+                                Tasks
                             </Disclosure.Button>
-                            {/*</Link>*/}
+                            </Link>
 
 
 
