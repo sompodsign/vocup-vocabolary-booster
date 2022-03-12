@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 user = get_user_model()
-
+print(user.objects.all())
 
 # Create your models here.
 class TimeStampedModel(models.Model):
