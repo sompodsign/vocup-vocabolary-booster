@@ -83,6 +83,7 @@ LOCAL_APPS = [
     "dictionary.apps.DictionaryConfig",
     "words.apps.WordsConfig",
     "tutorial.apps.TutorialConfig",
+    "todo.apps.TodoConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
