@@ -7,6 +7,7 @@ from words.api.views import WordViewSet
 from quiz.api.views import QuizViewSet
 from dictionary.api.views import DictionaryViewSet
 from tutorial.api.views import TutorialViewSet
+from todo.api.views import TodoViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -20,6 +21,7 @@ router.register(r"words", WordViewSet)
 router.register(r"vocabulary-quiz", QuizViewSet)
 router.register(r"dictionary", DictionaryViewSet)
 router.register(r"tutorials", TutorialViewSet)
+router.register(r"todo", TodoViewSet)
 
 app_name = "api"
 
@@ -30,4 +32,5 @@ urlpatterns = (
     path("vocabulary-quiz/remove-all", QuizViewSet.as_view({"delete": "destroy"}), name="quiz-remove-all"),
     path('', include(router.urls)),
 )
+
 
