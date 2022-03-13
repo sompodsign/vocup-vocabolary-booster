@@ -84,3 +84,7 @@ CORS_ORIGIN_WHITELIST = [
 
 ]
 
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-eager-propagates
+CELERY_TASK_EAGER_PROPAGATES = True
+# Your stuff...
+# ------------------------------------------------------------------------------

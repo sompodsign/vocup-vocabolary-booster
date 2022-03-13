@@ -4,7 +4,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="38">
+          <list size="45">
             <item index="0" class="java.lang.String" itemvalue="django-environ" />
             <item index="1" class="java.lang.String" itemvalue="sphinx-autobuild" />
             <item index="2" class="java.lang.String" itemvalue="factory-boy" />
@@ -43,6 +43,13 @@
             <item index="35" class="java.lang.String" itemvalue="django-allauth" />
             <item index="36" class="java.lang.String" itemvalue="pytz" />
             <item index="37" class="java.lang.String" itemvalue="Pillow" />
+            <item index="38" class="java.lang.String" itemvalue="rcssmin" />
+            <item index="39" class="java.lang.String" itemvalue="django-celery-beat" />
+            <item index="40" class="java.lang.String" itemvalue="celery" />
+            <item index="41" class="java.lang.String" itemvalue="watchgod" />
+            <item index="42" class="java.lang.String" itemvalue="django-compressor" />
+            <item index="43" class="java.lang.String" itemvalue="pylint-celery" />
+            <item index="44" class="java.lang.String" itemvalue="flower" />
           </list>
         </value>
       </option>

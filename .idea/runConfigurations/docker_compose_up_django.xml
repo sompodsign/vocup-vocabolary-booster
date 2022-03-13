@@ -6,9 +6,12 @@
         <option name="services">
           <list>
             <option value="django" />
-            <option value="pgbackups" />
             <option value="postgres" />
             <option value="pgbackups" />
+            <option value="redis" />
+            <option value="flower" />
+            <option value="celeryworker" />
+            <option value="celerybeat" />
           </list>
         </option>
         <option name="sourceFilePath" value="local.yml" />
