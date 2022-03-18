@@ -1,5 +1,8 @@
+from celery.schedules import crontab
 from .base import *  # noqa
 from .base import env
+
+import config.tasks
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -27,8 +30,15 @@ CACHES = {
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
+    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
 )
+EMAIL_HOST = env(
+    "DJANGO_EMAIL_HOST", default="smtp.gmail.com"
+)
+EMAIL_USE_TLS = env("DJANGO_EMAIL_USE_TSL", default=True)
+EMAIL_PORT = env("DJANGO_EMAIL_PORT", default=587)
+EMAIL_HOST_USER = env("DJANGO_EMAIL_HOST_USER", default="sompodsrkr@gmail.com")
+EMAIL_HOST_PASSWORD = env("DJANGO_EMAIL_HOST_PASSWORD", default="123456")
 
 # WhiteNoise
 # ------------------------------------------------------------------------------
@@ -88,3 +98,9 @@ CORS_ORIGIN_WHITELIST = [
 CELERY_TASK_EAGER_PROPAGATES = True
 # Your stuff...
 # ------------------------------------------------------------------------------
+# CELERY_BEAT_SCHEDULE = {
+#     "sample_task": {
+#         "task": "config.tasks.sample_task",
+#         "schedule": crontab(minute="*/1"),
+#     },
+# }

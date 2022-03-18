@@ -16,3 +16,11 @@ CELERY_BROKER_URL=REDIS_URL
 CELERY_FLOWER_USER=debug
 CELERY_FLOWER_PASSWORD=debug
 
+# local email settings
+# ------------------------------------------------------------------------------
+DJANGO_EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST=smtp.gmail.com
+EMAIL_USE_TLS =True
+EMAIL_PORT=587
+DJANGO_EMAIL_HOST_USER=sompodsrkr@gmail.com
+DJANGO_EMAIL_HOST_PASSWORD=4423445946644Ss

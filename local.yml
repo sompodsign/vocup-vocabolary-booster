@@ -14,6 +14,7 @@ services:
     depends_on:
       - postgres
       - redis
+      - celeryworker
     volumes:
       - .:/app:z
     env_file:
@@ -48,6 +49,7 @@ services:
     depends_on:
       - redis
       - postgres
+      - celerybeat
     ports: []
     command: /start-celeryworker
 
@@ -72,7 +74,6 @@ services:
 
   pgbackups:
     image: prodrigestivill/postgres-backup-local
-    restart: always
     user: root # Optional: see below
     volumes:
       - /var/opt/pgbackups:/backups
