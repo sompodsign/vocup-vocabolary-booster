@@ -41,3 +41,38 @@ class TutorialViewSet(ModelViewSet):
         return super(TutorialViewSet, self).get_permissions()
 
 
+class TagViewSet(ModelViewSet):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'tag'
+
+    def list(self, request, *args, **kwargs):
+        tag = self.kwargs['tag']
+        serializer = self.get_serializer(self.queryset.filter(tags__contains=[tag]), many=True)
+        return Response(serializer.data)
+
+    def get_permissions(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return [AllowAny()]
+        return super(TagViewSet, self).get_permissions()
+
+
+class AllTagsViewSet(ModelViewSet):
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'tag'
+
+    def list(self, request, *args, **kwargs):
+        tags = []
+        for post in self.queryset:
+            for tag in post.tags:
+                if tag not in tags:
+                    tags.append(tag)
+        return Response(tags)
+
+    def get_permissions(self):
+        if self.action == 'list' or self.action == 'retrieve':
+            return [AllowAny()]
+        return super(AllTagsViewSet, self).get_permissions()
