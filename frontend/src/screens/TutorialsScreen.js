@@ -7,6 +7,7 @@ import {getDaysAgo} from "../helpers/dateGeneralFunctions";
 import {Button} from "react-bootstrap";
 import {pluralize} from "../helpers/generalFunctions";
 import {tabTitle} from "../utils/generalFunctions";
+import {getUserDetails} from "../redux/actions/userActions";
 
 
 export default function TutorialScreen() {
@@ -15,6 +16,8 @@ export default function TutorialScreen() {
 
 
     const dispatch = useDispatch();
+    const userDetail = useSelector(state => state.userDetail)
+    const {user} = userDetail;
 
 
     const tutorialsList = useSelector(state => state.tutorialList);
@@ -22,6 +25,7 @@ export default function TutorialScreen() {
 
     useEffect(() => {
         dispatch(listTutorials());
+        dispatch(getUserDetails())
     }, [dispatch])
 
 
@@ -42,12 +46,14 @@ export default function TutorialScreen() {
         <div className="mt-16 container">
             {loading && <div>Loading...</div>}
 
+            { user.is_superuser &&
+                <div className="flex justify-content-end lg:mb-0 mb-4">
+                    <Link to="/create-tutorial">
+                        <Button variant="outline-success">Create Post</Button>{' '}
+                    </Link>
+                </div>
+            }
 
-            <div className="flex justify-content-end lg:mb-0 mb-4">
-                <Link to="/create-tutorial">
-                    <Button variant="outline-success">Create Post</Button>{' '}
-                </Link>
-            </div>
 
             {
                 tutorials && tutorials.map((tutorial) => {

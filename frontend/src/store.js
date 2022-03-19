@@ -8,6 +8,7 @@ import {
 } from './redux/reducers/wordReducers'
 
 import {
+    userDetailsReducer,
     userLoginReducer,
     userRegisterReducer,
 } from './redux/reducers/userReducers'
@@ -29,6 +30,7 @@ const reducer = combineReducers({
 
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
+    userDetail: userDetailsReducer,
 
     dictWord: dictWordReducer,
 

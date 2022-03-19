@@ -21,7 +21,10 @@ export function PostDetail({match}) {
     const retrievePost = useSelector(state => state.retrieveTutorial)
     const {loading, post} = retrievePost;
 
-    tabTitle(post.title);
+    // const customTabTitle = `vocup | ${tabTitle(post.title)}`;
+
+    tabTitle(`vocup | ${loading? "loading..." : post.title}`);
+
 
     return (
 
