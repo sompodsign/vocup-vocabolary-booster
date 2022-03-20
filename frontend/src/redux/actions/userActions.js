@@ -37,6 +37,7 @@ import {
 
 import {WORD_LIST_RESET} from '../constants/wordConstants';
 import axios from "axios";
+import {TUTORIAL_CREATE_RESET, TUTORIAL_LIST_RESET} from "../constants/tutorialConstants";
 
 
 export const login = (email, password) => async (dispatch) => {
@@ -70,6 +71,8 @@ export const logout = () => (dispatch) => {
     dispatch({type: USER_DETAILS_RESET})
     dispatch({type: USER_LIST_RESET})
     dispatch({type: WORD_LIST_RESET})
+    dispatch({type: TUTORIAL_CREATE_RESET})
+    dispatch({type: TUTORIAL_LIST_RESET})
 }
 
 

@@ -13,10 +13,14 @@ import {
     TUTORIAL_RETRIEVE_SUCCESS,
     TUTORIAL_RETRIEVE_FAIL,
 
+    TUTORIAL_LIST_TAGS_REQUEST,
+    TUTORIAL_LIST_TAGS_FAIL,
+    TUTORIAL_LIST_TAGS_SUCCESS,
+
 } from "../constants/tutorialConstants";
 
 //action to load tutorials from server
-export const listTutorials = () => async (dispatch) => {
+export const listTutorials = (tag='') => async (dispatch) => {
 
     try {
         dispatch({type: TUTORIAL_LIST_REQUEST});
@@ -27,7 +31,7 @@ export const listTutorials = () => async (dispatch) => {
             },
         }
 
-        const {data} = await client.get('/tutorials', config);
+        const {data} = await client.get(`/tutorials/?tag=${tag}`, config);
         // console.log('action', data)
 
         dispatch({
@@ -94,6 +98,25 @@ export const retrieveTutorialAction = (slug) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: TUTORIAL_RETRIEVE_FAIL,
+            payload: error
+        });
+    }
+};
+
+export const getAllTags = () => async (dispatch) => {
+
+    try {
+        dispatch({type: TUTORIAL_LIST_TAGS_REQUEST});
+
+        const {data} = await client.get('/tutorial-tags/');
+
+        dispatch({
+            type: TUTORIAL_LIST_TAGS_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: TUTORIAL_LIST_TAGS_FAIL,
             payload: error
         });
     }

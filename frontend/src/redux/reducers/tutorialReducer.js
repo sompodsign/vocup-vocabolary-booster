@@ -13,7 +13,12 @@ import {
     TUTORIAL_RETRIEVE_REQUEST,
     TUTORIAL_RETRIEVE_SUCCESS,
     TUTORIAL_RETRIEVE_FAIL,
-    TUTORIAL_RETRIEVE_RESET
+    TUTORIAL_RETRIEVE_RESET,
+
+
+    TUTORIAL_LIST_TAGS_REQUEST,
+    TUTORIAL_LIST_TAGS_FAIL,
+    TUTORIAL_LIST_TAGS_SUCCESS,
 
 } from "../constants/tutorialConstants";
 
@@ -88,6 +93,32 @@ export const tutorialRetrieveReducer = (state = {post: []}, action) => {
 
         case TUTORIAL_RETRIEVE_RESET:
             return {loading: false, post: []};
+
+        default:
+            return state;
+
+    }
+};
+
+
+export const tutorialAllTagsReducer = (state = {tags: []}, action) => {
+    switch (action.type) {
+        case TUTORIAL_LIST_TAGS_REQUEST:
+            return {loading: true, tags: []};
+
+        case TUTORIAL_LIST_TAGS_SUCCESS:
+            return {
+                loading: false,
+                tags: action.payload,
+            };
+
+        case TUTORIAL_LIST_TAGS_FAIL:
+            return {
+                loading: false, error: action.payload.response
+            };
+
+        case TUTORIAL_LIST_RESET:
+            return {loading: false, tags: []};
 
         default:
             return state;

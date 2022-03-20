@@ -165,7 +165,7 @@ export default function Nav() {
                                                 href="#"
                                                 className={classNames(
                                                     locationPathName === '/tasks' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'px-3 py-2 rounded-md text-sm font-medium'
+                                                    'px-3 py-2 rounded-md text-sm font-medium hidden'
                                                 )}
                                                 aria-current={locationPathName === '/tasks' ? 'page' : undefined}
                                             >

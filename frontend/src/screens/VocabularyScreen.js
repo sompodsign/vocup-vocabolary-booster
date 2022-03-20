@@ -61,7 +61,8 @@ function VocabularyScreen() {
         } else {
             navigate('/login')
         }
-    }, [navigate, userInfo, createdWord, dispatch])
+    }, [dispatch, navigate, userInfo])
+
 
     words = inputValue !== null ? words.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
 
@@ -101,6 +102,7 @@ function VocabularyScreen() {
                             value={newWord}
                             id="form1"
                             label="Enter Word"
+                            required
                             type='text'/>
                     </div>
 
@@ -112,6 +114,7 @@ function VocabularyScreen() {
                             value={newMeaning}
                             id="form1"
                             label="Enter Meaning"
+                            required
                             className="mb-lg-0 mb-sm-3 mb-md-0 mt-sm-2 mt-lg-0"
                             type='text'/>
                     </div>

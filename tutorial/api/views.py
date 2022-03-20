@@ -23,6 +23,13 @@ class TutorialViewSet(ModelViewSet):
             return PostCreateSerializer
         return serializer_class
 
+    def list(self, request, *args, **kwargs):
+        tag = request.query_params.get('tag', '')
+        if tag is not '':
+            self.queryset = self.queryset.filter(tags__contains=[tag])
+            return super(TutorialViewSet, self).list(request, *args, **kwargs)
+        return super(TutorialViewSet, self).list(request, *args, **kwargs)
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
