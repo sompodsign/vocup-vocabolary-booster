@@ -109,7 +109,7 @@ export const wordCreateReducer = (state = {}, action) => {
 
         case WORD_CREATE_FAIL:
             return {
-                loading: false, error: action
+                loading: false, error: action.payload,
             };
 
         case WORD_CREATE_RESET:

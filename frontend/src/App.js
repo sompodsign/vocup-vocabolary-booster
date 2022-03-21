@@ -16,10 +16,10 @@ function App() {
 
 
     return (
+        <>
+        <ToastContainer />
     <Router>
     <Nav />
-        <ToastContainer />
-        {/*<div class="container mt-8">*/}
     <Routes>
         <Route path="/" element={<Words />} />
         <Route path="/vocabulary" element={<Words />} />
@@ -34,6 +34,7 @@ function App() {
         {/*</div>*/}
 
     </Router>
+    </>
   );
 }
 
