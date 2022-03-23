@@ -30,7 +30,7 @@ export default function Nav() {
     }
 
     return (
-        <Disclosure as="nav" className="bg-gray-800 mb-3">
+        <Disclosure as="nav" className="bg-gray-800">
             {({open}) => (
                 <>
                     <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -368,7 +368,7 @@ export default function Nav() {
                                     href="#"
                                     className={classNames(
                                         locationPathName === '/portfolio' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'block px-3 py-2 rounded-md text-base font-medium hidden'
+                                        'px-3 py-2 rounded-md text-base font-medium hidden'
                                     )}
                                     area-current={locationPathName === '/portfolio' ? 'page' : undefined}
                                 >

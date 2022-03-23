@@ -1,5 +1,6 @@
 import {Routes, Route} from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
+import {RemoveScrollBar} from 'react-remove-scroll-bar';
 import Nav from "./components/navbar";
 import JoinScreen from "./screens/JoinScreen";
 import LoginScreen from "./screens/LoginScreen";
@@ -11,15 +12,20 @@ import QuizScreen from "./screens/QuizScreen";
 import TutorialScreen from "./screens/TutorialsScreen";
 import CreateTutorial from "./screens/CreateTutorialScreen";
 import {PostDetail} from "./screens/PostDetailScreen";
+import { Scrollbar } from "react-scrollbars-custom";
+
+
 
 function App() {
 
 
     return (
-        <>
+        <div>
+        {/* <RemoveScrollBar /> */}
         <ToastContainer />
     <Router>
     <Nav />
+
     <Routes>
         <Route path="/" element={<Words />} />
         <Route path="/vocabulary" element={<Words />} />
@@ -30,11 +36,11 @@ function App() {
         <Route path="/tutorials" element={<TutorialScreen />} />
         <Route path="/create-tutorial" element={<CreateTutorial />} />
         <Route path="/tutorials/:slug" element={<PostDetail />} />
+
     </Routes>
-        {/*</div>*/}
 
     </Router>
-    </>
+    </div>
   );
 }
 

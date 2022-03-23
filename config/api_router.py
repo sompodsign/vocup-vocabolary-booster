@@ -6,7 +6,7 @@ from vocup.users.api.views import UserViewSet, UserListViewSet, CreateUserView
 from words.api.views import WordViewSet
 from quiz.api.views import QuizViewSet
 from dictionary.api.views import DictionaryViewSet
-from tutorial.api.views import TutorialViewSet, TagViewSet, AllTagsViewSet
+from tutorial.api.views import TutorialViewSet, AllTagsViewSet
 from todo.api.views import TodoViewSet
 
 if settings.DEBUG:
@@ -25,16 +25,14 @@ router.register(r"todo", TodoViewSet)
 
 app_name = "api"
 
-
 urlpatterns = (
     path("dictionary/<str:word>/", DictionaryViewSet.as_view({"get": "retrieve"}), name="dictionary-word"),
-    path("vocabulary-quiz/quiz-amount/<int:quiz_amount>/", QuizViewSet.as_view({"get": "get_queryset"}), name="quiz-list"),
+    path("vocabulary-quiz/quiz-amount/<int:quiz_amount>/", QuizViewSet.as_view({"get": "get_queryset"}),
+         name="quiz-list"),
     path("vocabulary-quiz/answer", QuizViewSet.as_view({"get": "retrieve"}), name="quiz-answer"),
     path("vocabulary-quiz/remove-all", QuizViewSet.as_view({"delete": "destroy"}), name="quiz-remove-all"),
-    path("tutorials/", TutorialViewSet.as_view({"get": "list"}), name="tutorials-by-tag"),
-    path("tutorial-tag/<str:tag>/", TagViewSet.as_view({"get": "list"}), name="tutorial-tag"),
+    path("tutorials/", TutorialViewSet.as_view({"get": "list", "post":"create"}), name="tutorials-by-tag"),
+    # path("tutorial-tag/<str:tag>/", TagViewSet.as_view({"get": "list"}), name="tutorial-tag"),
     path("tutorial-tags/", AllTagsViewSet.as_view({"get": "list"}), name="tutorial-all-tags"),
     path('', include(router.urls)),
 )
-
-

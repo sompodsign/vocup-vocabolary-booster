@@ -47,21 +47,6 @@ services:
       - "0.0.0.0:443:443"
       - "0.0.0.0:5555:5555"
 
-  celeryworker:
-    <<: *django
-    image: vocup_production_celeryworker
-    command: /start-celeryworker
-
-  celerybeat:
-    <<: *django
-    image: vocup_production_celerybeat
-    command: /start-celerybeat
-
-  flower:
-    <<: *django
-    image: vocup_production_flower
-    command: /start-flower
-
   redis:
     image: redis:6
 
