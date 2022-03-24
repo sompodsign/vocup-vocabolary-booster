@@ -25,10 +25,32 @@ class TutorialViewSet(ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         tag = request.query_params.get('tag', '')
+
         if tag != '':
             self.queryset = self.queryset.filter(tags__contains=[tag])
             return super(TutorialViewSet, self).list(request, *args, **kwargs)
-        return super(TutorialViewSet, self).list(request, *args, **kwargs)
+        # return super(TutorialViewSet, self).list(request, *args, **kwargs)
+        else:
+            new_queryset = []
+            #TODO: loop on queryset is not performant. Instead add another subtitle field in model.
+            for post in self.queryset.iterator():
+                title = post.title
+                body = post.body[:150]
+                slug = post.slug
+                tags = post.tags
+                author = post.author.username
+                created_at = post.created
+                new_queryset.append(
+                    {
+                        'title': title,
+                        'body': body,
+                        'slug': slug,
+                        'tags': tags,
+                        'author': author,
+                        'created': created_at
+                    }
+                )
+            return Response(new_queryset)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -46,23 +68,6 @@ class TutorialViewSet(ModelViewSet):
         if self.action == 'list' or self.action == 'retrieve':
             return [AllowAny()]
         return super(TutorialViewSet, self).get_permissions()
-
-
-# class TagViewSet(ModelViewSet):
-#     serializer_class = PostSerializer
-#     queryset = Post.objects.all()
-#     permission_classes = [IsAuthenticated]
-#     lookup_field = 'tag'
-#
-#     def list(self, request, *args, **kwargs):
-#         tag = self.kwargs['tag']
-#         serializer = self.get_serializer(self.queryset.filter(tags__contains=[tag]), many=True)
-#         return Response(serializer.data)
-#
-#     def get_permissions(self):
-#         if self.action == 'list' or self.action == 'retrieve':
-#             return [AllowAny()]
-#         return super(TagViewSet, self).get_permissions()
 
 
 class AllTagsViewSet(ModelViewSet):

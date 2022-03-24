@@ -33,7 +33,7 @@ export default function TutorialScreen() {
         dispatch(getUserDetails());
         dispatch(getAllTags());
     }, [dispatch])
-
+    console.log(tutorials)
 
     return <div className="mt-3">
 

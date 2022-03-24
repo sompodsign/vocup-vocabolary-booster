@@ -17,3 +17,4 @@ class PostCreateSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['title', 'body', 'tags']
 
+
