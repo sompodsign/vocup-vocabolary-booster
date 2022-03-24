@@ -33,7 +33,6 @@ export default function TutorialScreen() {
         dispatch(getUserDetails());
         dispatch(getAllTags());
     }, [dispatch])
-    console.log(tutorials)
 
     return <div className="mt-3">
 
@@ -87,7 +86,7 @@ export default function TutorialScreen() {
                                 <h1 className="post-header" style={{color: "black"}}>{tutorial.title}</h1>
                             </a>
                         </Link>
-                        <p className="short-desc">{tutorial.body.replace(/<[^>]*>?/gm, '').slice(0, 150) + "..."}</p>
+                        <p className="short-desc">{tutorial.subtitle ? tutorial.subtitle.slice(0, 150) + "..." : "no sub yet"}</p>
                         <div className="flex">
                             <p style={{
                                 fontSize: "13px",

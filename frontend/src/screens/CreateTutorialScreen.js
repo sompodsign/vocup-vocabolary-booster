@@ -20,6 +20,7 @@ export default function CreateTutorial() {
 
     const [title, setTitle] = useState('')
     const [tags, setTags] = useState('')
+    const [subtitle, setSubtitle] = useState('')
 
     const createPost = useSelector(state => state.tutorialCreate);
     const {loading, tutorial, error, success } = createPost;
@@ -42,6 +43,7 @@ export default function CreateTutorial() {
     const handleSave = () => {
         let newTutorial = {
             title: title,
+            subtitle: subtitle,
             body: content,
             tags: tags,
         }
@@ -91,14 +93,19 @@ export default function CreateTutorial() {
                     </div> */}
 
                     <div className="mt-3 mb-3">
-                        <label>Title</label>
+                        {/*<label>Title</label>*/}
                         <input onBlur={(e) => setTitle(e.target.value)} className="w-full border-1 rounded-1 flex flex-column" type="text" placeholder="Title"/>
+                    </div>
+
+                    <div className="mt-3 mb-3">
+                        {/*<label>Subtitle</label>*/}
+                        <input onBlur={(e) => setSubtitle(e.target.value)} className="w-full border-1 rounded-1 flex flex-column" type="text" placeholder="Subtitle"/>
                     </div>
 
                     {
                         isRawMd ?
                             <>
-                            <label>Body</label>
+                            {/*<label>Body</label>*/}
                             <JoditEditor
                                 ref={editor}
                                 value={content}
@@ -111,7 +118,7 @@ export default function CreateTutorial() {
                             </>
                         :
                         <div>
-                        <label>Body - HTML input</label>
+                        {/*<label>Body - HTML input</label>*/}
                         <textarea
                             placeholder="Start Writing or just paste your stolen code"
                             onChange={(e) => setContent(e.target.value)}
