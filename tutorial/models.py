@@ -18,6 +18,7 @@ class Post(models.Model):
         ('published', 'Published'),
     )
     title = models.CharField(max_length=250)
+    subtitle = models.CharField(max_length=250, blank=True, null=True)
     slug = models.SlugField(max_length=250,
                             unique_for_date='publish')
     author = models.ForeignKey(user,

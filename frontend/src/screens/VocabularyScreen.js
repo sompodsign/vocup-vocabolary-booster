@@ -68,6 +68,10 @@ function VocabularyScreen() {
         }
     }, [dispatch, createdWord, userInfo, navigate])
 
+    useEffect(()=> {
+        dispatch({type: WORD_CREATE_RESET});
+    }, [])
+
 
 
     words = inputValue !== null ? words.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
