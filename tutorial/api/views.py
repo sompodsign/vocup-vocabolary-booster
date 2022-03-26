@@ -2,7 +2,7 @@ import time
 
 from django.utils.text import slugify
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -35,28 +35,6 @@ class TutorialViewSet(ModelViewSet):
         instance = self.get_object()
         serializer = PostDetailSerializer(instance, many=False)
         return Response(serializer.data)
-
-        # else:
-        #     new_queryset = []
-        #     #TODO: loop on queryset is not performant. Instead add another subtitle field in model.
-        #     for post in self.queryset.iterator():
-        #         title = post.title
-        #         body = post.body[:150]
-        #         slug = post.slug
-        #         tags = post.tags
-        #         author = post.author.username
-        #         created_at = post.created
-        #         new_queryset.append(
-        #             {
-        #                 'title': title,
-        #                 'body': body,
-        #                 'slug': slug,
-        #                 'tags': tags,
-        #                 'author': author,
-        #                 'created': created_at
-        #             }
-        #         )
-        #     return Response(new_queryset)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

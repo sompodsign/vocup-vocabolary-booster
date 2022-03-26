@@ -13,6 +13,7 @@ import {Link} from "react-router-dom";
 import {MDBBtn} from "mdb-react-ui-kit";
 import {WORD_CREATE_RESET} from "../redux/constants/wordConstants";
 import {MDBIcon} from "mdbreact";
+import {YellowSpinner} from "../components/spinner";
 
 
 function DictionaryScreen() {
@@ -39,19 +40,11 @@ function DictionaryScreen() {
     }, [])
 
 
-    const MyLoader = () => (
-        <ContentLoader viewBox="0 0 380 120">
-            <rect x="0" y="15" rx="5" ry="5" width="130" height="200"/>
-        </ContentLoader>
-    )
-
-    const MyListLoader = () => <List/>
-
-
     const handleSearch = () => {
         /* it will dispatch word fetching action */
         dispatch(retrieveDictWord(inputValue)).then(() => {
             setInputValue('');
+            setAddWord(false) //false so which meaning is comprehensive modal doesn't appear after search word.
         });
     }
 
@@ -75,6 +68,12 @@ function DictionaryScreen() {
         dispatch({type: WORD_CREATE_RESET})
     }
 
+    if (error) {
+        notify(`"${inputValue}" ${error.data.data[0].slice(4,)}`, "info")
+        dispatch({type: DICTIONARY_WORD_RESET})
+    }
+    console.log(addWord)
+
     return (
         <div className="h-full min-h-screen bg-slate-300">
             <div className="container pt-7">
@@ -94,7 +93,7 @@ function DictionaryScreen() {
                 <div class="d-flex .justify-content-evenly">
                     <div>
 
-                        <button onClick={handleSearch} disabled={!inputValue.length && 'disabled'} type="button"
+                        <button onClick={handleSearch} disabled={inputValue === '' && 'disabled'} type="button"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
                             {loading &&
                                 <svg role="status" className="inline mr-3 w-4 h-4 text-white animate-spin"
@@ -110,10 +109,10 @@ function DictionaryScreen() {
                         </button>
 
 
-                        {!error && Object.keys(word).length > 0 &&
+                        {word && word.id &&
                             <ResultCard word={word} setWordState={handleAddWordState}/>}
                     </div>
-                    {addWord && Object.keys(word).length > 0 && word.bn_syn.length > 0 &&
+                    {addWord && word.bn_syn.length &&
                         <div class="m-lg-5 ml-3">
 
                             <h2>Which meaning is more comprehensive to you?</h2>
@@ -125,14 +124,17 @@ function DictionaryScreen() {
                             }
 
                             {wordCreateSuccess && <p><MDBIcon icon="check"/></p>}
-                            {!error && Object.keys(word).length > 0 && word.bn_syn.map((item, index) =>
+                            {word.bn_syn.map((item, index) =>
                                 <MDBBtn rounded className='text-dark m-1' color='light' key={index}
                                         onClick={() => handleAddWord(item)}>{item}</MDBBtn>
                             )}
                         </div>}
                 </div>
-                <div className="hidden lg:block">{loading && <MyLoader/>}</div>
-                <div className="lg:hidden mt-8">{loading && <MyListLoader/>}</div>
+                {/*<div className="hidden lg:block">{loading && <MyLoader/>}</div>*/}
+                {/*<div className="lg:hidden mt-8">{loading && <MyListLoader/>}</div>*/}
+
+                <div className="hidden lg:block">{loading && <YellowSpinner/>}</div>
+                <div className="lg:hidden mt-8">{loading && <YellowSpinner/>}</div>
             </div>
         </div>
     );

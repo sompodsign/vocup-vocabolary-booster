@@ -1,3 +1,4 @@
+import time
 
 from rest_framework import serializers
 
@@ -15,10 +16,12 @@ class WordSerializer(serializers.ModelSerializer):
         words = (instance.word.lower() for instance in Word.objects.filter(user=request.user))
         word = validated_data["word"]
         if word.lower() in words:
+            time.sleep(3)
             raise serializers.ValidationError(
                 {"error": "Word already exists"}
             )
         else:
+            time.sleep(3)
             return Word.objects.create(
                 user=request.user,
                 word=word,
