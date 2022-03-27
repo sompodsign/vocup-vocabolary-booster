@@ -38,7 +38,7 @@ export default function Modal({isScore, toggleIsScore, answeredAnswers}) {
                                 </>
                                 :
                                 <>
-                                    <p>You got {totalCorrect} out of {totalAnswered} questions correct!</p>
+                                    <p>You got {totalCorrect} out of {totalAnswered} answers were correct!</p>
                                     <MDBTable striped>
                                         <MDBTableHead>
                                             <tr>

@@ -19,7 +19,7 @@ import {
 import {QUIZ_LIST_FAIL} from "../constants/quizConstants";
 
 //action to load WORDs from server
-export const listWords = () => async (dispatch, getState) => {
+export const listWords = (limit=100, offset=0) => async (dispatch, getState) => {
     try {
         dispatch({ type: WORD_LIST_REQUEST });
 
@@ -34,7 +34,7 @@ export const listWords = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await client.get('/words/?offset=&limit=', config);
+        const { data } = await client.get(`/words/?offset=${offset}&limit=${limit}`, config);
 
 
         dispatch({
@@ -49,6 +49,39 @@ export const listWords = () => async (dispatch, getState) => {
 
     }
 };
+
+
+// export const listWords = (offset=1, limit=100) => async (dispatch, getState) => {
+//     try {
+//         dispatch({ type: WORD_LIST_REQUEST });
+//
+//         const {
+//             userLogin: { userInfo },
+//         } = getState()
+//
+//         const config = {
+//             headers: {
+//                 'Content-type': 'application/json',
+//                 Authorization: `Token ${userInfo.token}`
+//             },
+//         }
+//
+//         const { data } = await client.get(`/words/?offset=&limit=`, config);
+
+//
+//         dispatch({
+//             type: WORD_LIST_SUCCESS,
+//             payload: data,
+//         });
+//     } catch (error) {
+//         dispatch({
+//             type: WORD_LIST_FAIL,
+//             payload: error
+//         });
+//
+//     }
+// };
+
 
 // //action to pull WORD detail based on WORD id
 // export const WORDDetail = (id) => async (dispatch) => {

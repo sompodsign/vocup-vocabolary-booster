@@ -12,16 +12,21 @@ import QuizScreen from "./screens/QuizScreen";
 import TutorialScreen from "./screens/TutorialsScreen";
 import CreateTutorial from "./screens/CreateTutorialScreen";
 import {PostDetail} from "./screens/PostDetailScreen";
-import { Scrollbar } from "react-scrollbars-custom";
-
+import NotFound from "./components/notFound";
+import {useEffect} from "react";
 
 
 function App() {
 
 
+    useEffect(() => {
+        const favicon = document.getElementById('favicon');
+        favicon.setAttribute('href', 'favicon.png');
+    }, []);
+
+
     return (
         <div>
-        {/* <RemoveScrollBar /> */}
         <ToastContainer />
     <Router>
     <Nav />
@@ -36,7 +41,7 @@ function App() {
         <Route path="/tutorials" element={<TutorialScreen />} />
         <Route path="/create-tutorial" element={<CreateTutorial />} />
         <Route path="/tutorials/:slug" element={<PostDetail />} />
-
+        <Route path="/not-found" element={<NotFound />} />
     </Routes>
 
     </Router>

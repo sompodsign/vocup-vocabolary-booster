@@ -1,7 +1,7 @@
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux";
 import "../styles/tutorialsStyle.css"
-import {useEffect, createContext, useState} from "react";
+import {useEffect} from "react";
 import {getAllTags, listTutorials} from "../redux/actions/tutorialActions";
 import {getDaysAgo} from "../helpers/dateGeneralFunctions";
 import {Button} from "react-bootstrap";
@@ -22,10 +22,10 @@ export default function TutorialScreen() {
     const {user} = userDetail;
 
     const tutorialTags = useSelector(state => state.tutorialTags)
-    const {loading: tagsLoading, error: tagsError, tags} = tutorialTags;
+    const {tags} = tutorialTags;
 
     const tutorialsList = useSelector(state => state.tutorialList);
-    const {loading, tutorials, error} = tutorialsList;
+    const {loading, tutorials} = tutorialsList;
 
 
     useEffect(() => {
@@ -108,7 +108,5 @@ export default function TutorialScreen() {
             }
 
         </div>
-
-        {/*</MDBContainer>*/}
     </div>
 }

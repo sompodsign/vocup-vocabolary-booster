@@ -15,6 +15,7 @@ import '../styles/base.css'
 import {Button, Spinner} from "react-bootstrap";
 import {WORD_CREATE_FAIL, WORD_CREATE_RESET} from "../redux/constants/wordConstants";
 import { FlagIcon } from '@heroicons/react/solid';
+import Pagination from "../components/pagination";
 
 function VocabularyScreen() {
 
@@ -24,8 +25,9 @@ function VocabularyScreen() {
 
     const [newWord, setNewWord] = useState("")
     const [newMeaning, setNewMeaning] = useState("")
+    const [offset, setOfset] = useState(0)
+    const [limit, setLimit] = useState(100)
 
-    const [flag, setFlag] = useState(true)
 
     const dispatch = useDispatch();
     const wordList = useSelector(state => state.wordList);
@@ -39,19 +41,6 @@ function VocabularyScreen() {
 
     let navigate = useNavigate();
 
-    const MyLoader = () => (
-        <ContentLoader viewBox="0 0 380 70">
-            {/* Only SVG shapes */}
-            {/*<rect x="0" y="0" rx="5" ry="5" width="70" height="70" />*/}
-            {/*<rect x="80" y="17" rx="4" ry="4" width="300" height="13" />*/}
-            <rect x="0" y="20" rx="3" ry="3" width="450" height="10"/>
-            <rect x="0" y="40" rx="3" ry="3" width="450" height="10"/>
-            <rect x="0" y="60" rx="3" ry="3" width="450" height="10"/>
-            <rect x="0" y="80" rx="3" ry="3" width="450" height="10"/>
-        </ContentLoader>
-    )
-
-    const MyBulletListLoader = () => <BulletList/>
 
 
     const handleSave = () => {
@@ -62,18 +51,30 @@ function VocabularyScreen() {
 
     useEffect(() => {
         if (userInfo) {
-            dispatch(listWords());
+            dispatch(listWords(limit, offset));
         } else {
             navigate('/login')
         }
-    }, [dispatch, createdWord, userInfo, navigate])
+    }, [dispatch, createdWord, userInfo, navigate, offset])
 
     useEffect(()=> {
         dispatch({type: WORD_CREATE_RESET});
     }, [])
 
+    const handlePagination = (pageNum) => {
+        console.log(pageNum)
+        setOfset(pageNum * limit)
+    }
+
+    const totalWords = words.count && words.count
+    const totalPages = totalWords ? Math.ceil(totalWords / limit) : 0
+
+    //math round in js
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
 
 
+
+// console.log(totalPages)
     words = inputValue !== null ? words.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
 
     if (wordCreateSuccess) {
@@ -151,6 +152,7 @@ function VocabularyScreen() {
                 </div>
             </div>
             <Input func={setInputValue} variant="outline-success" label="Search"/>
+            {/*<p className="m-0 p-0 text-right">{words.count}</p>*/}
             {wordListLoading ?
                 // <>
                 //     <div className="lg:hidden"><MyBulletListLoader/></div>
@@ -169,8 +171,38 @@ function VocabularyScreen() {
                 </svg>
                 </div>
                 :
-                <Table words={words}/>
+                <Table words={words.results}/>
             }
+
+        {/*<Pagination />*/}
+
+            <nav className="text-center mt-2">
+                <ul className="inline-flex -space-x-px">
+                    <li>
+                        <a href="#"
+                           className="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                    </li>
+                    {
+                        Array.from(Array(totalPages).keys()).map((pageNum, index) => {
+                            return (
+                                <li onClick={()=>handlePagination(pageNum)}>
+                                    <a href="#"
+                                       className="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{pageNum + 1}</a>
+                                </li>
+                            )
+                        })
+
+                    }
+
+                    <li>
+                        <a href="#"
+                           className="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
         </div>
         </div>
     );

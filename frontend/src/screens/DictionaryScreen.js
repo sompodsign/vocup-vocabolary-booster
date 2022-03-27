@@ -68,11 +68,16 @@ function DictionaryScreen() {
         dispatch({type: WORD_CREATE_RESET})
     }
 
-    if (error) {
+    if (error && error.data) {
         notify(`"${inputValue}" ${error.data.data[0].slice(4,)}`, "info")
         dispatch({type: DICTIONARY_WORD_RESET})
     }
-    console.log(addWord)
+
+    if (error && !error.data) {
+        notify("Something went wrong!", "error")
+        dispatch({type: DICTIONARY_WORD_RESET})
+    }
+
 
     return (
         <div className="h-full min-h-screen bg-slate-300">
@@ -133,8 +138,8 @@ function DictionaryScreen() {
                 {/*<div className="hidden lg:block">{loading && <MyLoader/>}</div>*/}
                 {/*<div className="lg:hidden mt-8">{loading && <MyListLoader/>}</div>*/}
 
-                <div className="hidden lg:block">{loading && <YellowSpinner/>}</div>
-                <div className="lg:hidden mt-8">{loading && <YellowSpinner/>}</div>
+                {/*<div className="hidden lg:block lg:mt-7">{loading && <YellowSpinner/>}</div>*/}
+                {/*<div className="lg:hidden mt-8">{loading && <YellowSpinner/>}</div>*/}
             </div>
         </div>
     );

@@ -1,11 +1,10 @@
 import "../styles/tutorialsStyle.css"
-
 import parse from "html-react-parser";
 import {useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {retrieveTutorialAction} from "../redux/actions/tutorialActions";
-import {FillSpinner} from "../components/spinner";
+import {FillSpinner, YellowSpinner} from "../components/spinner";
 import {tabTitle} from "../utils/generalFunctions";
 
 export function PostDetail({match}) {
@@ -19,11 +18,10 @@ export function PostDetail({match}) {
     }, [dispatch, params.slug])
 
     const retrievePost = useSelector(state => state.retrieveTutorial)
-    const {loading, post} = retrievePost;
+    const {loading, post, error} = retrievePost;
 
 
-    tabTitle(`Vocup | ${loading? "loading..." : post.title}`);
-
+    tabTitle(`Vocup | ${loading? "loading..." : post && post.title}`);
 
     return (
 
@@ -34,14 +32,14 @@ export function PostDetail({match}) {
                     style={{background: "#14C07B"}}>
 
                     <div className=" p-10 container text-center">
-                        <h1 style={{color: "white", fontSize: "40px"}}><b>{loading ? "loading..." : post.title}</b></h1>
+                        <h1 style={{color: "white", fontSize: "40px"}}><b>{loading ? <YellowSpinner /> : post ? post.title : error.data.detail}</b></h1>
                     </div>
 
                 </div>
 
                 <div className="container mt-16">
-                    {loading && <div className="mx-auto text-center"><FillSpinner/></div>}
-                    {!loading && parse(String(post.body))}
+                    {loading && <div className="mx-auto text-center"><YellowSpinner/></div>}
+                    {post ? parse(String(post && post.body)) : error.data.detail}
 
                 </div>
             </div>
