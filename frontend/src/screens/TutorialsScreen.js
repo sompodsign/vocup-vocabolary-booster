@@ -42,6 +42,8 @@ export default function TutorialScreen() {
         return tutorial.title.toLowerCase().includes(search.toLowerCase())
     })
 
+
+    console.log(user)
     return <div className="mt-3">
 
         <div
