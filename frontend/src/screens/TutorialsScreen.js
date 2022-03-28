@@ -34,6 +34,8 @@ export default function TutorialScreen() {
         dispatch(getAllTags());
     }, [dispatch])
 
+
+    console.log(user)
     return <div className="mt-3">
 
         <div

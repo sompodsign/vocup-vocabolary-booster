@@ -62,7 +62,6 @@ function VocabularyScreen() {
     }, [])
 
     const handlePagination = (pageNum) => {
-        console.log(pageNum)
         setOfset(pageNum * limit)
     }
 
@@ -176,7 +175,7 @@ function VocabularyScreen() {
 
         {/*<Pagination />*/}
 
-            <nav className="text-center mt-2">
+            <nav className="text-center mt-4">
                 <ul className="inline-flex -space-x-px">
                     <li>
                         <a href="#"
