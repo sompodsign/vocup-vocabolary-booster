@@ -38,8 +38,10 @@ export function PostDetail({match}) {
                 </div>
 
                 <div className="container mt-16">
-                    {loading && <div className="mx-auto text-center"><YellowSpinner/></div>}
-                    {post ? parse(String(post && post.body)) : error.data.detail}
+
+                    {
+                        loading ? <div className="mx-auto text-center"><YellowSpinner/></div> : post && parse(String(post.body))
+                    }
 
                 </div>
             </div>

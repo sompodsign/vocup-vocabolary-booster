@@ -42,9 +42,10 @@ function DictionaryScreen() {
 
     const handleSearch = () => {
         /* it will dispatch word fetching action */
+        setAddWord(false)  //false so which meaning is comprehensive modal doesn't appear after search word.
         dispatch(retrieveDictWord(inputValue)).then(() => {
             setInputValue('');
-            setAddWord(false) //false so which meaning is comprehensive modal doesn't appear after search word.
+
         });
     }
 

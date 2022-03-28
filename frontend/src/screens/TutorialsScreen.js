@@ -1,4 +1,5 @@
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
+import { useState } from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import "../styles/tutorialsStyle.css"
 import {useEffect} from "react";
@@ -16,6 +17,7 @@ export default function TutorialScreen() {
 
     tabTitle("Tutorials - VOCUP");
 
+    const params = useParams();
 
     const dispatch = useDispatch();
     const userDetail = useSelector(state => state.userDetail)
@@ -25,14 +27,20 @@ export default function TutorialScreen() {
     const {tags} = tutorialTags;
 
     const tutorialsList = useSelector(state => state.tutorialList);
-    const {loading, tutorials} = tutorialsList;
+    let {loading, tutorials} = tutorialsList;
+
+    const [search, setSearch] = useState("");
 
 
     useEffect(() => {
-        dispatch(listTutorials());
+        dispatch(listTutorials(params.tag));
         dispatch(getUserDetails());
         dispatch(getAllTags());
-    }, [dispatch])
+    }, [dispatch, params.tag]);
+
+    tutorials = tutorials.filter(tutorial => {
+        return tutorial.title.toLowerCase().includes(search.toLowerCase())
+    })
 
     return <div className="mt-3">
 
@@ -43,8 +51,8 @@ export default function TutorialScreen() {
             <p style={{color: "white", fontSize: "18px", fontWeight: "400"}}>Follow along with one
                 of my {tutorials.length} development and sysadmin tutorials.</p>
             <div className="container">
-                {/*<i className="fas fa-search position-absolute left-3 top-6"/>*/}
-                <input className="w-full h-16 p-2 border-1 rounded-2" placeholder="Search Tutorials"/>
+
+                <input className="w-full h-16 p-2 border-1 rounded-2" placeholder="Search Tutorials" onChange={(e) => setSearch(e.target.value)}/>
             </div>
         </div>
 
@@ -60,7 +68,7 @@ export default function TutorialScreen() {
             }
 
 
-            <TagContext.Provider value={tags}>
+            <TagContext.Provider value={{"tags":tags, "param": params.tag}}>
                 <TagList/>
             </TagContext.Provider>
 

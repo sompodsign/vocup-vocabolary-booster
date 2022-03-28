@@ -176,6 +176,7 @@ function VocabularyScreen() {
 
         {/*<Pagination />*/}
 
+            { words.count > 100 &&
             <nav className="text-center mt-2">
                 <ul className="inline-flex -space-x-px">
                     <li>
@@ -200,7 +201,7 @@ function VocabularyScreen() {
                     </li>
                 </ul>
             </nav>
-
+            }
 
 
         </div>
