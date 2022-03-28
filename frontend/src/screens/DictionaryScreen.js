@@ -135,11 +135,7 @@ function DictionaryScreen() {
                             )}
                         </div>}
                 </div>
-                {/*<div className="hidden lg:block">{loading && <MyLoader/>}</div>*/}
-                {/*<div className="lg:hidden mt-8">{loading && <MyListLoader/>}</div>*/}
 
-                {/*<div className="hidden lg:block lg:mt-7">{loading && <YellowSpinner/>}</div>*/}
-                {/*<div className="lg:hidden mt-8">{loading && <YellowSpinner/>}</div>*/}
             </div>
         </div>
     );
