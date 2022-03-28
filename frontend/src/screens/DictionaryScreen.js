@@ -42,9 +42,10 @@ function DictionaryScreen() {
 
     const handleSearch = () => {
         /* it will dispatch word fetching action */
+        setAddWord(false)  //false so which meaning is comprehensive modal doesn't appear after search word.
         dispatch(retrieveDictWord(inputValue)).then(() => {
             setInputValue('');
-            setAddWord(false) //false so which meaning is comprehensive modal doesn't appear after search word.
+
         });
     }
 
@@ -135,11 +136,7 @@ function DictionaryScreen() {
                             )}
                         </div>}
                 </div>
-                {/*<div className="hidden lg:block">{loading && <MyLoader/>}</div>*/}
-                {/*<div className="lg:hidden mt-8">{loading && <MyListLoader/>}</div>*/}
 
-                {/*<div className="hidden lg:block lg:mt-7">{loading && <YellowSpinner/>}</div>*/}
-                {/*<div className="lg:hidden mt-8">{loading && <YellowSpinner/>}</div>*/}
             </div>
         </div>
     );
