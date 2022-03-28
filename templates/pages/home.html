@@ -1,0 +1,12 @@
+
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+        <div id="wod_container"></div>
+{% endblock %}
+
+{% block inline_javascript %}
+<script src="{% static 'components/words/Index.js' %}" type="text/babel"></script>
+{% endblock %}
