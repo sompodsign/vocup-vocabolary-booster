@@ -136,6 +136,7 @@ export default function CreateTutorial() {
 
                 <div>
                     <Button
+                        disabled = {!title || !subtitle || !content}
                         size="lg"
                         variant={success ? "success" : error ? "danger" : "primary"}
                         onClick={handleSave}

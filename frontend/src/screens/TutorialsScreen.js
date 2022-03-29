@@ -43,7 +43,6 @@ export default function TutorialScreen() {
     })
 
 
-    console.log(user)
     return <div className="mt-3">
 
         <div
@@ -91,10 +90,10 @@ export default function TutorialScreen() {
             {
                 tutorials && tutorials.map((tutorial) => {
                     return <div key={tutorial.id}>
-                        <Link to={`tutorials/post/${tutorial.slug}`}>
-                            <a href={tutorial.slug}>
+                        <Link to={`/tutorials/${tutorial.slug}`}>
+                            {/* <a href={"post/"+tutorial.slug}> */}
                                 <h1 className="post-header" style={{color: "black"}}>{tutorial.title}</h1>
-                            </a>
+                            {/* </a> */}
                         </Link>
                         <p className="short-desc">{tutorial.subtitle ? tutorial.subtitle.slice(0, 150) + "..." : "no sub yet"}</p>
                         <div className="flex">

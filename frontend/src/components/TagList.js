@@ -10,7 +10,7 @@ export const TagList = () => {
 
     const tags = useContext(TagContext);
 
-
+console.log(tags.param)
 
     return (<div className="pb-4">
                         <Link to={`/tutorials/`}>
@@ -21,7 +21,7 @@ export const TagList = () => {
                 <Link to={`/tutorials/filter/${tag}`} key={index}>
                 <a href="#" key={index}>
             <span
-                className={`${tag === tags.param && "bg-zinc-300"} hover:bg-stone-400 inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-stone-700 bg-emerald-200 rounded-full`}>{tag}</span></a>
+                className={`${tags.param === tag && "bg-zinc-400"} hover:bg-stone-400 inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-stone-700 bg-emerald-200 rounded-full`}>{tag}</span></a>
                  </Link>
                 )}
         </div>
