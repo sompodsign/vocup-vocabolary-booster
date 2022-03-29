@@ -40,7 +40,7 @@ function App() {
         <Route path="/join" element={<JoinScreen />} />
         <Route path="/tutorials" element={<TutorialScreen />} />
         <Route path="/create-tutorial" element={<CreateTutorial />} />
-        <Route path="/tutorials/:slug" element={<PostDetail />} />
+        <Route path="/tutorials/post/:slug" element={<PostDetail />} />
         <Route path="/tutorials/filter/:tag" element={<TutorialScreen />} />
         <Route path="/not-found" element={<NotFound />} />
     </Routes>

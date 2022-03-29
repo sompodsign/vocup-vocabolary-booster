@@ -91,7 +91,7 @@ export default function TutorialScreen() {
             {
                 tutorials && tutorials.map((tutorial) => {
                     return <div key={tutorial.id}>
-                        <Link to={tutorial.slug}>
+                        <Link to={`tutorials/post/${tutorial.slug}`}>
                             <a href={tutorial.slug}>
                                 <h1 className="post-header" style={{color: "black"}}>{tutorial.title}</h1>
                             </a>
