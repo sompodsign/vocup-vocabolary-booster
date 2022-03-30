@@ -72,7 +72,7 @@ function VocabularyScreen() {
     const totalPages = totalWords ? Math.ceil(totalWords / limit) : 0
 
     words = inputValue !== null ? words.results.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
-
+console.log(words)
     if (wordCreateSuccess) {
         notify("Word saved successfully", "success" )
         dispatch(listWords());
