@@ -21,7 +21,7 @@ function VocabularyScreen() {
 
     tabTitle('Vocabulary - VOCUP');
 
-    const [inputValue, setInputValue] = useState(null);
+    const [inputValue, setInputValue] = useState("");
 
     const [newWord, setNewWord] = useState("")
     const [newMeaning, setNewMeaning] = useState("")
@@ -51,11 +51,11 @@ function VocabularyScreen() {
 
     useEffect(() => {
         if (userInfo) {
-            dispatch(listWords(limit, offset));
+            dispatch(listWords(limit, offset, inputValue));
         } else {
             navigate('/login')
         }
-    }, [dispatch, createdWord, userInfo, navigate, offset])
+    }, [dispatch, createdWord, userInfo, navigate, offset, inputValue])
 
     useEffect(()=> {
         dispatch({type: WORD_CREATE_RESET});
@@ -66,13 +66,14 @@ function VocabularyScreen() {
         setOfset(pageNum * limit)
     }
 
-
     const totalWords = words.count && words.count
     const totalPages = totalWords ? Math.ceil(totalWords / limit) : 0
 
-    filtered_words = inputValue !== null ? words.results.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words.results;
+    //math round in js
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
 
-console.log(words)
+// console.log(totalPages)
+    // words = inputValue !== null ? words.results.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
 
     if (wordCreateSuccess) {
         notify("Word saved successfully", "success" )
@@ -168,7 +169,7 @@ console.log(words)
                 </svg>
                 </div>
                 :
-                <Table words={words}/>
+                <Table words={words.results}/>
             }
 
         {/*<Pagination />*/}

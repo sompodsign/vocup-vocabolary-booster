@@ -19,7 +19,7 @@ import {
 import {QUIZ_LIST_FAIL} from "../constants/quizConstants";
 
 //action to load WORDs from server
-export const listWords = (limit=100, offset=0) => async (dispatch, getState) => {
+export const listWords = (limit=0, offset=0, word_prefix="") => async (dispatch, getState) => {
     try {
         dispatch({ type: WORD_LIST_REQUEST });
 
@@ -34,7 +34,7 @@ export const listWords = (limit=100, offset=0) => async (dispatch, getState) => 
             },
         }
 
-        const { data } = await client.get(`/words/?offset=${offset}&limit=${limit}`, config);
+        const { data } = await client.get(`/words/?offset=${offset}&limit=${limit}&word_prefix=${word_prefix}`, config);
 
 
         dispatch({
