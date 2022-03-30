@@ -66,16 +66,12 @@ function VocabularyScreen() {
         setOfset(pageNum * limit)
     }
 
+    console.log(words)
+
     const totalWords = words.count && words.count
     const totalPages = totalWords ? Math.ceil(totalWords / limit) : 0
 
-    //math round in js
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
-
-
-
-// console.log(totalPages)
-    words = inputValue !== null ? words.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
+    words = inputValue !== null ? words.results.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
 
     if (wordCreateSuccess) {
         notify("Word saved successfully", "success" )
