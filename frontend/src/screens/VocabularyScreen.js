@@ -66,13 +66,14 @@ function VocabularyScreen() {
         setOfset(pageNum * limit)
     }
 
-    console.log(words)
 
     const totalWords = words.count && words.count
     const totalPages = totalWords ? Math.ceil(totalWords / limit) : 0
 
-    words = inputValue !== null ? words.results.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words;
+    filtered_words = inputValue !== null ? words.results.filter(word => word.word.toLowerCase().includes(inputValue.toLowerCase())) : words.results;
+
 console.log(words)
+
     if (wordCreateSuccess) {
         notify("Word saved successfully", "success" )
         dispatch(listWords());
@@ -167,7 +168,7 @@ console.log(words)
                 </svg>
                 </div>
                 :
-                <Table words={words.results}/>
+                <Table words={words}/>
             }
 
         {/*<Pagination />*/}
