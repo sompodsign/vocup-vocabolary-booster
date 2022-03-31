@@ -14,7 +14,7 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Remote Python 3.9.10 Docker Compose (django at [C:\Users\Shampad\Desktop\vocup-vocabolary-booster\docker-compose.yml, C:\Users\Shampad\Desktop\vocup-vocabolary-booster\local.yml])" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Remote Python 3.9.12 Docker Compose (django at [/home/shampad/Desktop/Projects/vocup-vocabolary-booster/local.yml])" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="react" level="application" />
     <orderEntry type="library" name="react-dom" level="application" />

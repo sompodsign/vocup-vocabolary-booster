@@ -5,7 +5,7 @@ volumes:
   vocup_local_postgres_data_backups: {}
 
 services:
-  django: &django
+  django:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -40,24 +40,3 @@ services:
   redis:
     image: redis:6
     container_name: vocup_local_redis
-
-  pgbackups:
-    image: prodrigestivill/postgres-backup-local
-    user: root # Optional: see below
-    volumes:
-      - /var/opt/pgbackups:/backups
-    links:
-      - postgres
-    depends_on:
-      - django
-    environment:
-      - POSTGRES_HOST=postgres
-      - POSTGRES_DB=vocup
-      - POSTGRES_USER=debug
-      - POSTGRES_PASSWORD=debug
-      - POSTGRES_EXTRA_OPTS=-Z6 --schema=public --blobs
-      - SCHEDULE=@daily
-      - BACKUP_KEEP_DAYS=7
-      - BACKUP_KEEP_WEEKS=4
-      - BACKUP_KEEP_MONTHS=6
-      - HEALTHCHECK_PORT=8080

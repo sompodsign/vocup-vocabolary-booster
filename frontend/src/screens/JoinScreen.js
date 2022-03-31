@@ -9,6 +9,7 @@ import { register } from "../redux/actions/userActions";
 import {VerifyEmail} from "../components/verify_account";
 
 import notify from "../utils/notification";
+import { USER_REGISTER_RESET } from '../redux/constants/userConstants';
 
 
 
@@ -28,16 +29,21 @@ export default function JoinScreen() {
     const navigate = useNavigate();
 
     const userRegister = useSelector(state => state.userRegister)
-    const { error, loading, userInfo } = userRegister
+    const { error, loading, userRegisterInfo } = userRegister
 
-    useEffect(() => {
-        if (userInfo) {
-            navigate('/vocabulary')
-        }
-    }, [navigate, userInfo])
+    // useEffect(() => {
+    //     if (userInfo) {
+    //         navigate('/vocabulary')
+    //     }
+    // }, [navigate, userInfo])
 
-    if (userInfo) {
-        notify("Registration Successful", "success");
+    if (userRegisterInfo) {
+        navigate("/login");
+        notify("Registration Successful. You can login now.", "success");
+        dispatch({type: USER_REGISTER_RESET});
+    } else if(error) {
+        notify("Email or password is incorrect", "error")
+        dispatch({type: USER_REGISTER_RESET});
     }
 
     const submitHandler = (event) => {
@@ -45,17 +51,19 @@ export default function JoinScreen() {
         dispatch(register(firstName, lastName, email, password, confirmPassword));
     }
 
+    console.log(error)
+
     return (
         <>
-            {userInfo ? <VerifyEmail /> :
+            {/* {userInfo ? <VerifyEmail /> : */}
                 <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-md w-full space-y-8">
                         <div>
-                            <img
+                            {/* <img
                                 className="mx-auto h-12 w-auto"
                                 src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
                                 alt="Workflow"
-                            />
+                            /> */}
                             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Get Started Now</h2>
                         </div>
                         <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={submitHandler}>
@@ -161,7 +169,7 @@ export default function JoinScreen() {
                         </form>
                     </div>
                 </div>
-            }
+            {/* } */}
 
         </>
     )

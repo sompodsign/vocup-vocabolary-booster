@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {LockClosedIcon} from '@heroicons/react/solid';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {login} from '../redux/actions/userActions';
 
 import {USER_LOGOUT} from "../redux/constants/userConstants";
@@ -38,7 +38,7 @@ export default function LoginScreen() {
         e.preventDefault()
         dispatch(login(email, password));
     }
-
+console.log('login screen', userInfo)
     return (
         <>
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -130,6 +130,13 @@ export default function LoginScreen() {
                                 Sign in
                             </button>
                         </div>
+                        <div className="text-sm">
+                            <Link to="/join">
+                                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                    Sign Up Instead?
+                                </a>
+                                </Link>
+                            </div>
                     </form>
                 </div>
             </div>

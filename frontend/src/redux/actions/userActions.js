@@ -36,7 +36,6 @@ import {
 } from '../constants/userConstants'
 
 import {WORD_LIST_RESET} from '../constants/wordConstants';
-import axios from "axios";
 import {TUTORIAL_CREATE_RESET, TUTORIAL_LIST_RESET} from "../constants/tutorialConstants";
 
 
@@ -106,18 +105,19 @@ export const register = (firstName, lastName, email, password, confirmPassword) 
             payload: data
         })
 
-        dispatch({
-            type: USER_LOGIN_SUCCESS,
-            payload: data
-        })
+        // dispatch({
+        //     type: USER_LOGIN_SUCCESS,
+        //     payload: data
+        // })
 
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        // localStorage.setItem('userInfo', JSON.stringify(data))
 
     } catch (error) {
         dispatch({
             type: USER_REGISTER_FAIL,
-            payload: {"status": error.response.status, "data": error.response.data}
+            payload: {error}
         })
+        console.log(error)
     }
 }
 
