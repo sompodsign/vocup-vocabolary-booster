@@ -31,18 +31,12 @@ export default function JoinScreen() {
     const userRegister = useSelector(state => state.userRegister)
     const { error, loading, userRegisterInfo } = userRegister
 
-    // useEffect(() => {
-    //     if (userInfo) {
-    //         navigate('/vocabulary')
-    //     }
-    // }, [navigate, userInfo])
-
     if (userRegisterInfo) {
         navigate("/login");
         notify("Registration Successful. You can login now.", "success");
         dispatch({type: USER_REGISTER_RESET});
     } else if(error) {
-        notify("Email or password is incorrect", "error")
+        notify("Something went wrong", "error")
         dispatch({type: USER_REGISTER_RESET});
     }
 
@@ -50,8 +44,6 @@ export default function JoinScreen() {
         event.preventDefault()
         dispatch(register(firstName, lastName, email, password, confirmPassword));
     }
-
-    console.log(error)
 
     return (
         <>

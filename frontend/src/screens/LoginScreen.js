@@ -38,7 +38,7 @@ export default function LoginScreen() {
         e.preventDefault()
         dispatch(login(email, password));
     }
-console.log('login screen', userInfo)
+
     return (
         <>
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
