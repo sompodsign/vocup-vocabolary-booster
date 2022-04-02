@@ -85,6 +85,7 @@ LOCAL_APPS = [
     "words.apps.WordsConfig",
     "tutorial.apps.TutorialConfig",
     "todo.apps.TodoConfig",
+    "w2pdf.apps.W2PdfConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
