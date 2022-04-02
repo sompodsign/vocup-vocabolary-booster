@@ -8,6 +8,7 @@ from quiz.api.views import QuizViewSet
 from dictionary.api.views import DictionaryViewSet
 from tutorial.api.views import TutorialViewSet, AllTagsViewSet
 from todo.api.views import TodoViewSet
+from w2pdf.api.views import WordFileViewSet
 
 if settings.DEBUG:
     router = DefaultRouter()
@@ -22,6 +23,7 @@ router.register(r"vocabulary-quiz", QuizViewSet)
 router.register(r"dictionary", DictionaryViewSet)
 router.register(r"tutorials", TutorialViewSet)
 router.register(r"todo", TodoViewSet)
+router.register(r"word-files", WordFileViewSet)
 
 app_name = "api"
 
