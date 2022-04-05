@@ -1,6 +1,7 @@
 import os
 
 from django.http import HttpResponse
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
@@ -10,6 +11,8 @@ import tempfile
 
 
 class ImageResizeView(APIView):
+    permissions_classes = (AllowAny,)
+    authentication_classes = (AllowAny,)
 
     def post(self, request):
         image = request.data['image'] # already opened file in memory
