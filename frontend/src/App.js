@@ -14,6 +14,7 @@ import CreateTutorial from "./screens/CreateTutorialScreen";
 import {PostDetail} from "./screens/PostDetailScreen";
 import NotFound from "./components/notFound";
 import {useEffect} from "react";
+import {ToolsScreen} from "./screens/ToolsScreen";
 
 
 function App() {
@@ -42,7 +43,8 @@ function App() {
         <Route path="/create-tutorial" element={<CreateTutorial />} />
         <Route path="/tutorials/:slug" element={<PostDetail />} />
         <Route path="/tutorials/filter/:tag" element={<TutorialScreen />} />
-        <Route path="/not-found" element={<NotFound />} />
+        <Route path="/tools/" element={<ToolsScreen />} />
+        <Route path="*" element={<NotFound />} />
     </Routes>
 
     </Router>

@@ -160,16 +160,16 @@ export default function Nav() {
 
 
 
-                                        <Link to="/tasks">
+                                        <Link to="/tools">
                                             <a
                                                 href="#"
                                                 className={classNames(
-                                                    locationPathName === '/tasks' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                                    'px-3 py-2 rounded-md text-sm font-medium hidden'
+                                                    locationPathName === '/tools' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                                    'px-3 py-2 rounded-md text-sm font-medium'
                                                 )}
-                                                aria-current={locationPathName === '/tasks' ? 'page' : undefined}
+                                                aria-current={locationPathName === '/tools' ? 'page' : undefined}
                                             >
-                                                Tasks
+                                                Tools
                                             </a>
                                         </Link>
 
@@ -376,21 +376,19 @@ export default function Nav() {
                                 </Disclosure.Button>
                             </Link>
 
-                            <Link to="/tasks">
+                            <Link to="/tools">
                             <Disclosure.Button
                                 as="a"
-                                href="/tasks"
+                                href="/tools"
                                 className={classNames(
                                     locationPathName === '/todo' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                    'block px-3 py-2 rounded-md text-base font-medium hidden'
+                                    'block px-3 py-2 rounded-md text-base font-medium'
                                 )}
                                 area-current={locationPathName === '/tasks' ? 'page' : undefined}
                             >
-                                Tasks
+                                Tools
                             </Disclosure.Button>
                             </Link>
-
-
 
                         </div>
                     </Disclosure.Panel>
