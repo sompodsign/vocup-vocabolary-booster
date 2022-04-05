@@ -1,9 +1,12 @@
+import os
+
 from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 from PIL import Image
+import tempfile
 
 
 class ImageResizeView(APIView):
@@ -15,7 +18,7 @@ class ImageResizeView(APIView):
         img = Image.open(image)
         rgb_image = img.convert('RGB')
         resized_img = rgb_image.resize((int(width), int(height)))
-        resized_img.save('temp/resized_image.jpg')
-        with open('temp/resized_image.jpg', 'rb') as f:
-            return HttpResponse(f.read(), content_type='image/jpg')
-
+        temp_file = tempfile.NamedTemporaryFile(suffix='.jpg')
+        resized_img.save(temp_file, format='JPEG')
+        temp_file.seek(0)
+        return HttpResponse(temp_file, content_type='image/jpeg')
