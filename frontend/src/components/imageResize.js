@@ -23,10 +23,12 @@ export const ImageResizeComponent = () => {
         const bodyFormData = new FormData(); // pass in the form
 
         bodyFormData.append("image", selectedFile)
-        // console.log(bodyFormData)
+
         client.post(`/image-resize/?width=${width}&height=${height}`, bodyFormData, {responseType: "blob"}).then((response) => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             setDownloadUrl(url)
+        }).catch((error) => {
+            console.log(error)
         })
     }
 
@@ -41,7 +43,7 @@ export const ImageResizeComponent = () => {
 
                     <div className="flex items-center justify-center bg-grey-lighter">
                         <label
-                            className="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+                            className="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-blue-400">
                             <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20">
                                 <path
@@ -50,14 +52,18 @@ export const ImageResizeComponent = () => {
                             <span className="mt-2 text-base leading-normal">Select a file</span>
                             <input type='file' className="hidden" onChange={changeHandler} />
                         </label>
+
+
                         <div className="text-right m-3">
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 hidden"
                                htmlFor="user_avatar">Width</label>
-                        <input className="rounded-2" placeholder="Width" type='text'  onChange={(e)=>setWidth(e.target.value)}/>
+                        <input className="rounded-2" placeholder="Width - (px)" type='text'  onChange={(e)=>setWidth(e.target.value)}/>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                htmlFor="user_avatar"></label>
-                        <input className="rounded-2" placeholder="Height"  type='text'  onChange={(e)=>setHeight(e.target.value)} />
+                        <input className="rounded-2" placeholder="Height - (px)"  type='text'  onChange={(e)=>setHeight(e.target.value)} />
                         </div>
+
+
                     </div>
 
 
@@ -65,6 +71,7 @@ export const ImageResizeComponent = () => {
                     <div className="text-center m-2">
                         <button
                                 type="submit"
+                                disabled={(!width.length || !height.length) && true}
                                 className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
                             {/*{wordCreateLoading &&*/}
                             {/*    <svg role="status" className="inline mr-3 w-4 h-4 text-white animate-spin"*/}

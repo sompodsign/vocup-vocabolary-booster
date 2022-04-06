@@ -43,7 +43,7 @@ function App() {
         <Route path="/create-tutorial" element={<CreateTutorial />} />
         <Route path="/tutorials/:slug" element={<PostDetail />} />
         <Route path="/tutorials/filter/:tag" element={<TutorialScreen />} />
-        <Route path="/tools/" element={<ToolsScreen />} />
+        <Route path="/tools/:toolName" element={<ToolsScreen />} />
         <Route path="*" element={<NotFound />} />
     </Routes>
 
