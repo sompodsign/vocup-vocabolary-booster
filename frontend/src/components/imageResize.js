@@ -12,6 +12,7 @@ export const ImageResizeComponent = () => {
     const changeHandler = (event) => {
         setSelectedFile(event.target.files[0]);
         setIsSelected(true);
+        setDownloadUrl("")
     };
 
     const submitHandler = () => {
