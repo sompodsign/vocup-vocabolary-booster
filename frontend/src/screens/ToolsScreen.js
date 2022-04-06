@@ -1,16 +1,24 @@
 import {ImageResizeComponent} from '../components/imageResize';
-import {useState} from "react";
-import {YellowSpinner} from "../components/spinner";
+import {useEffect, useState} from "react";
+// import {YellowSpinner} from "../components/spinner";
+import {useNavigate, useParams} from "react-router-dom";
 
 export const ToolsScreen = () => {
 
     const [isImageResize, setImageResize] = useState(false)
+
+    const params = useParams();
+    const navigate = useNavigate();
 
     const handleClick = (event) => {
         event.preventDefault()
         setImageResize(true)
     }
 
+    useEffect(() => {
+        navigate(`/tools/image-resize`)
+    }, [])
+console.log(params)
 
     return (
 
@@ -41,6 +49,17 @@ export const ToolsScreen = () => {
                                               d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                     </svg>
                                     <span className="ml-3">Image Resizer</span>
+                                </a>
+                            </li>                            <li>
+                                <a href="#"
+                                   onClick={(e) => handleClick(e)}
+                                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M20 12H4"></path>
+                                    </svg>
+                                    <span className="ml-3">Image Compresser</span>
                                 </a>
                             </li>
                         </ul>
