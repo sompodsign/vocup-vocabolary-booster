@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import client from "../config";
 import {useState} from "react";
 
@@ -59,11 +59,6 @@ export const ImageResizeComponent = () => {
                         <input className="rounded-2" placeholder="Height"  type='text'  onChange={(e)=>setHeight(e.target.value)} />
                         </div>
                     </div>
-
-
-
-
-
 
 
                     {isSelected &&
