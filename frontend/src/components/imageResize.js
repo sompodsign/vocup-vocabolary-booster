@@ -32,7 +32,6 @@ export const ImageResizeComponent = () => {
 
     const element = <a href={downloadUrl} download="file.jpg">Download</a>
 
-    console.log(downloadUrl)
     return (
         <div className="flex">
             <div>
@@ -51,20 +50,23 @@ export const ImageResizeComponent = () => {
                             <span className="mt-2 text-base leading-normal">Select a file</span>
                             <input type='file' className="hidden" onChange={changeHandler} />
                         </label>
+                        <div className="text-right m-3">
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 hidden"
+                               htmlFor="user_avatar">Width</label>
+                        <input className="rounded-2" placeholder="Width" type='text'  onChange={(e)=>setWidth(e.target.value)}/>
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                               htmlFor="user_avatar"></label>
+                        <input className="rounded-2" placeholder="Height"  type='text'  onChange={(e)=>setHeight(e.target.value)} />
+                        </div>
                     </div>
 
 
-                        <div className="text-center m-3">
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 hidden"
-                                   htmlFor="user_avatar">Width</label>
-                        <input className="rounded-2" placeholder="Width" type='text'  onChange={(e)=>setWidth(e.target.value)}/>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                                   htmlFor="user_avatar"></label>
-                        <input className="rounded-2" placeholder="Height"  type='text'  onChange={(e)=>setHeight(e.target.value)} />
-                        </div>
 
 
 
+
+
+                    {isSelected &&
                     <div className="text-center m-2">
                         <button
                                 type="submit"
@@ -83,6 +85,7 @@ export const ImageResizeComponent = () => {
                             Resize
                         </button>
                     </div>
+                    }
                 </form>
 
                 {downloadUrl.length !== 0 &&
