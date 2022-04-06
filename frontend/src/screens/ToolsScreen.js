@@ -1,5 +1,6 @@
 import {ImageResizeComponent} from '../components/imageResize';
 import {useState} from "react";
+import {YellowSpinner} from "../components/spinner";
 
 export const ToolsScreen = () => {
 
@@ -12,9 +13,18 @@ export const ToolsScreen = () => {
 
 
     return (
+
         <div className="h-full min-h-screen bg-slate-300 position-relative">
+            <div
+                style={{background: "#14C07B"}}>
+
+                <div className=" p-10 container text-center">
+                    <h1 style={{color: "white", fontSize: "40px"}}><b>Tools</b></h1>
+                </div>
+
+            </div>
             <div className="container pt-4">
-                <h1>Tools</h1>
+                {/*<h1>Tools</h1>*/}
 
                 <div className="flex">
 
