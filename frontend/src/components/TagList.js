@@ -11,7 +11,6 @@ export const TagList = () => {
 
     const tags = useContext(TagContext);
 
-console.log(tags.param)
 
     return (<div className="pb-4">
                         <Link to={`/tutorials/`}>
@@ -21,7 +20,7 @@ console.log(tags.param)
                 tags.tags.map((tag, index) =>
                 <Link to={`/tutorials/filter/${tag}`} key={index}>
                 <a href="#" key={index}>
-            <span   
+            <span
                 className={`${tags.param === tag && "selected-tag"} hover:bg-stone-400 inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-stone-700 bg-emerald-200 rounded-full`}>{tag}</span></a>
                  </Link>
                 )}
