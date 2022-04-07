@@ -1,25 +1,18 @@
 import {ImageResizeComponent} from '../components/imageResize';
-import {useEffect, useState} from "react";
-// import {YellowSpinner} from "../components/spinner";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {ImageCompress} from "../components/imageCompress";
 import {YoutubeDownload} from "../components/youtubeDownload";
+import {tabTitle} from "../utils/generalFunctions";
 
 export const ToolsScreen = () => {
+
+    tabTitle("Vocup | Tools")
 
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
     }
 
-    const [isImageResize, setImageResize] = useState(false)
-
     const params = useParams();
-    const navigate = useNavigate();
-
-    const handleClick = (event) => {
-        event.preventDefault()
-        setImageResize(true)
-    }
 
 
     function componentHandler() {
@@ -35,8 +28,7 @@ export const ToolsScreen = () => {
                 break;
         }
     }
-
-    console.log(params)
+    
 
     return (
 
