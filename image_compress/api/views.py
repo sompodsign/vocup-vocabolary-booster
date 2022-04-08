@@ -16,7 +16,7 @@ class ImageCompressView(APIView):
 
     def post(self, request):
         image = request.data.get('image') # already opened file in memory
-        quality = request.data.get('quality')
+        quality = request.query_params.get('quality')
         if not image or not quality:
             return Response({'error': 'Image or quality not found'})
         try:
