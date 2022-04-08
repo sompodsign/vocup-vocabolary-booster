@@ -10,6 +10,7 @@ from tutorial.api.views import TutorialViewSet, AllTagsViewSet
 from todo.api.views import TodoViewSet
 from w2pdf.api.views import WordFileViewSet
 from image_resizer.api.views import ImageResizeView
+from image_compress.api.views import ImageCompressView
 
 
 if settings.DEBUG:
@@ -39,4 +40,5 @@ urlpatterns = (
     path("tutorial-tags/", AllTagsViewSet.as_view({"get": "list"}), name="tutorial-all-tags"),
     path('', include(router.urls)),
     path("image-resize/", ImageResizeView.as_view(), name="image-resize"),
+    path("image-compress/", ImageCompressView.as_view(), name="image-compress"),
 )

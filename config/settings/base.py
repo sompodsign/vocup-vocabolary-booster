@@ -86,7 +86,8 @@ LOCAL_APPS = [
     "tutorial.apps.TutorialConfig",
     "todo.apps.TodoConfig",
     "w2pdf.apps.W2PdfConfig",
-    "image_resizer.apps.ImageResizerConfig"
+    "image_resizer.apps.ImageResizerConfig",
+    "image_compress.apps.ImageCompressConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

@@ -31,7 +31,7 @@ export const ImageCompress = () => {
 
         bodyFormData.append("image", selectedFile)
 
-        client.post(`/image-resize/?quality=${qualityAmount}`, bodyFormData, {responseType: "blob"}).then((response) => {
+        client.post(`/image-compress/?quality=${qualityAmount}`, bodyFormData, {responseType: "blob"}).then((response) => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             setDownloadUrl(url)
             setIsLoading(false)
