@@ -25,8 +25,9 @@ class ImageCompressView(APIView):
             return Response({'error': 'Quality must be an integer'})
         if quality < 0 or quality > 100:
             return Response({'error': 'Quality must be between 0 and 100'})
-        temp_file = tempfile.NamedTemporaryFile(suffix='.*')
         image = Image.open(image)
-        image.save(temp_file, quality=quality, optimize=True)
+        rgb_image = image.convert('RGB')
+        temp_file = tempfile.NamedTemporaryFile(suffix='.*')
+        rgb_image.save(temp_file, quality=quality, optimize=True, format='JPEG')
         temp_file.seek(0)
         return HttpResponse(temp_file, content_type='image/*')
