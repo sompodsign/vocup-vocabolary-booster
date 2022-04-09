@@ -9,7 +9,7 @@ export const ImageCompress = () => {
     const [selectedFile, setSelectedFile] = useState();
     const [isSelected, setIsSelected] = useState(false);
     const [downloadUrl, setDownloadUrl] = useState("")
-    const [qualityAmount, setQualityAmount] = useState(0)
+    const [qualityAmount, setQualityAmount] = useState(70)
     const [height, setHeight] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(false)
@@ -98,6 +98,7 @@ export const ImageCompress = () => {
                         <label htmlFor="customRange3" className="form-label"><b>Compress level:</b> {qualityAmount}%</label>
                         <input
                             onChange={(e) => setQualityAmount(e.target.value)}
+                            value={qualityAmount}
                             type="range"
                             disabled={!isSelected}
                             className="
@@ -132,7 +133,7 @@ export const ImageCompress = () => {
                             <div className="text-center m-2">
                                 <button
                                     type="submit"
-                                    disabled={!qualityAmount.length  && true}
+                                    disabled={!qualityAmount  && true}
                                     className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
                                     {isLoading &&
                                         <svg role="status" className="inline mr-3 w-4 h-4 text-white animate-spin"
