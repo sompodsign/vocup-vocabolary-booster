@@ -377,7 +377,7 @@ export default function Nav() {
                                 </Disclosure.Button>
                             </Link>
 
-                            <Link to="/tools">
+                            <Link to="/tools/image-resize">
                             <Disclosure.Button
                                 as="a"
                                 href="/tools"

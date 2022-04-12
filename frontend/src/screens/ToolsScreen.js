@@ -29,6 +29,11 @@ export const ToolsScreen = () => {
         }
     }
 
+    const titleCase = (str) => {
+        const words = str.split('-');
+        return words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+
 
     return (
 
@@ -37,7 +42,7 @@ export const ToolsScreen = () => {
                 style={{background: "#14C07B"}}>
 
                 <div className=" p-10 container text-center">
-                    <h1 style={{color: "white", fontSize: "40px"}}><b>{params.toolName}</b></h1>
+                    <h1 style={{color: "white", fontSize: "40px"}}><b>{titleCase(params.toolName)}</b></h1>
                 </div>
 
             </div>
@@ -46,7 +51,7 @@ export const ToolsScreen = () => {
 
                 <div className="flex">
 
-                    <aside className="w-64" aria-label="Sidebar">
+                    <aside className="lg:w-64 flex" aria-label="Sidebar">
 
                         <ul className="space-y-2">
 
