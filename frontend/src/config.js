@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const serverApi = 'http://13.72.98.186/api'
+const serverApi = 'https://shampad.live/api'
 const localApi = 'http://192.168.31.38/api'
 
 const client = axios.create({
