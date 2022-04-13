@@ -1,6 +1,6 @@
 import {Routes, Route} from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
-import {RemoveScrollBar} from 'react-remove-scroll-bar';
+// import {RemoveScrollBar} from 'react-remove-scroll-bar';
 import Nav from "./components/navbar";
 import JoinScreen from "./screens/JoinScreen";
 import LoginScreen from "./screens/LoginScreen";

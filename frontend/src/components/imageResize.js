@@ -58,15 +58,15 @@ export const ImageResizeComponent = () => {
 
 
     return (
-        <div className="flex bg-emerald-50 p-14 rounded-5 shadow-6">
+        <div className="flex bg-emerald-50 p-14 rounded-5 shadow-6 align-lg-content-center">
             <div>
 
                 <form onSubmit={event => submitHandler(event)}>
 
 
-                    <div className="flex items-center justify-center bg-grey-lighter">
+                    <div className="flex align-items-lg-center flex-lg-row flex-col justify-content-center bg-grey-lighter">
                         <label
-                            className="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-blue-400">
+                            className="flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-blue-400">
                             <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 20 20">
                                 <path
@@ -77,7 +77,7 @@ export const ImageResizeComponent = () => {
                         </label>
 
 
-                        <div className="text-right m-3">
+                        <div className="text-lg-end m-3">
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 hidden"
                                    htmlFor="user_avatar">Width</label>
                             <input className="rounded-2" placeholder="Width - (px)" type='text'
