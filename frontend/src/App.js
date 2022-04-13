@@ -1,6 +1,7 @@
 import {Routes, Route} from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
-// import {RemoveScrollBar} from 'react-remove-scroll-bar';
+import FavIcon from 'react-favicon';
+
 import Nav from "./components/navbar";
 import JoinScreen from "./screens/JoinScreen";
 import LoginScreen from "./screens/LoginScreen";
@@ -13,18 +14,10 @@ import TutorialScreen from "./screens/TutorialsScreen";
 import CreateTutorial from "./screens/CreateTutorialScreen";
 import {PostDetail} from "./screens/PostDetailScreen";
 import NotFound from "./components/notFound";
-import {useEffect} from "react";
 import {ToolsScreen} from "./screens/ToolsScreen";
 
 
 function App() {
-
-
-    useEffect(() => {
-        const favicon = document.getElementById('favicon');
-        favicon.setAttribute('href', 'favicon.png');
-    }, []);
-
 
     return (
         <div>

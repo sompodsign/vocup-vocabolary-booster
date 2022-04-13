@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
+import FavIcon from 'react-favicon';
 import store from './store';
 import './index.css';
 // import 'bootstrap/dist/css/bootstrap.css';
@@ -10,9 +11,10 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 
 ReactDOM.render(
     <Provider store={store}>
-    <App />
+        <FavIcon url="https://raw.githubusercontent.com/sompodsign/vocup-vocabolary-booster/main/frontend/public/favicon.png" />
+        <App/>
     </Provider>,
-  document.getElementById('root')
+    document.getElementById('root')
 );
 
 reportWebVitals();
