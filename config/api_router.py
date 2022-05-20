@@ -11,6 +11,7 @@ from todo.api.views import TodoViewSet
 from w2pdf.api.views import WordFileViewSet
 from image_resizer.api.views import ImageResizeView
 from image_compress.api.views import ImageCompressView
+from expense_tracker.api.views import ExpenseViewSet, IncomeViewSet
 
 
 if settings.DEBUG:
@@ -27,6 +28,8 @@ router.register(r"dictionary", DictionaryViewSet)
 router.register(r"tutorials", TutorialViewSet)
 router.register(r"todo", TodoViewSet)
 router.register(r"word-files", WordFileViewSet)
+router.register(r"expenses", ExpenseViewSet)
+router.register(r"incomes", IncomeViewSet)
 
 app_name = "api"
 
