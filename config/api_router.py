@@ -11,7 +11,8 @@ from todo.api.views import TodoViewSet
 from w2pdf.api.views import WordFileViewSet
 from image_resizer.api.views import ImageResizeView
 from image_compress.api.views import ImageCompressView
-from expense_tracker.api.views import ExpenseViewSet, IncomeViewSet
+from expense_tracker.api.views import ExpenseViewSet,\
+    IncomeViewSet
 
 
 if settings.DEBUG:
