@@ -12,7 +12,7 @@ from w2pdf.api.views import WordFileViewSet
 from image_resizer.api.views import ImageResizeView
 from image_compress.api.views import ImageCompressView
 from expense_tracker.api.views import ExpenseViewSet,\
-    IncomeViewSet
+    IncomeViewSet, CheatMealViewSet
 
 
 if settings.DEBUG:
@@ -31,6 +31,7 @@ router.register(r"todo", TodoViewSet)
 router.register(r"word-files", WordFileViewSet)
 router.register(r"expenses", ExpenseViewSet)
 router.register(r"incomes", IncomeViewSet)
+router.register(r"cheat-meals", CheatMealViewSet)
 
 app_name = "api"
 

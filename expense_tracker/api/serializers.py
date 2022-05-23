@@ -4,7 +4,7 @@ from django.db.models import Sum
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from expense_tracker.models import Expense
+from expense_tracker.models import Expense, CheatMeal, Income
 
 
 class TotalExpenseSerializer(ModelSerializer):
@@ -39,5 +39,11 @@ class ExpenseSerializer(ModelSerializer):
 
 class IncomeSerializer(ModelSerializer):
     class Meta:
-        model = Expense
-        exclude = ['user', 'updated_at']
+        model = Income
+        fields = ('id', 'description', 'amount', 'date')
+
+
+class CheatMealSerializer(ModelSerializer):
+    class Meta:
+        model = CheatMeal
+        exclude = ['description', 'date']
