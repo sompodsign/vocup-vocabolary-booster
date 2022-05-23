@@ -69,9 +69,9 @@ class CheatMealViewSet(ModelViewSet):
     def list(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.queryset, many=True)
 
-        current_month_total_cheat_meal = sum(self.queryset.filter(date__month=date.today().month))
-        current_year_total_cheat_meal = sum(self.queryset.filter(date__year=date.today().year))
-        current_day_total_cheat_meal = sum(self.queryset.filter(date=date.today()))
+        current_month_total_cheat_meal = len(self.queryset.filter(date__month=date.today().month))
+        current_year_total_cheat_meal = len(self.queryset.filter(date__year=date.today().year))
+        current_day_total_cheat_meal = len(self.queryset.filter(date=date.today()))
 
         return Response({
             'cheat_meals': serializer.data,
