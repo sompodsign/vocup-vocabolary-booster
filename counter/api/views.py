@@ -1,6 +1,11 @@
+import email
+import imaplib
+
 from rest_framework import status
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.views import APIView
 
 from counter.api.serializers import CounterSerializer
 from counter.models import Counter
@@ -11,34 +16,45 @@ class CounterViewSet(ModelViewSet):
     serializer_class = CounterSerializer
     lookup_field = 'name'
 
-    # create new counter with new value
-    def create(self, request, *args, **kwargs):
-        serializer = CounterSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-    # retrieve counter
-    def list(self, request, *args, **kwargs):
-        # get data from query param
-        name = request.query_params.get('counter-name')
+    def retrieve(self, request, *args, **kwargs):
         api_key = request.query_params.get('api-key')
-
         if api_key == "shampad":
-            if name is None:
-                return Response({'success': False, 'message': 'Enter counter name as query param'}, status=status.HTTP_404_NOT_FOUND)
-            else:
-                try:
-                    obj = Counter.objects.get(name=name)
-                    obj.count = obj.count + 1
-                    obj.save()
-                    return Response({'count': obj.count})
-                except Counter.DoesNotExist:
-                    counter = Counter.objects.create(name=name, count=0)
-                    return Response({'count': counter.count})
-        else:
-            return Response({'success': False, 'message': 'Invalid api key'}, status=status.HTTP_404_NOT_FOUND)
+            try:
+                obj = self.get_object()
+                obj.count = obj.count + 1
+                obj.save()
+                return Response({'count': obj.count})
+            except Exception as e:
+                print(e)
+                obj = Counter.objects.create(name=self.kwargs['name'], count=1)
+                return Response({'count': obj.count})
+        return Response({'success': False, 'message': 'Invalid api key'}, status=status.HTTP_404_NOT_FOUND)
 
 
+class GmailReader(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        # api_key = request.query_params.get('api-key')
+        # if api_key != "shampad":
+        mail = imaplib.IMAP4_SSL('imap.gmail.com')
+        mail.login("ss.unidev@gmail.com", "ahaobqwwwoyotshm")
+
+        try:
+            mail.select("inbox")
+            result, data = mail.search(None, "ALL")
+            ids = data[0]
+            id_list = ids.split()
+            latest_email_id = id_list[-1]
+            result, data = mail.fetch(latest_email_id, "(RFC822)")
+            raw_email = data[0][1]
+            raw_email_string = raw_email.decode('utf-8')
+            email_message = email.message_from_string(raw_email_string)
+            for part in email_message.walk():
+                if part.get_content_type() == "text/plain":
+                    body = part.get_payload(decode=True)
+                    print(body)
+        except Exception as ex:
+            print(ex)
+        # return Response({'success': False, 'message': 'Invalid api key'}, status=status.HTTP_404_NOT_FOUND)
 
