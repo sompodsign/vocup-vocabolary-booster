@@ -13,6 +13,7 @@ from image_resizer.api.views import ImageResizeView
 from image_compress.api.views import ImageCompressView
 from expense_tracker.api.views import ExpenseViewSet,\
     IncomeViewSet, CheatMealViewSet
+from counter.api.views import CounterViewSet
 
 
 if settings.DEBUG:
@@ -32,6 +33,7 @@ router.register(r"word-files", WordFileViewSet)
 router.register(r"expenses", ExpenseViewSet)
 router.register(r"incomes", IncomeViewSet)
 router.register(r"cheat-meals", CheatMealViewSet)
+router.register(r"counters", CounterViewSet)
 
 app_name = "api"
 
