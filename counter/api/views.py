@@ -47,7 +47,7 @@ class GmailReader(APIView):
     """
     View to read emails from gmail account
     * takes email and password in query params
-    * returns last 5 emails
+    * returns last email body
     """
     permission_classes = [AllowAny]
 
