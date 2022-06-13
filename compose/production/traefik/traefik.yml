@@ -11,16 +11,13 @@ entryPoints:
         entryPoint:
           to: web-secure
 
-#api:
-#  dashboard: true
-#  insecure: true
-
   web-secure:
     # https
     address: ":443"
 
-  flower:
-    address: ":5555"
+api:
+  dashboard: true
+#  insecure: true
 
 certificatesResolvers:
   letsencrypt:
@@ -45,15 +42,6 @@ http:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
-    flower-secure-router:
-      rule: "Host(`example.com`)"
-      entryPoints:
-        - flower
-      service: flower
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
-
   middlewares:
     csrf:
       # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
@@ -67,10 +55,6 @@ http:
         servers:
           - url: http://django:5000
 
-    flower:
-      loadBalancer:
-        servers:
-          - url: http://flower:5555
 
 providers:
   # https://docs.traefik.io/master/providers/file/
