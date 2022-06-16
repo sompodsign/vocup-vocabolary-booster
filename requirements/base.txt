@@ -27,5 +27,5 @@ django-cors-headers==3.11.0 # https://github.com/adamchainz/django-cors-headers
 drf-spectacular==0.21.2
 
 pytest~=7.0.1
-django-debug-toolbar~=3.2.4
+django-debug-toolbar~=3.4.0
 bs4~=0.0.1
