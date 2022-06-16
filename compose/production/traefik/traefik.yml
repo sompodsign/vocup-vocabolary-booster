@@ -11,22 +11,15 @@ entryPoints:
         entryPoint:
           to: web-secure
 
-#api:
-#  dashboard: true
-#  insecure: true
-
   web-secure:
     # https
     address: ":443"
-
-  flower:
-    address: ":5555"
 
 certificatesResolvers:
   letsencrypt:
     # https://docs.traefik.io/master/https/acme/#lets-encrypt
     acme:
-      email: "sompod123@gmail.com"
+      email: "shampad.sharkar@gmail.com"
       storage: /etc/traefik/acme/acme.json
       # https://docs.traefik.io/master/https/acme/#httpchallenge
       httpChallenge:
@@ -35,21 +28,12 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`https://api.shampad.live`) || Host(`api.shampad.live`)"
+      rule: "Host(`api.shampad.live`)"
       entryPoints:
         - web-secure
       middlewares:
         - csrf
       service: django
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
-
-    flower-secure-router:
-      rule: "Host(`example.com`)"
-      entryPoints:
-        - flower
-      service: flower
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
@@ -66,11 +50,6 @@ http:
       loadBalancer:
         servers:
           - url: http://django:5000
-
-    flower:
-      loadBalancer:
-        servers:
-          - url: http://flower:5555
 
 providers:
   # https://docs.traefik.io/master/providers/file/
