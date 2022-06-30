@@ -56,6 +56,19 @@ class ExpenseViewSet(ModelViewSet):
         })
 
 
+class CreateExpenseView(APIView):
+    allowed_methods = ['POST']
+    permission_classes = [IsAuthenticated]
+    serializer_class = ExpenseSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+
 class CheatMealViewSet(ModelViewSet):
     queryset = CheatMeal.objects.all()
     serializer_class = CheatMealSerializer
