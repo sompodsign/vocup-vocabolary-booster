@@ -34,12 +34,13 @@ class ExpenseViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(user=self.request.user)
+        return Expense.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
     def list(self, request, *args, **kwargs):
+        self.queryset = Expense.objects.filter(user=self.request.user)
         serializer = self.get_serializer(self.queryset, many=True)
         current_month_total_expense = self.queryset.filter(date__month=date.today().month).aggregate(Sum('amount'))[
             'amount__sum']
